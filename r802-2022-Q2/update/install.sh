@@ -37,7 +37,7 @@ INPLACE_UPDATE_DATE="2022-MM-DD"
 MOODE_PLAYER="moode-player=8.1.0-1moode1"
 LIBRESPOT="librespot=0.4.1-1moode1"
 CAMILLADSP="camilladsp=1.0.0-1moode1"
-CAMILLAGUI="camillagui=1.0.0-1moode1"
+CAMILLAGUI="camillagui=1.0.0-1moode2"
 PYTHON3_CAMILLADSP="python3-camilladsp=1.0.0-1moode1"
 PYTHON3_CAMILLADSP_PLOT="python3-camilladsp-plot=1.0.0-1moode1"
 
