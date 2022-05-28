@@ -25,26 +25,31 @@
 STEP=0
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
-# Current release
+# Current moOde release
 CURRENT_REL_LONG="8.0.2 2022-03-25"
 CURRENT_REL_SHORT="r802"
 
-# New release
-UPD_PACKAGE_DATE="2022-MM-DD"
-MOODE_PACKAGE_REL="8.1.0-1moode1"
+# In-place update date
+INPLACE_UPDATE_DATE="2022-MM-DD"
 
-# Kernel bump
-# Example:
-# UPDATE_KERNEL="yes"
-# KERNEL_VERSION="5.15.28"
-# KERNEL_HASH="87c6654a59e0ae6d09869fffceb44c5c698a7d83"
-UPDATE_KERNEL="no"
+# Deb packages
+# NOTE: Set to "" if package is not being installed
+MOODE_PLAYER="moode-player=8.1.0-1moode1"
+LIBRESPOT="librespot=0.4.1-1moode1"
+CAMILLADSP="camilladsp=1.0.0-1moode1"
+CAMILLAGUI="camillagui=1.0.0-1moode1"
+PYTHON3_CAMILLADSP="python3-camilladsp=1.0.0-1moode1"
+PYTHON3_CAMILLADSP_PLOT="python3-camilladsp-plot=1.0.0-1moode1"
+
+# Linux kernel
+# NOTE: Set to "" if kernel is not being installed
 KERNEL_VERSION=""
 KERNEL_HASH=""
 
 # Number of steps
-TOTAL_STEPS=4
-if [ $UPDATE_KERNEL = "yes" ] ; then
+TOTAL_STEPS=11
+
+if [ $KERNEL_VERSION != "" ] ; then
 	TOTAL_STEPS=$((TOTAL_STEPS + 1))
 fi
 
@@ -103,22 +108,22 @@ cd $WD
 # Initialize log file
 truncate ./update-$CURRENT_REL_SHORT.log --size 0
 
-# Basic checks
+# Start and basic checks
 # NOTE: Disk space check (> 512MB) is done in System Config before submitting the update
 
-message_log "Start $UPD_PACKAGE_DATE update for moOde $CURRENT_REL_LONG"
+message_log "Start $INPLACE_UPDATE_DATE update for moOde $CURRENT_REL_LONG"
 
 message_log "** Release check"
 REL=$(moodeutl --mooderel | tr -d '\n')
 
 if [ $REL != $CURRENT_REL_LONG ] ; then
-	cancel_update "** Error: this update will only run on moOde $CURRENT_REL_LONG"
+	cancel_update "** Error: This update will only run on moOde $CURRENT_REL_LONG"
 fi
 
 # NOTE: Use of squashed file system is deprecated
 echo "** File system check"
 if [ -f /var/local/moode.sqsh ] ; then
-	cancel_update "** Error: this update will only run on un-squashed /var/www"
+	cancel_update "** Error: This update will only run on un-squashed /var/www"
 fi
 
 # Proceed with the update
@@ -129,7 +134,7 @@ message_log "** Step $STEP-$TOTAL_STEPS: Update package list"
 apt update
 
 # Linux kernel and custom drivers
-if [ $UPDATE_KERNEL = "yes" ] ; then
+if [ $KERNEL_VERSION != "" ] ; then
 	STEP=$((STEP + 1))
 	message_log "** Step $STEP-$TOTAL_STEPS: Update to Linux kernel $KERNEL_VERSION"
 
@@ -150,12 +155,55 @@ if [ $UPDATE_KERNEL = "yes" ] ; then
 	apt-get install -y "aloop-$KERNEL" "pcm1794a-$KERNEL" "ax88179-$KERNEL" "rtl88xxau-$KERNEL"
 fi
 
-# Moode-player package
+# Remove package hold
 STEP=$((STEP + 1))
-message_log "** Step $STEP-$TOTAL_STEPS: Install moode-player updates"
-rm /boot/moodecfg.ini.default
+message_log "** Step $STEP-$TOTAL_STEPS: Remove package hold"
 moode-apt-mark unhold
-apt -y install moode-player=$MOODE_PACKAGE_REL
+
+# Moode-player package
+if [ $MOODE_PLAYER != "" ] ; then
+	STEP=$((STEP + 1))
+	message_log "** Step $STEP-$TOTAL_STEPS: Install moode-player package"
+	rm /boot/moodecfg.ini.default
+	apt -y install $MOODE_PLAYER
+fi
+
+# Librespot package
+if [ $LIBRESPOT != "" ] ; then
+	STEP=$((STEP + 1))
+	message_log "** Step $STEP-$TOTAL_STEPS: Install librespot package"
+	apt -y install $LIBRESPOT
+fi
+
+# Camilladsp packages
+if [ $CAMILLADSP != "" ] ; then
+	STEP=$((STEP + 1))
+	message_log "** Step $STEP-$TOTAL_STEPS: Install camilladsp package"
+	rm /boot/moodecfg.ini.default
+	apt -y install $CAMILLADSP
+fi
+if [ $CAMILLAGUI != "" ] ; then
+	STEP=$((STEP + 1))
+	message_log "** Step $STEP-$TOTAL_STEPS: Install camillagui package"
+	rm /boot/moodecfg.ini.default
+	apt -y install $CAMILLAGUI
+fi
+if [ $PYTHON3_CAMILLADSP != "" ] ; then
+	STEP=$((STEP + 1))
+	message_log "** Step $STEP-$TOTAL_STEPS: Install python3-camilladsp package"
+	rm /boot/moodecfg.ini.default
+	apt -y install $PYTHON3_CAMILLADSP
+fi
+if [ $PYTHON3_CAMILLADSP_PLOT != "" ] ; then
+	STEP=$((STEP + 1))
+	message_log "** Step $STEP-$TOTAL_STEPS: Install python3-camilladsp-plot package"
+	rm /boot/moodecfg.ini.default
+	apt -y install $PYTHON3_CAMILLADSP_PLOT
+fi
+
+# Apply package hold
+STEP=$((STEP + 1))
+message_log "** Step $STEP-$TOTAL_STEPS: Apply package hold"
 moode-apt-mark hold
 
 # Post-install cleanup
@@ -179,6 +227,6 @@ message_log "** Step $STEP-$TOTAL_STEPS: Sync changes to disk"
 sync
 
 # All done
-message_log "Finish $UPD_PACKAGE_DATE update for moOde $CURRENT_REL_LONG"
+message_log "Finish $INPLACE_UPDATE_DATE update for moOde $CURRENT_REL_LONG"
 
 cd ~/
