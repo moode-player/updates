@@ -40,6 +40,7 @@ CAMILLADSP="camilladsp=1.0.0-1moode1"
 CAMILLAGUI="camillagui=1.0.0-1moode2"
 PYTHON3_CAMILLADSP="python3-camilladsp=1.0.0-1moode1"
 PYTHON3_CAMILLADSP_PLOT="python3-camilladsp-plot=1.0.0-1moode1"
+CHROMIUM_BROWSER="chromium-browser"
 
 # Linux kernel
 # NOTE: Set to "" if kernel is not being installed
@@ -47,7 +48,7 @@ KERNEL_VERSION=""
 KERNEL_HASH=""
 
 # Number of steps
-TOTAL_STEPS=11
+TOTAL_STEPS=12
 
 if [ $KERNEL_VERSION != "" ] ; then
 	TOTAL_STEPS=$((TOTAL_STEPS + 1))
@@ -166,6 +167,13 @@ if [ $MOODE_PLAYER != "" ] ; then
 	message_log "** Step $STEP-$TOTAL_STEPS: Install moode-player package"
 	rm /boot/moodecfg.ini.default
 	apt -y install $MOODE_PLAYER
+fi
+
+# Chromium browser package
+if [ $CHROMIUM_BROWSER != "" ] ; then
+	STEP=$((STEP + 1))
+	message_log "** Step $STEP-$TOTAL_STEPS: Install chromium-browser package"
+	apt -y install $CHROMIUM_BROWSER
 fi
 
 # Librespot package
