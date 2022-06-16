@@ -32,15 +32,15 @@ CURRENT_REL_SHORT="r802"
 # In-place update date
 INPLACE_UPDATE_DATE="2022-mm-dd"
 
-# Deb packages
-# NOTE: Set to "" if package is not being installed
-MOODE_PLAYER="moode-player=8.1.0-1moode1~pre4"
-LIBRESPOT="librespot=0.4.1-1moode1"
-CAMILLADSP="camilladsp=1.0.0-1moode1"
-CAMILLAGUI="camillagui=1.0.0-1moode2"
-PYTHON3_CAMILLADSP="python3-camilladsp=1.0.0-1moode1"
-PYTHON3_CAMILLADSP_PLOT="python3-camilladsp-plot=1.0.0-1moode1"
-CHROMIUM_BROWSER="chromium-browser"
+# Packages to be updated
+PKGS=(
+moode-player=8.1.0-1moode1~pre4
+librespot=0.4.1-1moode1
+camilladsp=1.0.0-1moode1
+python3-camilladsp=1.0.0-1moode1
+python3-camilladsp-plot=1.0.0-1moode1
+camillagui=1.0.0-1moode2
+chromium-browser )
 
 # Linux kernel
 # NOTE: Set to "" if kernel is not being installed
@@ -161,53 +161,13 @@ STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Remove package hold"
 moode-apt-mark unhold
 
-# Moode-player package
-if [ $MOODE_PLAYER != "" ] ; then
-	STEP=$((STEP + 1))
-	message_log "** Step $STEP-$TOTAL_STEPS: Install moode-player package"
-	rm /boot/moodecfg.ini.default
-	apt -y install $MOODE_PLAYER
-fi
-
-# Chromium browser package
-if [ $CHROMIUM_BROWSER != "" ] ; then
-	STEP=$((STEP + 1))
-	message_log "** Step $STEP-$TOTAL_STEPS: Install chromium-browser package"
-	apt -y install $CHROMIUM_BROWSER
-fi
-
-# Librespot package
-if [ $LIBRESPOT != "" ] ; then
-	STEP=$((STEP + 1))
-	message_log "** Step $STEP-$TOTAL_STEPS: Install librespot package"
-	apt -y install $LIBRESPOT
-fi
-
-# Camilladsp packages
-if [ $CAMILLADSP != "" ] ; then
-	STEP=$((STEP + 1))
-	message_log "** Step $STEP-$TOTAL_STEPS: Install camilladsp package"
-	rm /boot/moodecfg.ini.default
-	apt -y install $CAMILLADSP
-fi
-if [ $CAMILLAGUI != "" ] ; then
-	STEP=$((STEP + 1))
-	message_log "** Step $STEP-$TOTAL_STEPS: Install camillagui package"
-	rm /boot/moodecfg.ini.default
-	apt -y install $CAMILLAGUI
-fi
-if [ $PYTHON3_CAMILLADSP != "" ] ; then
-	STEP=$((STEP + 1))
-	message_log "** Step $STEP-$TOTAL_STEPS: Install python3-camilladsp package"
-	rm /boot/moodecfg.ini.default
-	apt -y install $PYTHON3_CAMILLADSP
-fi
-if [ $PYTHON3_CAMILLADSP_PLOT != "" ] ; then
-	STEP=$((STEP + 1))
-	message_log "** Step $STEP-$TOTAL_STEPS: Install python3-camilladsp-plot package"
-	rm /boot/moodecfg.ini.default
-	apt -y install $PYTHON3_CAMILLADSP_PLOT
-fi
+# Install packages
+for PKG in "${PKGS[@]}"
+do
+  STEP=$((STEP + 1))
+  message_log "** Step $STEP-$TOTAL_STEPS: Install $PKG"
+  apt install -y $PKG
+done
 
 # Apply package hold
 STEP=$((STEP + 1))
