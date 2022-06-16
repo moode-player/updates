@@ -30,11 +30,11 @@ CURRENT_REL_LONG="8.0.2 2022-03-25"
 CURRENT_REL_SHORT="r802"
 
 # In-place update date
-INPLACE_UPDATE_DATE="2022-MM-DD"
+INPLACE_UPDATE_DATE="2022-mm-dd"
 
 # Deb packages
 # NOTE: Set to "" if package is not being installed
-MOODE_PLAYER="moode-player=8.1.0-1moode1"
+MOODE_PLAYER="moode-player=8.1.0-1moode1~pre4"
 LIBRESPOT="librespot=0.4.1-1moode1"
 CAMILLADSP="camilladsp=1.0.0-1moode1"
 CAMILLAGUI="camillagui=1.0.0-1moode2"
@@ -44,8 +44,8 @@ CHROMIUM_BROWSER="chromium-browser"
 
 # Linux kernel
 # NOTE: Set to "" if kernel is not being installed
-KERNEL_VERSION=""
-KERNEL_HASH=""
+KERNEL_VERSION="5.15.32"
+KERNEL_HASH="a54fe46c85fd4a2155f2282454bee3c2a3d5b5eb"
 
 # Number of steps
 TOTAL_STEPS=12
