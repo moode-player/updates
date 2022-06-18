@@ -30,7 +30,7 @@ CURRENT_REL_LONG="8.0.2 2022-03-25"
 CURRENT_REL_SHORT="r802"
 
 # In-place update date
-INPLACE_UPDATE_DATE="2022-mm-dd"
+INPLACE_UPDATE_DATE="2022-06-18"
 
 # Packages to be updated
 PKGS=(
