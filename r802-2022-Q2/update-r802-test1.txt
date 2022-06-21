@@ -5,7 +5,7 @@
 ########################################
 
 Release: r802
-Date: 2022-06-18
+Date: 2022-06-21
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates release 8.0.2 to 8.1.0 and includes important bug fixes and improvements. Be sure to BACKUP your system before applying this update and follow the instructions below.</p><p>1)&nbsp;Monitor progress with the SSH command: moodeutl -t<br>2)&nbsp;Reboot after the completion message appears.<br>3)&nbsp;Update library if radio station changes are listed in the release notes.<br>4)&nbsp;The file /var/local/www/update-r801.log contains a log of the update.</p><p>RELEASE NOTES</p>
