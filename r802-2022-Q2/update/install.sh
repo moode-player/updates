@@ -34,7 +34,7 @@ INPLACE_UPDATE_DATE="2022-06-21"
 
 # Packages to be updated
 PKGS=(
-moode-player=8.1.0-1moode1~pre4
+moode-player=8.1.0-1moode1
 librespot=0.4.1-1moode1
 camilladsp=1.0.0-1moode1
 python3-camilladsp=1.0.0-1moode1
