@@ -1,0 +1,13 @@
+########################################
+# Update package for moOde audio player
+#
+# http://moodeaudio.org
+########################################
+
+Release: r810
+Date: 2022-06-24
+ImageOnly: No
+
+Description: <p>DESCRIPTION</p><p>This package updates release 8.1.0 to 8.1.1 and includes important bug fixes. Be sure to BACKUP your system before applying this update and follow the instructions below.</p><p>1)&nbsp;Monitor progress with the SSH command: moodeutl -t<br>2)&nbsp;Reboot after the completion message appears.<br>3)&nbsp;Update library if radio station changes are listed in the release notes.<br>4)&nbsp;The file /var/local/www/update-rNNN.log contains a log of the update.</p><p>RELEASE NOTES</p>
+
+Relnotes: <ul class="updater-relnotes"><li>Bug fixes</li><li>- Spotify table name in renderer.php causing worker to crash</li><li>- Missing parenthesis in autocfg-import.php</li><li>- Missing systemd-timesyncd service on 32-bit image</li></ul>
