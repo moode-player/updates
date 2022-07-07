@@ -35,7 +35,7 @@ INPLACE_UPDATE_DATE="2022-07-06"
 # Packages to be updated
 PKGS=(
 moode-player=8.1.2-1moode1
-librespot
+librespot=0.4.1-1moode2
 )
 
 # Linux kernel
