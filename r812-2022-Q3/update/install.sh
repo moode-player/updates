@@ -26,22 +26,23 @@ STEP=0
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Current moOde release
-CURRENT_REL_LONG="8.1.1 2022-06-24"
-CURRENT_REL_SHORT="r811"
+CURRENT_REL_LONG="8.1.2 2022-07-08"
+CURRENT_REL_SHORT="r812"
 
 # In-place update date
-INPLACE_UPDATE_DATE="2022-07-08"
+INPLACE_UPDATE_DATE="2022-MM-DD"
 
 # Packages to be updated
 PKGS=(
-moode-player=8.1.2-1moode1
-librespot=0.4.1-1moode2
+moode-player=8.2.0-1moode1
+camillagui=1.0.0-1moode3
+librespot=0.4.2-1moode1
 )
 
 # Linux kernel
 # NOTE: Set to "" if kernel is not being installed
-KERNEL_VERSION=""
-KERNEL_HASH=""
+KERNEL_VERSION="5.15.56"
+KERNEL_HASH="44622a4e3264bc4a8ec63683baf39b7b4bd0956f"
 
 # Number of steps
 TOTAL_STEPS=8

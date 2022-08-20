@@ -4,10 +4,13 @@
 # http://moodeaudio.org
 ########################################
 
-Release: r811
+Release: r812
 Date: 2022-07-08
 ImageOnly: No
 
-Description: <p>DESCRIPTION</p><p>This package updates release 8.1.1 to 8.1.2 and includes important updates and bug fixes. Be sure to BACKUP your system before applying this update and follow the instructions below.</p><p>1)&nbsp;Monitor progress with the SSH command: moodeutl -t<br>2)&nbsp;Reboot after the completion message appears.<br>3)&nbsp;Update library if radio station changes are listed in the release notes.<br>4)&nbsp;The file /var/local/www/update-rNNN.log contains a log of the update.</p><p>RELEASE NOTES</p>
+Description: <p>DESCRIPTION</p><p>This package upgrades release 8.1.2 to 8.2.0. Be sure to BACKUP your system before applying this update and follow the instructions below.</p><p>1)&nbsp;Monitor progress with the SSH command: moodeutl -t<br>2)&nbsp;Reboot after the completion message appears.<br>3)&nbsp;Update library if radio station changes are listed in the release notes.<br>4)&nbsp;The file /var/local/www/update-rNNN.log contains a log of the update.</p><p>RELEASE NOTES</p>
 
-Relnotes: <ul class="updater-relnotes"><li>Updates</li><li>- Improve support for non-embedded cue format</li><li>- Add Gulp cachebuster to help prevent stale Browser cache after updates</li><li>- Help text for MPD options section in Audio Config</li><li>Bug fixes</li><li>- Cover art not showing for album directories in Folder view</li><li>- File name for UPnP album art fetcher</li><li>- File name for MPD conf merge utility</li><li>- Value for PHP max_input_vars limiting Queue to 1000 items</li><li>- Function encodeURIComponent() not being applied to cover thumb hash</li><li>- Missing 32-bit variant for arm6 librespot</li><li>- Missing alsa.php library causing BlueZ Config to crash</li><li>- Missing mpd.php library causing Parametric EQ to crash on Play</li><li>- Missing alsa.php library causing Squeezelite Config to crash</li><li>- Missing HpCF_Sennheiser_HD800S_A.wav coeffs file for Camilla</li></ul>
+Relnotes: <ul class="updater-relnotes">
+<li>
+</li>
+</ul>
