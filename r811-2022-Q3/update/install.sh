@@ -113,7 +113,7 @@ message_log "Start $INPLACE_UPDATE_DATE update for moOde $CURRENT_REL_LONG"
 message_log "** Release check"
 REL=$(moodeutl --mooderel | tr -d '\n')
 
-if [ $REL != $CURRENT_REL_LONG ] ; then
+if [ "$REL" != "$CURRENT_REL_LONG" ] ; then
 	cancel_update "** Error: This update will only run on moOde $CURRENT_REL_LONG"
 fi
 
@@ -129,7 +129,7 @@ fi
 # This is because 32-bit Bullseye does not contain the timesyncd package
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Install timesyncd"
-apt install systemd-timesyncd
+apt install -y systemd-timesyncd
 
 # Update package list
 STEP=$((STEP + 1))
