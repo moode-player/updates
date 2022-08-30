@@ -34,9 +34,10 @@ INPLACE_UPDATE_DATE="2022-MM-DD"
 
 # Packages to be updated
 PKGS=(
-moode-player=8.2.0-1moode1
+alsa-cdsp=1.2.0-1moode1
 camillagui=1.0.0-1moode3
 librespot=0.4.2-1moode1
+moode-player=8.2.0-1moode1
 )
 
 # Linux kernel
