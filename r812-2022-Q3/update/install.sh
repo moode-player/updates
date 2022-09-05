@@ -42,8 +42,8 @@ moode-player=8.2.0-1moode1
 
 # Linux kernel
 # NOTE: Set to "" if kernel is not being installed
-KERNEL_VERSION="5.15.56"
-KERNEL_HASH="44622a4e3264bc4a8ec63683baf39b7b4bd0956f"
+KERNEL_VERSION="5.15.61"
+KERNEL_HASH="0006a29c09947f8699d460787a101c34d9c38856"
 
 # Number of steps
 TOTAL_STEPS=8
