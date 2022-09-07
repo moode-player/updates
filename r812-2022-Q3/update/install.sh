@@ -23,6 +23,7 @@
 
 # Step counter and SQL database
 STEP=0
+TOTAL_STEPS=8
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Current moOde release
@@ -37,17 +38,13 @@ PKGS=(
 alsa-cdsp=1.2.0-1moode1
 camillagui=1.0.0-1moode3
 librespot=0.4.2-1moode1
-moode-player=8.2.0-1moode1
+moode-player=8.2.0-1moode1~pre2
 )
 
 # Linux kernel
 # NOTE: Set to "" if kernel is not being installed
 KERNEL_VERSION="5.15.61"
 KERNEL_HASH="0006a29c09947f8699d460787a101c34d9c38856"
-
-# Number of steps
-TOTAL_STEPS=8
-
 if [ $KERNEL_VERSION != "" ] ; then
 	TOTAL_STEPS=$((TOTAL_STEPS + 1))
 fi
@@ -138,13 +135,25 @@ STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Update package list"
 apt update
 
+# Upgrade packages
+#STEP=$((STEP + 1))
+#message_log "** Step $STEP-$TOTAL_STEPS: Upgrade packages"
+#apt -y upgrade
+
 # Linux kernel and custom drivers
 if [ $KERNEL_VERSION != "" ] ; then
 	STEP=$((STEP + 1))
 	message_log "** Step $STEP-$TOTAL_STEPS: Update to Linux kernel $KERNEL_VERSION"
 
+	# Kernel architecture suffix
+	if [ `uname -m` = "aarch64" ] ; then
+		ARCH="v8+"
+	else
+		ARCH="v7l+"
+	fi
+
 	# Remove custom drivers for current kernel (they may not exist if user has bumped kernel)
-	KERNEL=$(basename `ls -d /lib/modules/*-v7l+` | sed -r "s/([0-9.]*)[-].*/\1/")
+	KERNEL=$(basename `ls -d /lib/modules/*-$ARCH` | sed -r "s/([0-9.]*)[-].*/\1/")
 	message_log "** - Kernel $KERNEL detected, removing existing custom drivers"
 	apt-get remove -y "aloop-$KERNEL" "pcm1794a-$KERNEL" "ax88179-$KERNEL" "rtl88xxau-$KERNEL"
 
@@ -155,7 +164,7 @@ if [ $KERNEL_VERSION != "" ] ; then
 	echo "y" | sudo PRUNE_MODULES=1 rpi-update $KERNEL_HASH
 
 	# Install matching kernel drivers (these should exist in CS as part of prepping for the update)
-	KERNEL=$(basename `ls -d /lib/modules/*-v7l+` | sed -r "s/([0-9.]*)[-].*/\1/")
+	KERNEL=$(basename `ls -d /lib/modules/*-$ARCH` | sed -r "s/([0-9.]*)[-].*/\1/")
 	message_log "** - Kernel $KERNEL detected, installing matching custom drivers"
 	apt-get install -y "aloop-$KERNEL" "pcm1794a-$KERNEL" "ax88179-$KERNEL" "rtl88xxau-$KERNEL"
 fi
