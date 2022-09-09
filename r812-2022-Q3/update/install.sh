@@ -21,48 +21,23 @@
 # Environment
 #
 
-# Step counter and SQL database
 STEP=0
-TOTAL_STEPS=8
-SQLDB=/var/local/www/db/moode-sqlite3.db
-
-# Current moOde release
 CURRENT_REL_LONG="8.1.2 2022-07-08"
 CURRENT_REL_SHORT="r812"
-
-# In-place update date
 INPLACE_UPDATE_DATE="2022-MM-DD"
-
-# Packages to be updated
-PKGS=(
+SQLDB=/var/local/www/db/moode-sqlite3.db
+NUM_PKG_UPDATES=4
+PKG_UPDATES=(
 alsa-cdsp=1.2.0-1moode1
 camillagui=1.0.0-1moode3
 librespot=0.4.2-1moode1
 moode-player=8.2.0-1moode1~pre2
 )
-
-# Linux kernel
-# NOTE: Set to "" if kernel is not being installed
-KERNEL_VERSION="5.15.61"
-KERNEL_HASH="0006a29c09947f8699d460787a101c34d9c38856"
-if [ $KERNEL_VERSION != "" ] ; then
-	TOTAL_STEPS=$((TOTAL_STEPS + 1))
-fi
+TOTAL_STEPS=$(($NUM_PKG_UPDATES + 6))
 
 #
 # Functions
 #
-
-read_yn_input () {
-	while true; do
-	    read -p "$1" YN
-	    case $YN in
-	        [y] ) break;;
-	        [n] ) break;;
-	        * ) echo "** Valid entries are y|n";;
-	    esac
-	done
-}
 
 cancel_update () {
 	if [ $# -gt 0 ] ; then
@@ -97,97 +72,47 @@ echo "**"
 echo "****************************************************************"
 echo
 
-# Establish working directory
 WD=/var/local/www
 cd $WD
-
-# Initialize log file
 truncate ./update-$CURRENT_REL_SHORT.log --size 0
-
-# Start and basic checks
-# NOTE: Disk space check (> 512MB) is done in System Config before submitting the update
-
 message_log "Start $INPLACE_UPDATE_DATE update for moOde $CURRENT_REL_LONG"
 
 message_log "** Release check"
 REL=$(moodeutl --mooderel | tr -d '\n')
-
 if [ "$REL" != "$CURRENT_REL_LONG" ] ; then
 	cancel_update "** Error: This update will only run on moOde $CURRENT_REL_LONG"
 fi
 
-# NOTE: Use of squashed file system is deprecated
-echo "** File system check"
-if [ -f /var/local/moode.sqsh ] ; then
-	cancel_update "** Error: This update will only run on un-squashed /var/www"
-fi
-
-# Proceed with the update
-
-# Ensure timesyncd is installed so date will be current otherwise requests to the repos will fail
-# This is because 32-bit Bullseye does not contain the timesyncd package
-STEP=$((STEP + 1))
-message_log "** Step $STEP-$TOTAL_STEPS: Install timesyncd"
-apt install -y systemd-timesyncd
-
-# Update package list
+# 1 - Update package list
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Update package list"
 apt update
 
-# Upgrade packages
-#STEP=$((STEP + 1))
-#message_log "** Step $STEP-$TOTAL_STEPS: Upgrade packages"
-#apt -y upgrade
-
-# Linux kernel and custom drivers
-if [ $KERNEL_VERSION != "" ] ; then
-	STEP=$((STEP + 1))
-	message_log "** Step $STEP-$TOTAL_STEPS: Update to Linux kernel $KERNEL_VERSION"
-
-	# Kernel architecture suffix
-	if [ `uname -m` = "aarch64" ] ; then
-		ARCH="v8+"
-	else
-		ARCH="v7l+"
-	fi
-
-	# Remove custom drivers for current kernel (they may not exist if user has bumped kernel)
-	KERNEL=$(basename `ls -d /lib/modules/*-$ARCH` | sed -r "s/([0-9.]*)[-].*/\1/")
-	message_log "** - Kernel $KERNEL detected, removing existing custom drivers"
-	apt-get remove -y "aloop-$KERNEL" "pcm1794a-$KERNEL" "ax88179-$KERNEL" "rtl88xxau-$KERNEL"
-
-	message_log "** - Installing kernel $KERNEL_VERSION"
-	# Ensure rpi-update runs
-	rm /boot/.firmware_revision
-	# Install kernel
-	echo "y" | sudo PRUNE_MODULES=1 rpi-update $KERNEL_HASH
-
-	# Install matching kernel drivers (these should exist in CS as part of prepping for the update)
-	KERNEL=$(basename `ls -d /lib/modules/*-$ARCH` | sed -r "s/([0-9.]*)[-].*/\1/")
-	message_log "** - Kernel $KERNEL detected, installing matching custom drivers"
-	apt-get install -y "aloop-$KERNEL" "pcm1794a-$KERNEL" "ax88179-$KERNEL" "rtl88xxau-$KERNEL"
-fi
-
-# Remove package hold
+# 2 - Remove package hold
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Remove package hold"
 moode-apt-mark unhold
 
-# Install packages
-for PKG in "${PKGS[@]}"
+# 3 - Install timesyncd so date will be current otherwise requests to the repos will fail
+# NOTE: 32-bit Bullseye did not contain the timesyncd package
+STEP=$((STEP + 1))
+message_log "** Step $STEP-$TOTAL_STEPS: Install timesyncd"
+apt install -y systemd-timesyncd
+
+# 4 - Install package updates
+for PACKAGE in "${PKG_UPDATES[@]}"
 do
   STEP=$((STEP + 1))
-  message_log "** Step $STEP-$TOTAL_STEPS: Install $PKG"
-  apt install -y $PKG
+  message_log "** Step $STEP-$TOTAL_STEPS: Install $PACKAGE"
+  apt install -y $PACKAGE
 done
 
-# Apply package hold
+# 5 - Apply package hold
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Apply package hold"
 moode-apt-mark hold
 
-# Post-install cleanup
+# 6 - Post-install cleanup
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Post-install cleanup"
 # Update theme background color in var/www/header.php
@@ -199,10 +124,9 @@ rm -rf /lib/modules.bak
 rm -rf /boot.bak
 apt-get clean
 # NOTE: Fixes and specials go here
-# For missing sed in the on_upgrade() section of r801 moode-player package
-#sed -i -e 's/[#]TemporaryTimeout[ ]=[ ].*/TemporaryTimeout = 90/' /etc/bluetooth/main.conf
+#
 
-# Flush cached disk writes
+# 7 - Flush cached disk writes
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Sync changes to disk"
 sync
