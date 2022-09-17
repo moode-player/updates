@@ -31,7 +31,7 @@ PKG_UPDATES=(
 alsa-cdsp=1.2.0-1moode1
 camillagui=1.0.0-1moode3
 librespot=0.4.2-1moode1
-moode-player=8.2.0-1moode1~pre2
+moode-player=8.2.0-1moode1
 )
 TOTAL_STEPS=$(($NUM_PKG_UPDATES + 6))
 
