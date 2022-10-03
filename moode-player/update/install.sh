@@ -26,7 +26,8 @@ SQLDB=/var/local/www/db/moode-sqlite3.db
 STEP=0
 NUM_PKG_UPDATES=1
 PKG_UPDATES=(
-moode-player=8.x.y-1moode1
+moode-player=8.2.1-1moode1~pre1
+shairport-sync=4.1.0~git20220930.97fa75e8-1moode1
 )
 TOTAL_STEPS=$(($NUM_PKG_UPDATES + 6))
 
