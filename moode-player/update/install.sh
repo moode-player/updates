@@ -24,10 +24,11 @@
 INPLACE_UPDATE_DATE="2022-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 STEP=0
-NUM_PKG_UPDATES=1
+NUM_PKG_UPDATES=3
 PKG_UPDATES=(
 moode-player=8.2.1-1moode1~pre1
 shairport-sync=4.1.0~git20220930.97fa75e8-1moode1
+camillagui=1.0.0-1moode4
 )
 TOTAL_STEPS=$(($NUM_PKG_UPDATES + 6))
 
@@ -87,18 +88,18 @@ message_log "Start $INPLACE_UPDATE_DATE update for moOde"
 # 1 - Remove package hold
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Remove package hold"
-### moode-apt-mark unhold
+moode-apt-mark unhold
 
 # 2 - Update package list
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Update package list"
-### apt update
+apt update
 
 # 3 - Install timesyncd so date will be current otherwise requests to the repos will fail
 # NOTE: 32-bit Bullseye did not contain the timesyncd package
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Install timesyncd"
-### apt -y install systemd-timesyncd
+apt -y install systemd-timesyncd
 
 # 4 - Linux kernel and custom drivers
 if [ $KERNEL_VERSION != "" ] ; then
@@ -127,13 +128,13 @@ for PACKAGE in "${PKG_UPDATES[@]}"
 do
   STEP=$((STEP + 1))
   message_log "** Step $STEP-$TOTAL_STEPS: Install $PACKAGE"
-  ### apt install -y $PACKAGE
+  apt install -y $PACKAGE
 done
 
 # 6 - Apply package hold
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Apply package hold"
-### moode-apt-mark hold
+moode-apt-mark hold
 
 # 7 - Post-install cleanup
 STEP=$((STEP + 1))
