@@ -26,9 +26,9 @@ SQLDB=/var/local/www/db/moode-sqlite3.db
 STEP=0
 NUM_PKG_UPDATES=3
 PKG_UPDATES=(
-'moode-player=8.2.1-1moode1~pre1'
-'-o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" --yes --force-yes shairport-sync=4.1.0~git20220930.97fa75e8-1moode1'
-'camillagui=1.0.0-1moode4'
+moode-player=8.2.1-1moode1~pre1
+camillagui=1.0.0-1moode4
+shairport-sync=4.1.0~git20220930.97fa75e8-1moode1
 )
 TOTAL_STEPS=$(($NUM_PKG_UPDATES + 6))
 
@@ -128,7 +128,11 @@ for PACKAGE in "${PKG_UPDATES[@]}"
 do
   STEP=$((STEP + 1))
   message_log "** Step $STEP-$TOTAL_STEPS: Install $PACKAGE"
-  apt install -y $PACKAGE
+  if [ $(echo $PACKAGE | cut -d "=" -f 1) = "shairport-sync" ]; then
+	  apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
+  else
+	  apt install -y $PACKAGE
+  fi
 done
 
 # 6 - Apply package hold
