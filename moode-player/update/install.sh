@@ -21,7 +21,7 @@
 # Environment
 #
 
-INPLACE_UPDATE_DATE="2022-MM-DD"
+INPLACE_UPDATE_DATE="2022-10-07"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 STEP=0
 NUM_PKG_UPDATES=3
