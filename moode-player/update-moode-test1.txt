@@ -5,9 +5,9 @@
 ########################################
 
 Date: 2022-MM-DD
-Release: 8.x.y
+Release: 8.2.1
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update and then follow the instructions below to monitor progress.</p><p>MONITOR THE UPDATE</p><p>&bull;&nbsp;Monitor progress with the the command <i>moodeutl -t</i><br>&bull;&nbsp;Reboot after the completion message appears<br>&bull;&nbsp;Update the library if radio station changes are listed in the release notes<br>&bull;&nbsp;The command <i>moodeutl --updlog</i> prints the update log</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Release notes go here</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to shairport-sync 4.1.0-dev with Airplay 2</li><li>- Bump to CamillaGUI 1.0.0 production release</li><li>- Improve CUE virtual directory handling plus other enhancements</li><li>- Improve help text for File sharing</li><li>- Improve layout and help text on Multiroom Config</li><li>- Add folder path to bottom of Folder view</li><li>- Add mount monitoring option to File sharing feature</li><li>- Add Artist (Strict) to Prefs Tag view artist options</li><li>- Add Prefs option for showing rate and format in CoverView wide</li><li>- Allow spaces in manually entered WiFi SSID</li><li>- Persist the Library "Recently added" setting</li><li>- Set default for Receiver Master volume opt-in to Yes</li><li>- Set default NFS mount optioons to: soft,timeo=10,retrans=1,ro,nolock</li><li>- Remove ellipsis limit from CoverView wide layout</li><li>Bug fixes</li><li>- Word wrap on Audioinfo file path</li><li>- Mediainfo run from PHP exec not handling accented file names</li><li>- Playlists not restored if backup has no radio stations</li><li>- Margin for Volume popup close button (mobile)</li><li>- APD Router mode log entry in moOde startup log</li><li>- Maintenance interval 2 hours but should be 6 hours</li></ul>
