@@ -129,9 +129,9 @@ do
   STEP=$((STEP + 1))
   message_log "** Step $STEP-$TOTAL_STEPS: Install $PACKAGE"
   if [ $(echo $PACKAGE | cut -d "=" -f 1) = "shairport-sync" ]; then
-	  apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
+	  apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
   else
-	  apt install -y $PACKAGE
+	  apt -y install $PACKAGE
   fi
 done
 
