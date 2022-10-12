@@ -21,12 +21,12 @@
 # Environment
 #
 
-INPLACE_UPDATE_DATE="2022-10-07"
+INPLACE_UPDATE_DATE="2022-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 STEP=0
 NUM_PKG_UPDATES=3
 PKG_UPDATES=(
-moode-player=8.2.1-1moode1
+moode-player=8.2.2-1moode1
 camillagui=1.0.0-1moode4
 shairport-sync=4.1.0~git20220930.97fa75e8-1moode1
 )
