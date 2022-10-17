@@ -28,7 +28,7 @@ NUM_PKG_UPDATES=3
 PKG_UPDATES=(
 moode-player=8.2.2-1moode1
 camillagui=1.0.0-1moode4
-shairport-sync=4.1.0~git20220930.97fa75e8-1moode1
+shairport-sync=4.1.0~git20221009.e7c6c4b-1moode1
 )
 TOTAL_STEPS=$(($NUM_PKG_UPDATES + 6))
 
