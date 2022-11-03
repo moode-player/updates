@@ -21,13 +21,13 @@
 # Environment
 #
 
-INPLACE_UPDATE_DATE="2022-10-23"
+INPLACE_UPDATE_DATE="2022-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 STEP=0
 NUM_PKG_UPDATES=3
 PKG_UPDATES=(
-moode-player=8.2.2-1moode1
-camillagui=1.0.0-1moode4
+moode-player=8.2.3-1moode1~pre1
+camillagui=1.0.0-1moode4		# BUMP
 shairport-sync=4.1.0~git20221009.e7c6c4b-1moode1
 )
 TOTAL_STEPS=$(($NUM_PKG_UPDATES + 6))
