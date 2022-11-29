@@ -27,8 +27,9 @@ STEP=0
 NUM_PKG_UPDATES=3
 PKG_UPDATES=(
 moode-player=8.2.3-1moode1~pre1
-camillagui=1.0.0-1moode4
-camilladsp=1.0.2-1moode1
+camillagui=1.0.1-1moode4
+camilladsp=1.0.3-1moode1
+python3-camilladsp-plot=1.0.2-1moode1
 shairport-sync=4.1.0~git20221009.e7c6c4b-1moode1
 )
 TOTAL_STEPS=$(($NUM_PKG_UPDATES + 6))
