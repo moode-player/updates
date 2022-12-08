@@ -27,8 +27,8 @@ STEP=0
 NUM_PKG_UPDATES=3
 PKG_UPDATES=(
 moode-player=8.2.3-1moode1~pre1
-camillagui=1.0.1-1moode4
 camilladsp=1.0.3-1moode1
+camillagui=1.0.1-1moode1
 python3-camilladsp-plot=1.0.2-1moode1
 shairport-sync=4.1.0~git20221009.e7c6c4b-1moode1
 )
@@ -72,7 +72,7 @@ echo
 echo "**********************************************************"
 echo "**"
 echo "**  This package updates moOde to the latest release and"
-echo "**  contains important improivements and bug fixes."
+echo "**  contains important improvements and bug fixes."
 echo "**"
 echo "**  NOTE: This update is only supported on unmodified"
 echo "**  moOde builds and ISO images"
