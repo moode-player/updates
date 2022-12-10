@@ -24,7 +24,7 @@
 INPLACE_UPDATE_DATE="2022-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 STEP=0
-NUM_PKG_UPDATES=3
+NUM_PKG_UPDATES=5
 PKG_UPDATES=(
 moode-player=8.2.3-1moode1~pre1
 camilladsp=1.0.3-1moode1
