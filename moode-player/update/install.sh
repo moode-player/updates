@@ -24,13 +24,14 @@
 INPLACE_UPDATE_DATE="2022-12-11"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 STEP=0
-NUM_PKG_UPDATES=5
+NUM_PKG_UPDATES=7
 PKG_UPDATES=(
 moode-player=8.2.3-1moode1~pre2
+mpd=0.23.11-1moode1
 camilladsp=1.0.3-1moode1
 camillagui=1.0.1-1moode1
 python3-camilladsp-plot=1.0.2-1moode1
-shairport-sync=4.1.0~git20221009.e7c6c4b-1moode1
+shairport-sync=4.1.1-1moode1
 )
 TOTAL_STEPS=$(($NUM_PKG_UPDATES + 6))
 
