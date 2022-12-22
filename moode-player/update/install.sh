@@ -21,19 +21,20 @@
 # Environment
 #
 
-INPLACE_UPDATE_DATE="2022-12-18"
+INPLACE_UPDATE_DATE="2022-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
-STEP=0
-NUM_PKG_UPDATES=7
+
 PKG_UPDATES=(
-moode-player=8.2.3-1moode1
+moode-player=8.2.4-1moode1~pre1
 mpd=0.23.11-1moode1
 camilladsp=1.0.3-1moode1
 camillagui=1.0.1-1moode1
 python3-camilladsp-plot=1.0.2-1moode1
 shairport-sync=4.1.1-1moode1
 )
-TOTAL_STEPS=$(($NUM_PKG_UPDATES + 6))
+
+STEP=0
+TOTAL_STEPS=$((${#PKG_UPDATES[@]} + 6))
 
 KERNEL_VERSION=""
 KERNEL_HASH=""
