@@ -36,13 +36,11 @@ shairport-sync=4.1.1-1moode1
 STEP=0
 TOTAL_STEPS=$((${#PKG_UPDATES[@]} + 6))
 
-KERNEL_VERSION=""
-KERNEL_HASH=""
-if [ `uname -m` = "aarch64" ] ; then
-	KERNEL_ARCH="v8+"
-else
-	KERNEL_ARCH="v7l+"
-fi
+# package with kernel to use
+KERNEL_PKG_VERSION="1:1.20221104-1"
+# kernel version in the package raspberrypi-kernel-$KERNEL_PKG_VERSION
+KERNEL_VERSION="5.15.76"
+
 if [ $KERNEL_VERSION != "" ] ; then
 	TOTAL_STEPS=$((TOTAL_STEPS + 1))
 fi
@@ -108,23 +106,36 @@ apt -y install systemd-timesyncd
 # 4 - Linux kernel and custom drivers
 if [ $KERNEL_VERSION != "" ] ; then
 	STEP=$((STEP + 1))
-	message_log "** Step $STEP-$TOTAL_STEPS: Update to Linux kernel $KERNEL_VERSION"
+	message_log "** Step $STEP-$TOTAL_STEPS: Update to Linux kernel $KERNEL_VERSION (raspberrypi-kernel-$KERNEL_PKG_VERSION)"
+	KERNEL_VER_RUNNING=`uname -r | sed -r "s/([0-9.]*)[-].*/\1/"`
+	dpkg --compare-versions $KERNEL_VERSION "gt" $KERNEL_VER_RUNNING
+	if [ $? -eq 0 ]
+	then
+		message_log "** - Updating kernel from $KERNEL_VER_RUNNING to $KERNEL_VERSION."
+		MODULES_TO_UNINSTALL=`dpkg-query --showformat='${Status} ${Package}\n' --show pcm1794a-* aloop-* ax88179-* rtl88xxau-* |grep -e "^install" | grep -v $KERNEL_VERSION | cut -d ' ' -f 4- | tr '\n' ' '`
+		if [ "$MODULES_TO_UNINSTALL" != "" ]
+		then
+			message_log "** - Removing existing custom drivers: $MODULES_TO_UNINSTALL"
+			apt -y remove $MODULES_TO_UNINSTALL
+		fi
 
-	# Remove custom drivers for current kernel (they may not exist if user has bumped kernel)
-	KERNEL=$(basename `ls -d /lib/modules/*-$KERNEL_ARCH` | sed -r "s/([0-9.]*)[-].*/\1/")
-	message_log "** - Kernel $KERNEL detected, removing existing custom drivers"
-	apt-get remove -y "aloop-$KERNEL" "pcm1794a-$KERNEL" "ax88179-$KERNEL" "rtl88xxau-$KERNEL"
+		# Ensure rpi-update runs
+		rm -f /boot/.firmware_revision
+		# Install kernel
+		apt -y install "raspberrypi-kernel=$KERNEL_PKG_VERSION"
 
-	message_log "** - Installing kernel $KERNEL_VERSION"
-	# Ensure rpi-update runs
-	rm /boot/.firmware_revision
-	# Install kernel
-	echo "y" | sudo PRUNE_MODULES=1 rpi-update $KERNEL_HASH
-
-	# Install matching kernel drivers (these should exist in CS as part of prepping for the update)
-	KERNEL=$(basename `ls -d /lib/modules/*-$KERNEL_ARCH` | sed -r "s/([0-9.]*)[-].*/\1/")
-	message_log "** - Kernel $KERNEL detected, installing matching custom drivers"
-	apt-get install -y "aloop-$KERNEL" "pcm1794a-$KERNEL" "ax88179-$KERNEL" "rtl88xxau-$KERNEL"
+		# Install matching kernel drivers (these should exist in CS as part of prepping for the update)
+		message_log "** - Installing matching custom drivers for kernel $KERNEL_VERSION"
+		apt-get install -y "aloop-$KERNEL_VERSION" "pcm1794a-$KERNEL_VERSION" "ax88179-$KERNEL_VERSION" "rtl88xxau-$KERNEL_VERSION"
+	else
+		dpkg --compare-versions $KERNEL_VER_RUNNING "gt" $KERNEL_VERSION
+		if [ $? -eq 0 ]
+		then
+			message_log "** - Warning: Running newer kernel then supported for this release (manual upgrade?)."
+		else
+			message_log "**- No kernel upgrade required"
+		fi
+	fi
 fi
 
 # 5 Install package updates
@@ -136,7 +147,7 @@ do
 	  apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
   else
 	  apt -y install $PACKAGE
-  fi
+   fi
 done
 
 # 6 - Apply package hold
