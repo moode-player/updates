@@ -4,10 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2022-12-18
-Release: 8.2.3
+Date: 2022-12-27
+Release: 8.2.4
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update and then follow the instructions below to monitor progress.</p><p>MONITOR THE UPDATE</p><p>&bull;&nbsp;Monitor progress with the the command <i>moodeutl -t</i><br>&bull;&nbsp;Reboot after the completion message appears<br>&bull;&nbsp;Update the library if radio station changes are listed in the release notes<br>&bull;&nbsp;The command <i>moodeutl --updlog</i> prints the update log</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to Linux kernel 5.15.76 #1597 (new image only)</li><li>- Bump to MPD 0.23.11</li><li>- Bump to shairport-sync 4.1.1</li><li>- Bump to CamillaDSP 1.0.3</li><li>- Bump to CamillaGUI 1.0.1</li><li>- Add UI layout for Smartphone landscape</li><li>- Add UI layout for Ultra-wide screens</li><li>- Add Analog clock option for CoverView</li><li>- Improve CUE handling and presentation</li><li>- Improve restart/shutdown notifications</li><li>- Improve Quick help</li><li>- Remove Bluetooth speaker sharing option (obsolete)</li><li>- Use thin style for CoverView clocks</li><li>- Use the correct name for AirPlay</li><li>- Default to Playback view after startup</li><li>- Only list Bluetooth on main menu if its On</li><li>- Refactor CSS and config templates</li><li>Radio stations</li><li>- BBC Worldwide stations to HLS streams</li><li>Bug fixes</li><li>- SMB server ON/OFF setting not working</li><li>- Top border of Playbar is visible</li><li>- Startup hangs if Bluetooth on but no adapter is present</li><li>- Space bar not working in On-Screen Keyboard</li><li>- Unmount by id in sourceMount() not working</li><li>- Mount monitor unmount fail due to sourceMount() bug</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Bug fixes</li><li>- Airplay crash due to syntax error in conf on new image</li><li>- CamillaDSP quick convolution yaml check fails</li><li>- RoonBridge Resume MPD setting not functioning</li><li>- Media query rule set for Pi 7" Touch</li><li>- Media query rule set for mobile portrait</li><li>- Song title dash visible when end of queue</li></ul>
