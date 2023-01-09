@@ -36,9 +36,9 @@ shairport-sync=4.1.1-1moode1
 STEP=0
 TOTAL_STEPS=$((${#PKG_UPDATES[@]} + 6))
 
-# package with kernel to use
+# Package with kernel to use
 KERNEL_PKG_VERSION="1:1.20221104-1"
-# kernel version in the package raspberrypi-kernel-$KERNEL_PKG_VERSION
+# Kernel version in the package raspberrypi-kernel-$KERNEL_PKG_VERSION
 KERNEL_VERSION="5.15.76"
 
 if [ $KERNEL_VERSION != "" ] ; then
@@ -119,10 +119,12 @@ if [ $KERNEL_VERSION != "" ] ; then
 			apt -y remove $MODULES_TO_UNINSTALL
 		fi
 
-		# Ensure rpi-update runs
+		# Ensure rpi-update runs NOTE: Is this needed anymore since we are not using rpi-update ?
 		rm -f /boot/.firmware_revision
 		# Install kernel
 		apt -y install "raspberrypi-kernel=$KERNEL_PKG_VERSION"
+		# Install bootloader
+		apt -y install "raspberrypi-bootloader=$KERNEL_PKG_VERSION"
 
 		# Install matching kernel drivers (these should exist in CS as part of prepping for the update)
 		message_log "** - Installing matching custom drivers for kernel $KERNEL_VERSION"
