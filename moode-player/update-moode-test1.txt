@@ -1,0 +1,16 @@
+########################################
+# Update package for moOde audio player
+#
+# http://moodeaudio.org
+########################################
+
+Date: 2023-MM-DD
+Release: 8.2.5
+ImageOnly: No
+
+Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update and then follow the instructions below to monitor progress.</p><p>MONITOR THE UPDATE</p><p>&bull;&nbsp;Monitor progress with the the command <i>moodeutl -t</i><br>&bull;&nbsp;Reboot after the completion message appears<br>&bull;&nbsp;Update the library if radio station changes are listed in the release notes<br>&bull;&nbsp;The command <i>moodeutl --updlog</i> prints the update log</p>
+
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
+<li>
+</li>
+</ul>

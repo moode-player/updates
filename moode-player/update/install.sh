@@ -21,11 +21,11 @@
 # Environment
 #
 
-INPLACE_UPDATE_DATE="2022-12-27"
+INPLACE_UPDATE_DATE="2023-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 PKG_UPDATES=(
-moode-player=8.2.4-1moode1
+moode-player=8.2.5-1moode1~pre1
 mpd=0.23.11-1moode1
 camilladsp=1.0.3-1moode1
 camillagui=1.0.1-1moode1
