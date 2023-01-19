@@ -120,7 +120,7 @@ if [ $KERNEL_NEW_VER != "" ] ; then
 			message_log "** - Prepare environment"
 			apt -y remove $MODULES_TO_UNINSTALL
 		fi
-		message_log "** - Install kernel..."
+		message_log "** - Install kernel"
 		apt -y install "raspberrypi-kernel=$KERNEL_NEW_PKGVER"
 		message_log "** - Install bootloader"
 		apt -y install "raspberrypi-bootloader=$KERNEL_NEW_PKGVER"
