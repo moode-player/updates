@@ -37,9 +37,9 @@ STEP=0
 TOTAL_STEPS=$((${#PKG_UPDATES[@]} + 6))
 
 # Package with kernel to use
-KERNEL_PKG_VERSION="1:1.20221104-1"
+KERNEL_PKG_VERSION="1:1.20230106-1"
 # Kernel version in the package raspberrypi-kernel-$KERNEL_PKG_VERSION
-KERNEL_VERSION="5.15.76"
+KERNEL_VERSION="5.15.84"
 
 if [ $KERNEL_VERSION != "" ] ; then
 	TOTAL_STEPS=$((TOTAL_STEPS + 1))
