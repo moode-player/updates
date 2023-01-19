@@ -21,9 +21,13 @@
 # Environment
 #
 
+# NOTE: Make sure these three parts are correct!
+
+# Part 1: In-place update date (same as moOde release date)
 INPLACE_UPDATE_DATE="2023-01-19"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
+# Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
 moode-player=8.2.5-1moode1~pre1
 mpd=0.23.11-1moode1
@@ -33,15 +37,14 @@ python3-camilladsp-plot=1.0.2-1moode1
 shairport-sync=4.1.1-1moode1
 )
 
+# Part 3: New kernel package (set to "" if moOde release does not include new kernel)
+KERNEL_NEW_VER="5.15.84"
+KERNEL_NEW_PKGVER="1:1.20230106-1"
+
+# Initialize the step counter
 STEP=0
 TOTAL_STEPS=$((${#PKG_UPDATES[@]} + 6))
-
-# Package with kernel to use
-KERNEL_PKG_VERSION="1:1.20230106-1"
-# Kernel version in the package raspberrypi-kernel-$KERNEL_PKG_VERSION
-KERNEL_VERSION="5.15.84"
-
-if [ $KERNEL_VERSION != "" ] ; then
+if [ $KERNEL_NEW_VER != "" ] ; then
 	TOTAL_STEPS=$((TOTAL_STEPS + 1))
 fi
 
@@ -104,38 +107,33 @@ message_log "** Step $STEP-$TOTAL_STEPS: Install timesyncd"
 apt -y install systemd-timesyncd
 
 # 4 - Linux kernel and custom drivers
-if [ $KERNEL_VERSION != "" ] ; then
+if [ $KERNEL_NEW_VER != "" ] ; then
 	STEP=$((STEP + 1))
-	message_log "** Step $STEP-$TOTAL_STEPS: Update to Linux kernel $KERNEL_VERSION (raspberrypi-kernel-$KERNEL_PKG_VERSION)"
+	message_log "** Step $STEP-$TOTAL_STEPS: Update Linux kernel to $KERNEL_NEW_VER"
 	KERNEL_VER_RUNNING=`uname -r | sed -r "s/([0-9.]*)[-].*/\1/"`
-	dpkg --compare-versions $KERNEL_VERSION "gt" $KERNEL_VER_RUNNING
-	if [ $? -eq 0 ]
-	then
-		message_log "** - Updating kernel from $KERNEL_VER_RUNNING to $KERNEL_VERSION."
-		MODULES_TO_UNINSTALL=`dpkg-query --showformat='${Status} ${Package}\n' --show pcm1794a-* aloop-* ax88179-* rtl88xxau-* |grep -e "^install" | grep -v $KERNEL_VERSION | cut -d ' ' -f 4- | tr '\n' ' '`
+	dpkg --compare-versions $KERNEL_NEW_VER "gt" $KERNEL_VER_RUNNING
+	if [ $? -eq 0 ] ; then
+		message_log "** - Updating..."
+		MODULES_TO_UNINSTALL=`dpkg-query --showformat='${Status} ${Package}\n' --show pcm1794a-* aloop-* ax88179-* rtl88xxau-* |grep -e "^install" | grep -v $KERNEL_NEW_VER | cut -d ' ' -f 4- | tr '\n' ' '`
 		if [ "$MODULES_TO_UNINSTALL" != "" ]
 		then
-			message_log "** - Removing existing custom drivers: $MODULES_TO_UNINSTALL"
+			message_log "** - Prepare environment"
 			apt -y remove $MODULES_TO_UNINSTALL
 		fi
-
-		# Ensure rpi-update runs NOTE: Is this needed anymore since we are not using rpi-update ?
-		rm -f /boot/.firmware_revision
-		# Install kernel
-		apt -y install "raspberrypi-kernel=$KERNEL_PKG_VERSION"
-		# Install bootloader
-		apt -y install "raspberrypi-bootloader=$KERNEL_PKG_VERSION"
-
-		# Install matching kernel drivers (these should exist in CS as part of prepping for the update)
-		message_log "** - Installing matching custom drivers for kernel $KERNEL_VERSION"
-		apt-get install -y "aloop-$KERNEL_VERSION" "pcm1794a-$KERNEL_VERSION" "ax88179-$KERNEL_VERSION" "rtl88xxau-$KERNEL_VERSION"
+		message_log "** - Install kernel..."
+		apt -y install "raspberrypi-kernel=$KERNEL_NEW_PKGVER"
+		message_log "** - Install bootloader"
+		apt -y install "raspberrypi-bootloader=$KERNEL_NEW_PKGVER"
+		message_log "** - Install custom drivers"
+		apt-get install -y "aloop-$KERNEL_NEW_VER" "ax88179-$KERNEL_NEW_VER" "pcm1794a-$KERNEL_NEW_VER" "rtl88xxau-$KERNEL_NEW_VER"
+		message_log "** - Complete"
 	else
-		dpkg --compare-versions $KERNEL_VER_RUNNING "gt" $KERNEL_VERSION
+		dpkg --compare-versions $KERNEL_VER_RUNNING "gt" $KERNEL_NEW_VER
 		if [ $? -eq 0 ]
 		then
-			message_log "** - Warning: Running newer kernel then supported for this release (manual upgrade?)."
+			message_log "** - Kernel is newer, update cannot be performed"
 		else
-			message_log "**- No kernel upgrade required"
+			message_log "** - Kernel is current, no update required"
 		fi
 	fi
 fi
