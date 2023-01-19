@@ -4,13 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2023-MM-DD
+Date: 2023-01-19
 Release: 8.2.5
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update and then follow the instructions below to monitor progress.</p><p>MONITOR THE UPDATE</p><p>&bull;&nbsp;Monitor progress with the the command <i>moodeutl -t</i><br>&bull;&nbsp;Reboot after the completion message appears<br>&bull;&nbsp;Update the library if radio station changes are listed in the release notes<br>&bull;&nbsp;The command <i>moodeutl --updlog</i> prints the update log</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
-<li>
-</li>
-</ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Add transition animation for panels and modals</li><li>- Improve efficiency of Boss 2 Digital (DoP) volume sync</li><li>- Improve NGINX configuration including proxy for CamillaGUI</li><li>- Prevent log spam in /var/log/auth.log</li><li>- Prevent 'next' wrapping last to first track when MPD random is on</li><li>- Mask hover color on modal footer buttons</li><li>- Bump default TRX jitter and ALSA buffer from 32/64 to 64/128</li><li>- Add button to Local Display section for turning CoverView On/Off</li><li>- Add format 44100:16:2 to HTTP server lame encoding</li><li>Bug fixes</li><li>- Input select Analog/SPDIF setting change not working</li><li>- Metadata clipped in CoverView default when no Playbar and mobile landscape</li><li>- Playbar timeline visible on some screen sizes when Queue empty</li><li>- Tag view track list album headings not HTML escaped for compare</li><li>- Volume and ralbum buttons missing from Pi Touch</li><li>- Audio info shows Loopback setting even when its off</li><li>- Tag view size of lib-artistart in mobile landscape</li><li>- Position of CoverView wide mode controls on notch phones</li><li>- Display of 176.4 sample rate in MPD config</li></ul>
