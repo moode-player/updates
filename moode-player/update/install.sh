@@ -48,6 +48,10 @@ if [ $KERNEL_NEW_VER != "" ] ; then
 	TOTAL_STEPS=$((TOTAL_STEPS + 1))
 fi
 
+# Log files
+MOODE_LOG="/var/log/moode.log"
+UPDATER_LOG="/var/local/www/update-moode.log"
+
 #
 # Functions
 #
@@ -63,8 +67,8 @@ cancel_update () {
 message_log () {
 	echo "$1"
 	TIME=$(date +'%Y%m%d %H%M%S')
-	echo "$TIME updater: $1" >> /var/log/moode.log
-	echo "$TIME updater: $1" >> /var/local/www/update-moode.log
+	echo "$TIME updater: $1" >> $MOODE_LOG
+	echo "$TIME updater: $1" >> $UPDATER_LOG
 }
 
 #
@@ -172,9 +176,7 @@ apt-get clean
 # 8 - Flush cached disk writes
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Sync changes to disk"
-sync
-
-# All done
 message_log "Finish $INPLACE_UPDATE_DATE update for moOde $CURRENT_REL_LONG"
+sync
 
 cd ~/
