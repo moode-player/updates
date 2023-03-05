@@ -34,9 +34,11 @@ bluez-alsa=4.0.0-2moode1
 bluez-alsa-utils=4.0.0-2moode1
 libasound2-plugin-bluez=4.0.0-2moode1
 mpd=0.23.12-1moode1
+mpd2cdspvolume=0.2.2-1moode1
 camilladsp=1.0.3-1moode1
 camillagui=1.0.1-1moode1
 python3-camilladsp-plot=1.0.2-1moode1
+python3-mpd2=3.0.5-1moode1
 shairport-sync=4.1.1-1moode1
 )
 
