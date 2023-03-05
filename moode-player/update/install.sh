@@ -24,7 +24,7 @@
 # NOTE: Make sure these three parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2023-MM-DD"
+INPLACE_UPDATE_DATE="2023-03-05"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
@@ -38,7 +38,7 @@ mpd2cdspvolume=0.2.2-1moode1
 camilladsp=1.0.3-1moode1
 camillagui=1.0.1-1moode1
 python3-camilladsp-plot=1.0.2-1moode1
-python3-mpd2=3.0.5-1moode1
+python3-mpd2=3.0.5
 shairport-sync=4.1.1-1moode1
 )
 
