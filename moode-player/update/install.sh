@@ -24,12 +24,12 @@
 # NOTE: Make sure these three parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2023-03-05"
+INPLACE_UPDATE_DATE="2023-03-09"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
-moode-player=8.3.0-1moode1~pre1
+moode-player=8.3.0-1moode1~pre2
 bluez-alsa=4.0.0-2moode1
 bluez-alsa-utils=4.0.0-2moode1
 libasound2-plugin-bluez=4.0.0-2moode1
@@ -44,7 +44,7 @@ shairport-sync=4.1.1-1moode1
 
 # Part 3: New kernel package (set to "" if moOde release does not include new kernel)
 KERNEL_NEW_VER="5.15.84"
-KERNEL_NEW_PKGVER="1:1.20230106-1"
+KERNEL_NEW_PKGVER="1:1.20230306-1"
 
 # Initialize the step counter
 STEP=0
