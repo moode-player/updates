@@ -33,13 +33,17 @@ moode-player=8.3.1-1moode1
 bluez-alsa=4.0.0-2moode1
 bluez-alsa-utils=4.0.0-2moode1
 libasound2-plugin-bluez=4.0.0-2moode1
-mpd=0.23.12-1moode1
-mpd2cdspvolume=0.3.0-1moode1
 camilladsp=1.0.3-1moode1
 camillagui=1.0.1-1moode1
 python3-camilladsp-plot=1.0.2-1moode1
+mpd2cdspvolume=0.3.0-1moode1
+mpd=0.23.12-1moode1
 python3-mpd2=3.0.5
 shairport-sync=4.1.1-1moode1
+python3-libupnpp=0.21.0-1moode1
+libnpupnp2=5.0.1-1moode1
+libupnpp7=0.22.4-1moode1
+upmpdcli=1.7.7-1moode1
 )
 
 # Part 3: New kernel package (set to "" if moOde release does not include new kernel)
