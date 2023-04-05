@@ -49,10 +49,10 @@ upmpdcli=1.7.7-1moode1
 # Part 3: New kernel package (set to "" if moOde release does not include new kernel)
 #KERNEL_NEW_VER="5.15.84"
 #KERNEL_NEW_PKGVER="1:1.20230106-1"
-KERNEL_NEW_VER="5.15.84"
-KERNEL_NEW_PKGVER="1:1.20230306-1"
-#KERNEL_NEW_VER="6.1.19"
-#KERNEL_NEW_PKGVER="1:1.20230317-1"
+#KERNEL_NEW_VER="5.15.84"
+#KERNEL_NEW_PKGVER="1:1.20230306-1"
+KERNEL_NEW_VER="6.1.19"
+KERNEL_NEW_PKGVER="1:1.20230317-1"
 
 # Initialize the step counter
 STEP=0
@@ -63,7 +63,7 @@ fi
 
 # Log files
 MOODE_LOG="/var/log/moode.log"
-UPDATER_LOG="/var/local/www/update-moode.log"
+UPDATER_LOG="/var/log/moode_update.log"
 
 #
 # Functions
@@ -104,7 +104,7 @@ echo
 
 WD=/var/local/www
 cd $WD
-truncate ./update-moode.log --size 0
+truncate $UPDATER_LOG --size 0
 message_log "Start $INPLACE_UPDATE_DATE update for moOde"
 
 # 1 - Remove package hold
@@ -118,12 +118,15 @@ message_log "** Step $STEP-$TOTAL_STEPS: Update package list"
 apt update
 
 # 3 - Install timesyncd so date will be current otherwise requests to the repos will fail
-# NOTE: 32-bit Bullseye did not contain the timesyncd package
+# NOTE: It should already be present in 2023 RaspiOS Bullseye 32/64-bit releases
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Install timesyncd"
 apt -y install systemd-timesyncd
 
 # 4 - Linux kernel and custom drivers
+# NOTE: Starting with kernel 6.1.y the custom Allo ASIX ax88179 driver is no longer installed
+# due to build breakage in the driver which has been unmaintained since mid-2022. Instead the
+# stock ASIX ax88179 driver is used.
 if [ $KERNEL_NEW_VER != "" ] ; then
 	STEP=$((STEP + 1))
 	message_log "** Step $STEP-$TOTAL_STEPS: Update Linux kernel to $KERNEL_NEW_VER"
@@ -142,7 +145,7 @@ if [ $KERNEL_NEW_VER != "" ] ; then
 		message_log "** - Install bootloader"
 		apt -y install "raspberrypi-bootloader=$KERNEL_NEW_PKGVER"
 		message_log "** - Install custom drivers"
-		apt-get install -y "aloop-$KERNEL_NEW_VER" "ax88179-$KERNEL_NEW_VER" "pcm1794a-$KERNEL_NEW_VER" "rtl88xxau-$KERNEL_NEW_VER"
+		apt-get install -y "aloop-$KERNEL_NEW_VER" "pcm1794a-$KERNEL_NEW_VER" "rtl88xxau-$KERNEL_NEW_VER"
 		message_log "** - Complete"
 	else
 		dpkg --compare-versions $KERNEL_VER_RUNNING "gt" $KERNEL_NEW_VER
