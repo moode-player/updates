@@ -66,6 +66,8 @@ fi
 # Log files
 MOODE_LOG="/var/log/moode.log"
 UPDATER_LOG="/var/log/moode_update.log"
+# Temporarily symlink to previous log file
+ln -s "/var/log/moode_update.log" "/var/local/www/update-moode.log"
 
 #
 # Functions
