@@ -24,7 +24,7 @@
 # NOTE: Make sure these three parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2023-MM-DD"
+INPLACE_UPDATE_DATE="2023-04-16"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
@@ -126,9 +126,9 @@ message_log "** Step $STEP-$TOTAL_STEPS: Install timesyncd"
 apt -y install systemd-timesyncd
 
 # 4 - Linux kernel and custom drivers
-# NOTE: Starting with kernel 6.1.y the custom Allo ASIX ax88179 driver is no longer installed
-# due to build breakage in the driver which has been unmaintained since mid-2022. Instead the
-# stock ASIX ax88179 driver is used.
+# NOTE: Starting with kernel 6.1.y the stock ASIX ax88179 driver is used instead of the
+# custom Allo ASIX driver due to breakage in the custom driver build and out of maintenance
+# status of the Allo driver since mid-2022.
 if [ $KERNEL_NEW_VER != "" ] ; then
 	STEP=$((STEP + 1))
 	message_log "** Step $STEP-$TOTAL_STEPS: Update Linux kernel to $KERNEL_NEW_VER"
