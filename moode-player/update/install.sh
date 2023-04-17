@@ -24,12 +24,12 @@
 # NOTE: Make sure these three parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2023-04-16"
+INPLACE_UPDATE_DATE="2023-04-17"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
-moode-player=8.3.1-1moode1~pre1
+moode-player=8.3.1-1moode1
 bluez-alsa=4.0.0-2moode1
 bluez-alsa-utils=4.0.0-2moode1
 libasound2-plugin-bluez=4.0.0-2moode1
@@ -67,7 +67,7 @@ fi
 MOODE_LOG="/var/log/moode.log"
 UPDATER_LOG="/var/log/moode_update.log"
 
-# Temporary symlink to previous log file
+# Temporary symlink to to old updater log file
 # NOTE Remove this for > 8.3.1
 rm "/var/local/www/update-moode.log"
 ln -s "/var/log/moode_update.log" "/var/local/www/update-moode.log"
