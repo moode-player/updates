@@ -29,7 +29,7 @@ SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
-moode-player=8.3.1-1moode1
+moode-player=8.3.1-1moode1~pre1
 bluez-alsa=4.0.0-2moode1
 bluez-alsa-utils=4.0.0-2moode1
 libasound2-plugin-bluez=4.0.0-2moode1
@@ -66,7 +66,9 @@ fi
 # Log files
 MOODE_LOG="/var/log/moode.log"
 UPDATER_LOG="/var/log/moode_update.log"
-# Temporarily symlink to previous log file
+
+# Temporary symlink to previous log file
+# NOTE Remove this for > 8.3.1
 rm "/var/local/www/update-moode.log"
 ln -s "/var/log/moode_update.log" "/var/local/www/update-moode.log"
 
