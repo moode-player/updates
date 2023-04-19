@@ -1,0 +1,13 @@
+########################################
+# Update package for moOde audio player
+#
+# http://moodeaudio.org
+########################################
+
+Date: 2023-MM-DD
+Release: 8.3.2
+ImageOnly: No
+
+Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
+
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Audio devices</li><li>- NOTE: Allo Boss 2 I2S driver not working on new 6.1.y kernel branch</li><li>Updates</li><li>- Remove reference to pi userid from SSH header</li><li>Bug fixes</li><li>- Worker startup fails on Pi-Zero due to incomplete "is-system-running" test</li><li>- Haveged daemon fails to start on Pi-Zero (arm6 platforms)</li><li>- Power and activity LED id names causing LED ON/OFF options to fail</li><li>- Clicking on context menu check mark icon displays default moOde cover</li></ul>

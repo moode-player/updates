@@ -24,7 +24,7 @@
 # NOTE: Make sure these three parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2023-04-17"
+INPLACE_UPDATE_DATE="2023-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
@@ -66,11 +66,6 @@ fi
 # Log files
 MOODE_LOG="/var/log/moode.log"
 UPDATER_LOG="/var/log/moode_update.log"
-
-# Temporary symlink to to old updater log file
-# NOTE Remove this for > 8.3.1
-rm "/var/local/www/update-moode.log"
-ln -s "/var/log/moode_update.log" "/var/local/www/update-moode.log"
 
 #
 # Functions
