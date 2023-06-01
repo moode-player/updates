@@ -30,23 +30,23 @@ SQLDB=/var/local/www/db/moode-sqlite3.db
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
 moode-player=8.3.3-1moode1~pre1
-bluez-alsa=4.0.0-2moode1
-bluez-alsa-utils=4.0.0-2moode1
-libasound2-plugin-bluez=4.0.0-2moode1
+bluez-alsa-utils=4.1.0-2moode2
+libasound2-plugin-bluez=4.1.0-2moode2
 camilladsp=1.0.3-1moode1
 camillagui=1.0.1-1moode1
 python3-camilladsp-plot=1.0.2-1moode1
 mpd2cdspvolume=0.3.1-1moode1
 mpd=0.23.12-1moode1
+nqptp=1.2.0-1moode1
 python3-mpd2=3.0.5
-shairport-sync=4.1.1-1moode1
+shairport-sync=4.2.0-1moode1
 python3-libupnpp=0.21.0-1moode1
 libnpupnp2=5.0.1-1moode1
 libupnpp7=0.22.4-1moode1
 upmpdcli=1.7.7-1moode1
 )
 
-# Part 3: New kernel package (set to "" if moOde release does not include new kernel)
+# Part 3: Kernel package
 #KERNEL_NEW_VER="5.15.84"
 #KERNEL_NEW_PKGVER="1:1.20230106-1"
 #KERNEL_NEW_VER="5.15.84"
@@ -188,7 +188,9 @@ sed -i '/<meta name="theme-color" content=/c\ \t<meta name="theme-color" content
 rm -rf /lib/modules.bak
 rm -rf /boot.bak
 apt-get clean
+
 # NOTE: Fixes and specials go here
+systemctl disable bluealsa-aplay
 #
 
 # 8 - Flush cached disk writes
