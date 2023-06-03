@@ -10,7 +10,4 @@ ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
-<li>
-</li>
-</ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Audio devices</li><li>- NOTE: Allo Katana I2S driver load fail on Pi-4, Katana DAC and 6.1.y kernel</li><li>Updates</li><li>- Bump to shairport-sync 4.2</li><li>- Bump to nqptp 1.2 (Precision Timing Protocol for AirPlay 2)</li><li>- Bump to bluez-alsa 4.1.0 with aptX/aptX-HD</li><li>- Improve menu, modal and selected icon size/text on mobile portrait</li><li>- Add capability for Folder images in Folder view</li><li>- Add Prefs option to set audio formats scanned by thumbnail generator</li><li>- Add "cache=none" to SMB default mount options to prevent log spam</li><li>- Add note to Setup guide regarding requirement for SSH userid/password</li><li>- Add note to Quickhelp regarding search field input constraints</li><li>- Import timezone and keyboard layout from Pi Imager</li><li>- Support user defined level 1 dirs under /mnt/ for thumbnail generator</li><li>Bug fixes</li><li>- Test button not working on Graphic Equalizer</li><li>- Modal input field background not visible on GEQ/PEQ configs</li><li>- Cover art extractor not handling uppercase mime image type</li><li>- Incorrect version of bluez-alsa on release 8.3.2 image</li></ul>
