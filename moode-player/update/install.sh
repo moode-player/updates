@@ -24,12 +24,13 @@
 # NOTE: Make sure these three parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2023-06-08"
+INPLACE_UPDATE_DATE="2023-08-16"
+#r833 INPLACE_UPDATE_DATE="2023-06-08"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
-moode-player=8.3.3-1moode1
+moode-player=8.3.4-1moode1~pre1
 bluez-alsa-utils=4.1.0-2moode2
 libasound2-plugin-bluez=4.1.0-2moode2
 camilladsp=1.0.3-1moode1
