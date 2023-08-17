@@ -24,7 +24,7 @@
 # NOTE: Make sure these three parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2023-08-16"
+INPLACE_UPDATE_DATE="2023-08-17"
 #r833 INPLACE_UPDATE_DATE="2023-06-08"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
