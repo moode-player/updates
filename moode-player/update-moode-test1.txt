@@ -1,0 +1,13 @@
+########################################
+# Update package for moOde audio player
+#
+# http://moodeaudio.org
+########################################
+
+Date: 2023-MM-DD
+Release: 8.3.6
+ImageOnly: No
+
+Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
+
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Add comparison operators == and != to Library Advanced search</li><li>- Add channels and multichannel options to 'encoded' predefined search</li><li>- Add channel count to Audio info</li><li>- Add emphasis (bold) to Queue time notification</li><li>- Add 1600 x 600 widescreen display format to CSS</li><li>- Improve collection stats displayed in Library Tag/Album views</li><li>- Improve consistency in how audio format is displayed</li><li>- Improve Folder view search results tally</li><li>- Improve layout and help for CamillaDSP Config</li><li>- Update Quick help for new search features</li><li>- Radio logo updates are included with in-place update</li><li>Radio stations</li><li>- NTS station metadata bitrate to 256 kbps</li><li>- Update Soma FM - DEF CON Radio logo</li><li>Bug fixes</li><li>- Toggle button auto-click not working on CamillaDSP Config</li><li>- Typo in Equalizers heading on Audio Config</li><li>- Rates not showing on Audio info for Multiroom sender</li><li>- Tag/Album views not being cleared correctly when no search results</li><li>- In-place update overwriting BUFFERTIME in bluealsaaplay.conf</li><li>- In-place update not adding SBC XQ+ line in bluealsa.service</li><li>- Metadata under cover art clipped on 1280 x 400 widescreen display</li><li>- Auto-shuffle filter string embedded quotes not being restored</li></ul>
