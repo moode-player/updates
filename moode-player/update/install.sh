@@ -24,12 +24,12 @@
 # NOTE: Make sure these three parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2023-09-05"
+INPLACE_UPDATE_DATE="2023-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
-moode-player=8.3.6-1moode1
+moode-player=8.3.7-1moode1
 bluez-alsa-utils=4.1.0-2moode2
 libasound2-plugin-bluez=4.1.0-2moode2
 camilladsp=1.0.3-1moode1
@@ -37,9 +37,9 @@ camillagui=1.0.1-1moode1
 python3-camilladsp-plot=1.0.2-1moode1
 mpd2cdspvolume=0.3.1-1moode1
 mpd=0.23.12-1moode1
-nqptp=1.2.1-1moode1
+nqptp=1.2.4-1moode1
 python3-mpd2=3.0.5
-shairport-sync=4.2.0-1moode1
+shairport-sync=4.3.1-1moode1
 python3-libupnpp=0.21.0-1moode1
 libnpupnp2=5.0.1-1moode1
 libupnpp7=0.22.4-1moode1

@@ -1,0 +1,14 @@
+########################################
+# Update package for moOde audio player
+#
+# http://moodeaudio.org
+########################################
+
+Date: 2023-MM-DD
+Release: 8.3.7
+ImageOnly: No
+
+Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
+
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to shairport-sync 4.3.1</li><li>- Bump to NQPTP 1.2.4</li><li>- Bump to Fontawesome 6.4.2 Pro and update specific icons</li><li>- Add comparison operators =~ and !~ (PERL regex) to Library Adv search</li><li>- Add DSDNN badge for DSF/DFF/WavPack DSD formats</li><li>- Add WavPack format to Default/Default+ options for Prefs, Thumbgen scan</li><li>- Add Receivers btn on renderer overlay when connecting to Multiroom sender</li><li>- Add Audio info button on renderer overlay</li><li>- Add channel count to extra metadata</li><li>- Add ALSA output format (output) to extra metadata</li><li>- Add Artist under Title in Folder view (if Artist not = AlbumArtist)</li><li>- Add Prefs option for static waveform now-playing icon</li><li>- Add BSSID to info on Network Config</li><li>- Improve metadata layout in CoverView wide mode</li><li>- Improve icon for volume popup by always showing level</li><li>- Improve sort headings in Radio and Playlist views</li><li>- Improve bitrate sort in Radio view (sort high to low)</li><li>- Improve GPIO Config help and labels</li><li>- Replace bogus title tag " - " in NTS Live stations with default title</li><li>- Replace Chrome deprecated vertical sliders with cross-Browser sliders</li><li>- Show "Radio station" for stations that don't transmit a title tag</li><li>- Standardize display style for encodedAt and ALSA output formats</li><li>- Move Local Display to Peripherals Config</li><li>- Move DLNA server to File Sharing section of System Config</li><li>Radio stations</li>
+<li>- Eirewave</li><li>- Soma FM - Bossa Beyond</li><li>- Soma FM - The In-Sound</li><li>- Soma FM - Tiki Time</li><li>Bug fixes</li><li>- Tag/Album sync (auto-scroll then highlight item) not working</li><li>- WavPack format information not correct in Library and Audio info</li><li>- MPD mixer reverts to "software' after disconnecting bluetooth device</li><li>- Backup/Restore missing Prefs, Library, Track play setting</li><li>- Restore not updating buffer size in /etc/bluealsaaplay.conf</li><li>- Invert polarity auto-click not working</li><li>- SomaFM station name displays null when tag not present</li><li>- Base folder RADIO not excluded correctly in Folder view</li><li>- WebUI visual glitch when MPD is restarted</li></ul>
