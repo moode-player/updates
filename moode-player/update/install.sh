@@ -36,14 +36,20 @@ camilladsp=1.0.3-1moode1
 camillagui=1.0.1-1moode1
 python3-camilladsp-plot=1.0.2-1moode1
 mpd2cdspvolume=0.3.1-1moode1
-mpd=0.23.12-1moode1
+mpd=0.23.14-1moode1
 nqptp=1.2.4-1moode1
 python3-mpd2=3.0.5
-shairport-sync=4.3.1-1moode1
+shairport-sync=4.3.2-1moode1
 python3-libupnpp=0.21.0-1moode1
 libnpupnp2=5.0.1-1moode1
 libupnpp7=0.22.4-1moode1
 upmpdcli=1.7.7-1moode1
+bluez-firmware
+firmware-atheros
+firmware-brcm80211
+firmware-libertas
+firmware-misc-nonfree
+firmware-realtek
 )
 
 # Part 3: Kernel package
