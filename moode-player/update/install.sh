@@ -44,6 +44,7 @@ python3-libupnpp=0.21.0-1moode1
 libnpupnp2=5.0.1-1moode1
 libupnpp7=0.22.4-1moode1
 upmpdcli=1.7.7-1moode1
+upmpdcli-qobuz=1.7.7-1moode1
 bluez-firmware
 firmware-atheros
 firmware-brcm80211
