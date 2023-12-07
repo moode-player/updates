@@ -4,7 +4,7 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2023-MM-DD
+Date: 2023-12-07
 Release: 8.3.7
 ImageOnly: No
 
