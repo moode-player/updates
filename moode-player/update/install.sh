@@ -24,12 +24,12 @@
 # NOTE: Make sure these three parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2024-02-14"
+INPLACE_UPDATE_DATE="2024-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
-moode-player=8.3.8-1moode1
+moode-player=8.3.9-1moode1~pre1
 bluez-alsa-utils=4.1.0-2moode2
 libasound2-plugin-bluez=4.1.0-2moode2
 camilladsp=2.0.1-1moode1
@@ -65,9 +65,10 @@ firmware-realtek
 KERNEL_NEW_VER="6.1.21"
 KERNEL_NEW_PKGVER="1:1.20230405-1"
 
-# Initialize the step counter
+# Initialize step counter
 STEP=0
-TOTAL_STEPS=$((${#PKG_UPDATES[@]} + 6))
+PREDEFINED_STEPS=6
+TOTAL_STEPS=$((${#PKG_UPDATES[@]} + $PREDEFINED_STEPS))
 if [ $KERNEL_NEW_VER != "" ] ; then
 	TOTAL_STEPS=$((TOTAL_STEPS + 1))
 fi
@@ -95,6 +96,14 @@ message_log () {
 	echo "$TIME updater: $1" >> $UPDATER_LOG
 }
 
+format_step () {
+	if [ $1 -lt 10 ] ; then
+		echo "0"$1
+	else
+		echo $1
+	fi
+}
+
 #
 # Main
 #
@@ -120,17 +129,20 @@ message_log "Start $INPLACE_UPDATE_DATE update for moOde"
 
 # 1 - Remove package hold
 STEP=$((STEP + 1))
+STEP=$(format_step "$STEP")
 message_log "** Step $STEP-$TOTAL_STEPS: Remove package hold"
 moode-apt-mark unhold
 
 # 2 - Update package list
 STEP=$((STEP + 1))
+STEP=$(format_step "$STEP")
 message_log "** Step $STEP-$TOTAL_STEPS: Update package list"
 apt update
 
 # 3 - Install timesyncd so date will be current otherwise requests to the repos will fail
 # NOTE: It should already be present in 2023 RaspiOS Bullseye 32/64-bit releases
 STEP=$((STEP + 1))
+STEP=$(format_step "$STEP")
 message_log "** Step $STEP-$TOTAL_STEPS: Install timesyncd"
 apt -y install systemd-timesyncd
 
@@ -140,6 +152,7 @@ apt -y install systemd-timesyncd
 # status of the Allo driver since mid-2022.
 if [ $KERNEL_NEW_VER != "" ] ; then
 	STEP=$((STEP + 1))
+	STEP=$(format_step "$STEP")
 	message_log "** Step $STEP-$TOTAL_STEPS: Update Linux kernel to $KERNEL_NEW_VER"
 	KERNEL_VER_RUNNING=`uname -r | sed -r "s/([0-9.]*)[-].*/\1/"`
 	dpkg --compare-versions $KERNEL_NEW_VER "gt" $KERNEL_VER_RUNNING
@@ -173,6 +186,7 @@ fi
 for PACKAGE in "${PKG_UPDATES[@]}"
 do
   STEP=$((STEP + 1))
+  STEP=$(format_step "$STEP")
   message_log "** Step $STEP-$TOTAL_STEPS: Install $PACKAGE"
   if [ $(echo $PACKAGE | cut -d "=" -f 1) = "shairport-sync" ]; then
 	  apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
@@ -183,11 +197,13 @@ done
 
 # 6 - Apply package hold
 STEP=$((STEP + 1))
+STEP=$(format_step "$STEP")
 message_log "** Step $STEP-$TOTAL_STEPS: Apply package hold"
 moode-apt-mark hold
 
 # 7 - Post-install cleanup
 STEP=$((STEP + 1))
+STEP=$(format_step "$STEP")
 message_log "** Step $STEP-$TOTAL_STEPS: Post-install cleanup"
 # Update theme background color in var/www/header.php
 THEME_NAME=$(sqlite3 $SQLDB "SELECT value FROM cfg_system WHERE param='themename'")
@@ -204,6 +220,7 @@ systemctl disable bluealsa-aplay
 
 # 8 - Flush cached disk writes
 STEP=$((STEP + 1))
+STEP=$(format_step "$STEP")
 message_log "** Step $STEP-$TOTAL_STEPS: Sync changes to disk"
 message_log "Finish $INPLACE_UPDATE_DATE update for moOde $CURRENT_REL_LONG"
 sync
