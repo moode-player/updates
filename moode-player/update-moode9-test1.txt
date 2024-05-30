@@ -5,7 +5,7 @@
 ########################################
 
 Date: 2024-05-29
-Release: 9.0.0
+Release: 9.0.1
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
