@@ -11,7 +11,7 @@
 # NOTE: Make sure these 3 parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2024-MM-DD"
+INPLACE_UPDATE_DATE="2024-05-29"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
@@ -147,9 +147,7 @@ message_log "** Step $STEP-$TOTAL_STEPS: Post-install cleanup"
 THEME_NAME=$(sqlite3 $SQLDB "SELECT value FROM cfg_system WHERE param='themename'")
 THEME_COLOR=$(sqlite3 $SQLDB "SELECT bg_color FROM cfg_theme WHERE theme_name='$THEME_NAME'")
 sed -i '/<meta name="theme-color" content=/c\ \t<meta name="theme-color" content="rgb($THEME_COLOR)">' /var/www/header.php
-# Cleanup from kernel update (if any)
-rm -rf /lib/modules.bak
-rm -rf /boot.bak
+# Remove downloaded archive files
 apt-get clean
 
 # NOTE: Fixes and specials go here
