@@ -11,12 +11,12 @@
 # NOTE: Make sure these 3 parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2024-05-30"
+INPLACE_UPDATE_DATE="2024-06-11"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
-moode-player=9.0.1-1moode1
+moode-player=9.0.2-1moode1
 bluez-firmware
 firmware-atheros
 firmware-brcm80211
