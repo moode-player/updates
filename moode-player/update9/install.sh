@@ -17,6 +17,8 @@ SQLDB=/var/local/www/db/moode-sqlite3.db
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
 moode-player=9.0.2-1moode1
+upmpdcli=1.8.11-1moode1
+upmpdcli-qobuz=1.8.11-1moode1
 bluez-firmware
 firmware-atheros
 firmware-brcm80211
@@ -92,6 +94,7 @@ message_log "** Step $STEP-$TOTAL_STEPS: Update package list"
 apt update
 
 # 3 - Linux kernel and custom drivers
+# TODO: Rewrite this section for Bookworm kernels
 if [ $KERNEL_NEW_VER != "" ] ; then
 	STEP=$((STEP + 1))
 	message_log "** Step $STEP-$TOTAL_STEPS: Update Linux kernel to $KERNEL_NEW_VER"
