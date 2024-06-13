@@ -4,10 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2024-05-30
-Release: 9.0.1
+Date: 2024-06-12
+Release: 9.0.2
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Allow backup zips from moode 8 to be restored</li><li>- Show 255.255.255.0 (Default) as the default netmask</li><li>- Add Library one-touch option for Random Album (asterisk icon)</li><li>Bug fixes</li><li>- Thumbnail generator crashes (see commit 4d16640)</li><li>- Network scan list is incorrectly parsed and incomplete</li><li>- Library update REST API not working due to incorrect include path</li><li>- Worker log reports method: dhcp even when static addr is set</li><li>- GPIO buttons driver crashes due to bad values in cfg_gpio table</li><li>- Fixed (0dB) reverts to Software vol for DAC's w/o Hardware volume</li><li>- Clear/Play action for One touch radio displays an unknown notification</li><li>- CoverView automatic display notification stays up indefinitely</li><li>- Rotary encoder systemd unit file is marked as executable</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to Linux kernel 6.6.31 (ISO image only)</li><li>- Bump to upmpdcli 1.8.11</li><li>- Bump to upmpdcli-qobuz 1.8.11</li><li>- Add framework for managing Plexamp as a renderer</li><li>- Bump max URL length to 2048 for New/Edit station</li><li>Bug fixes</li><li>- Pi touch brightness and rotate options</li><li>- Wrong PSK written to nmconnect file for saved SSID's</li><li>- Library HD badge routine causing script crash under certain conditions</li><li>- RoonBridge feature visibility and help text</li><li>- Incorrect notification message when restoring radio stations</li></ul>
