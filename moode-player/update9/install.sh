@@ -98,7 +98,7 @@ apt update
 if [ $KERNEL_NEW_VER != "" ] ; then
 	STEP=$((STEP + 1))
 	message_log "** Step $STEP-$TOTAL_STEPS: Update Linux kernel to $KERNEL_NEW_VER"
-	KERNEL_VER_RUNNING=`uname -r | sed -r "s/([0-9.]*)[-].*/\1/"`
+	KERNEL_VER_RUNNING=`uname -r | sed -r "s/([0-9.]*)[+].*/\1/"`
 	dpkg --compare-versions $KERNEL_NEW_VER "gt" $KERNEL_VER_RUNNING
 	if [ $? -eq 0 ] ; then
 		message_log "** - Updating..."
@@ -109,9 +109,7 @@ if [ $KERNEL_NEW_VER != "" ] ; then
 			apt -y remove $MODULES_TO_UNINSTALL
 		fi
 		message_log "** - Install kernel"
-		apt -y install "raspberrypi-kernel=$KERNEL_NEW_PKGVER"
-		message_log "** - Install bootloader"
-		apt -y install "raspberrypi-bootloader=$KERNEL_NEW_PKGVER"
+		apt -y install "linux-image-rpi-v8=$KERNEL_NEW_PKGVER" "linux-image-rpi-2712=$KERNEL_NEW_PKGVER"
 		message_log "** - Install custom drivers"
 		apt-get install -y "aloop-$KERNEL_NEW_VER" "pcm1794a-$KERNEL_NEW_VER" "rtl88xxau-$KERNEL_NEW_VER"
 		message_log "** - Complete"
