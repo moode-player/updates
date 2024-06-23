@@ -11,14 +11,16 @@
 # NOTE: Make sure these 3 parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2024-06-12"
+INPLACE_UPDATE_DATE="2024-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
-moode-player=9.0.2-1moode1
-upmpdcli=1.8.11-1moode1
-upmpdcli-qobuz=1.8.11-1moode1
+moode-player=9.0.3-1moode1
+shairport-sync=4.3.3-1moode1
+upmpdcli=1.8.12-1moode1
+upmpdcli-qobuz=1.8.12-1moode1
+upmpdcli-tidal=1.8.12-1moode1
 bluez-firmware
 firmware-atheros
 firmware-brcm80211
@@ -31,8 +33,8 @@ raspi-firmware
 
 # Part 3: Kernel package
 # NOTE: Kernel install is skipped if KERNEL_NEW_VER=""
-KERNEL_NEW_VER=""
-KERNEL_NEW_PKGVER=""
+KERNEL_NEW_VER="6.6.31"
+KERNEL_NEW_PKGVER="1:6.6.31-1+rpt1"
 
 # Initialize step counter
 STEP=0
@@ -94,7 +96,6 @@ message_log "** Step $STEP-$TOTAL_STEPS: Update package list"
 apt update
 
 # 3 - Linux kernel and custom drivers
-# TODO: Rewrite this section for Bookworm kernels
 if [ $KERNEL_NEW_VER != "" ] ; then
 	STEP=$((STEP + 1))
 	message_log "** Step $STEP-$TOTAL_STEPS: Update Linux kernel to $KERNEL_NEW_VER"
@@ -111,7 +112,7 @@ if [ $KERNEL_NEW_VER != "" ] ; then
 		message_log "** - Install kernel"
 		apt -y install "linux-image-rpi-v8=$KERNEL_NEW_PKGVER" "linux-image-rpi-2712=$KERNEL_NEW_PKGVER"
 		message_log "** - Install custom drivers"
-		apt-get install -y "aloop-$KERNEL_NEW_VER" "pcm1794a-$KERNEL_NEW_VER" "rtl88xxau-$KERNEL_NEW_VER"
+		apt-get install -y "aloop-$KERNEL_NEW_VER" "pcm1794a-$KERNEL_NEW_VER"
 		message_log "** - Complete"
 	else
 		dpkg --compare-versions $KERNEL_VER_RUNNING "gt" $KERNEL_NEW_VER
