@@ -17,6 +17,8 @@ SQLDB=/var/local/www/db/moode-sqlite3.db
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
 moode-player=9.0.4-1moode1
+bluez-alsa-utils=4.2.0-2moode1
+libasound2-plugin-bluez=4.2.0-2moode1
 shairport-sync=4.3.3-1moode1
 upmpdcli=1.8.12-1moode1
 upmpdcli-qobuz=1.8.12-1moode1
