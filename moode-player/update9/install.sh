@@ -155,7 +155,8 @@ sed -i '/<meta name="theme-color" content=/c\ \t<meta name="theme-color" content
 apt-get clean
 
 # NOTE: Fixes and specials go here
-#
+# Add symlink missing from postinstall
+[ ! -e /var/lib/mpd/music/NVME ] &&  ln -s /mnt/NVME /var/lib/mpd/music/NVME
 
 # 7 - Flush cached disk writes
 STEP=$((STEP + 1))
