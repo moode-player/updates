@@ -23,6 +23,9 @@ shairport-sync=4.3.3-1moode1
 upmpdcli=1.8.12-1moode1
 upmpdcli-qobuz=1.8.12-1moode1
 upmpdcli-tidal=1.8.12-1moode1
+chromium-browser
+chromium-browser-l10n
+chromium-codecs-ffmpeg-extra
 bluez-firmware
 firmware-atheros
 firmware-brcm80211
@@ -155,7 +158,7 @@ sed -i '/<meta name="theme-color" content=/c\ \t<meta name="theme-color" content
 apt-get clean
 
 # NOTE: Fixes and specials go here
-# Add symlink missing from postinstall
+# Add symlink missing from r905 postinstall
 [ ! -e /var/lib/mpd/music/NVME ] &&  ln -s /mnt/NVME /var/lib/mpd/music/NVME
 
 # 7 - Flush cached disk writes
