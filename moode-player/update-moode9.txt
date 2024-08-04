@@ -4,10 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2024-07-24
-Release: 9.0.5
+Date: 2024-08-03
+Release: 9.0.6
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Add HDMI-CEC support to Local Display feature</li><li>- Add NVMe drive mount to Library Config</li><li>- Add max ALSA volume option to Plexamp renderer settings</li><li>- Add 24 hour option for CoverView Digital Clock</li><li>- Improve Plexamp and RoonBridge setup guides</li><li>Bug fixes</li><li>- Plexamp renderer active detection and ALSA volume handling</li><li>- Multiroom Config advanced options don't get refreshed after updating</li><li>- Left margin for metadata in CoverView wide mode on Ultrawide displays</li><li>- LocalUI fails to start after in-place update when userid is not 'pi'</li><li>- LocalUI settings revert to default after in-place update when userid 'pi'</li><li>- Folder view not being auto-refreshed when its the current view</li><li>- Boot config.txt dtoverlay=rpi-backlight causing journal log errors</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Bug fixes</li><li>- NFS etc/exports not being updated for NVMe drive mounts</li><li>- NVMe format not checking for already mounted</li><li>- Thumbnail generator crash when binary data in MP3 Id3v2 tag</li><li>- Permissions for specific service and etc files</li><li>- Context menu spacing for "Receivers" line</li><li>- Lato-Thin @font-face definition and various other font defs</li><li>- Imported Pi Imager SSID not being SQL escaped</li><li>- Default metadata tags missing when add_to_playlist, New playlist</li></ul>
