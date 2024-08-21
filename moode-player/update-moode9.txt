@@ -4,10 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2024-08-03
-Release: 9.0.6
+Date: 2024-08-21
+Release: 9.0.8
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Bug fixes</li><li>- NFS etc/exports not being updated for NVMe drive mounts</li><li>- NVMe format not checking for already mounted</li><li>- Thumbnail generator crash when binary data in MP3 Id3v2 tag</li><li>- Permissions for specific service and etc files</li><li>- Context menu spacing for "Receivers" line</li><li>- Lato-Thin @font-face definition and various other font defs</li><li>- Imported Pi Imager SSID not being SQL escaped</li><li>- Default metadata tags missing when add_to_playlist, New playlist</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Security</li><li>- Filter GET/POST and other variables for unwanted characters and commands</li><li>Radio stations</li><li>- NPO Radio 4 changed to NPO Klassiek</li><li>Audio devices</li><li>- Pi2Design AES</li><li>- Pi2Design AES-Lite</li><li>- Pi2Design Mercury</li><li>Bug fixes</li><li>- Receiver vol and mute buttons not disabled when renderer playing</li><li>- No tracks displayed for CUE files when Prefs "Album key" set to Folder Path</li><li>- IQaudIO Pi-Amp+/DigiAmp+ unmute during startup</li><li>- Footer include not being minified for Bluetooth Control</li><li>- Several lowercase sysCmd() calls in worker.php and renderer.php</li><li>- Add-to-playlist path variable getting overwritten causing script crash</li><li>- Clean embedded carriage return (CR) in cfg_radio monitor column</li><li>- Debug logger using session var instead of SQL param</li><li>- ALSA conf device mismatch after restore under certain circumstances</li></ul>
