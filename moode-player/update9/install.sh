@@ -11,12 +11,12 @@
 # NOTE: Make sure these 3 parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2024-08-21"
+INPLACE_UPDATE_DATE="2024-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
-moode-player=9.0.8-1moode1
+moode-player=9.1.0-1moode1
 bluez-alsa-utils=4.2.0-2moode1
 camillagui=2.1.0-1moode1
 chromium-browser
@@ -39,8 +39,8 @@ raspi-firmware
 
 # Part 3: Kernel package
 # NOTE: Kernel install is skipped if KERNEL_NEW_VER=""
-KERNEL_NEW_VER="6.6.31"
-KERNEL_NEW_PKGVER="1:6.6.31-1+rpt1"
+KERNEL_NEW_VER="6.6.47"
+KERNEL_NEW_PKGVER="1:6.6.47-1+rpt1"
 
 # Initialize step counter
 STEP=0
