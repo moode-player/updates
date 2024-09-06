@@ -18,14 +18,15 @@ SQLDB=/var/local/www/db/moode-sqlite3.db
 PKG_UPDATES=(
 moode-player=9.0.8-1moode1
 bluez-alsa-utils=4.2.0-2moode1
+camillagui=2.1.0-1moode1
+chromium-browser
+chromium-browser-l10n
+chromium-codecs-ffmpeg-extra
 libasound2-plugin-bluez=4.2.0-2moode1
 shairport-sync=4.3.3-1moode1
 upmpdcli=1.8.12-1moode1
 upmpdcli-qobuz=1.8.12-1moode1
 upmpdcli-tidal=1.8.12-1moode1
-chromium-browser
-chromium-browser-l10n
-chromium-codecs-ffmpeg-extra
 bluez-firmware
 firmware-atheros
 firmware-brcm80211
@@ -133,13 +134,13 @@ fi
 # 4 Install package updates
 for PACKAGE in "${PKG_UPDATES[@]}"
 do
-  STEP=$((STEP + 1))
-  message_log "** Step $STEP-$TOTAL_STEPS: Install $PACKAGE"
-  if [ $(echo $PACKAGE | cut -d "=" -f 1) = "shairport-sync" ] || [ $(echo $PACKAGE | cut -d "=" -f 1) = "upmpdcli" ]; then
-	  apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
-  else
-	  apt -y install $PACKAGE
-   fi
+	STEP=$((STEP + 1))
+	message_log "** Step $STEP-$TOTAL_STEPS: Install $PACKAGE"
+	if [ $(echo $PACKAGE | cut -d "=" -f 1) = "shairport-sync" ] || [ $(echo $PACKAGE | cut -d "=" -f 1) = "upmpdcli" ]; then
+		apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
+	else
+		apt -y install $PACKAGE
+	fi
 done
 
 # 5 - Apply package hold
