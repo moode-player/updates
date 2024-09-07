@@ -23,7 +23,7 @@ chromium-browser
 chromium-browser-l10n
 chromium-codecs-ffmpeg-extra
 libasound2-plugin-bluez=4.2.0-2moode1
-shairport-sync=4.3.3-1moode1
+shairport-sync=4.3.4-1moode1
 upmpdcli=1.8.12-1moode1
 upmpdcli-qobuz=1.8.12-1moode1
 upmpdcli-tidal=1.8.12-1moode1
