@@ -18,7 +18,7 @@ SQLDB=/var/local/www/db/moode-sqlite3.db
 PKG_UPDATES=(
 moode-player=9.1.2-1moode1
 bluez-alsa-utils=4.2.0-2moode1
-camillagui=2.1.0-1moode1
+camillagui=2.1.0-1moode2
 chromium-browser
 chromium-browser-l10n
 chromium-codecs-ffmpeg-extra
