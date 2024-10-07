@@ -42,8 +42,8 @@ raspi-firmware
 
 # Part 3: Kernel package
 # NOTE: Kernel install is skipped if KERNEL_NEW_VER=""
-KERNEL_NEW_VER="6.6.47"
-KERNEL_NEW_PKGVER="1:6.6.47-1+rpt1"
+KERNEL_NEW_VER="6.6.51"
+KERNEL_NEW_PKGVER="1:6.6.51-1+rpt2"
 
 # Initialize step counter
 STEP=0
