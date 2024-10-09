@@ -47,7 +47,7 @@ KERNEL_NEW_PKGVER="1:6.6.51-1+rpt2"
 
 # Initialize step counter
 STEP=0
-PREDEFINED_STEPS=5
+PREDEFINED_STEPS=6
 TOTAL_STEPS=$((${#PKG_UPDATES[@]} + $PREDEFINED_STEPS))
 if [ $KERNEL_NEW_VER != "" ] ; then
 	TOTAL_STEPS=$((TOTAL_STEPS + 1))
@@ -147,18 +147,19 @@ do
 		apt -y install $PACKAGE
 	fi
 done
-# Cleanup after chromium-browser downgrade to v126
+
+# 5 Cleanup after chromium-browser downgrade to v126
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Remove leftover chromium packages"
 apt purge chromium rpi-chromium-mods
 apt autoremove
 
-# 5 - Apply package hold
+# 6 - Apply package hold
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Apply package hold"
 moode-apt-mark hold
 
-# 6 - Post-install cleanup
+# 7 - Post-install cleanup
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Post-install cleanup"
 # Update theme background color in var/www/header.php
@@ -172,7 +173,7 @@ apt-get clean
 # Add symlink missing from r905 postinstall
 [ ! -e /var/lib/mpd/music/NVME ] &&  ln -s /mnt/NVME /var/lib/mpd/music/NVME
 
-# 7 - Flush cached disk writes
+# 8 - Flush cached disk writes
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Sync changes to disk"
 message_log "Finish $INPLACE_UPDATE_DATE update for moOde $CURRENT_REL_LONG"
