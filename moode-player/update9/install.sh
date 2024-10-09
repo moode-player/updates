@@ -141,7 +141,7 @@ do
 	message_log "** Step $STEP-$TOTAL_STEPS: Install $PACKAGE"
 	if [ $(echo $PACKAGE | cut -d "=" -f 1) = "shairport-sync" ] || [ $(echo $PACKAGE | cut -d "=" -f 1) = "upmpdcli" ]; then
 		apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
-	elif [ $(echo $PACKAGE | cut -d "=" -f 1) = "chromium-browser" ]; then
+	elif [ $(echo $PACKAGE | cut -d "=" -f 1 | cut -d "-" -f 1) = "chromium" ]; then
 		apt -y install $PACKAGE --allow-downgrades --allow-change-held-packages
 	else
 		apt -y install $PACKAGE
