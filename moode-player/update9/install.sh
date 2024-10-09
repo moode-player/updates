@@ -19,9 +19,9 @@ PKG_UPDATES=(
 moode-player=9.1.3-1moode1
 bluez-alsa-utils=4.2.0-2moode1
 camillagui=2.1.0-1moode2
-chromium-browser
-chromium-browser-l10n
-chromium-codecs-ffmpeg-extra
+chromium-browser=126.0.6478.164-rpt1
+chromium-browser-l10n=126.0.6478.164-rpt1
+chromium-codecs-ffmpeg-extra=126.0.6478.164-rpt1
 libasound2-plugin-bluez=4.2.0-2moode1
 shairport-sync=4.3.4-1moode1
 log2ram=1.7.2
