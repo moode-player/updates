@@ -141,10 +141,17 @@ do
 	message_log "** Step $STEP-$TOTAL_STEPS: Install $PACKAGE"
 	if [ $(echo $PACKAGE | cut -d "=" -f 1) = "shairport-sync" ] || [ $(echo $PACKAGE | cut -d "=" -f 1) = "upmpdcli" ]; then
 		apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
+	elif [ $(echo $PACKAGE | cut -d "=" -f 1) = "chromium-browser" ]; then
+		apt -y install $PACKAGE --allow-downgrades --allow-change-held-packages
 	else
 		apt -y install $PACKAGE
 	fi
 done
+# Cleanup after chromium-browser downgrade to v126
+STEP=$((STEP + 1))
+message_log "** Step $STEP-$TOTAL_STEPS: Remove leftover chromium packages"
+apt purge chromium rpi-chromium-mods
+apt autoremove
 
 # 5 - Apply package hold
 STEP=$((STEP + 1))
