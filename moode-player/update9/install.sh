@@ -148,11 +148,12 @@ do
 	fi
 done
 
-# 5 Cleanup after chromium-browser downgrade to v126
+# 5 - Cleanup after chromium-browser downgrade to v126
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Remove leftover chromium packages"
-apt purge chromium rpi-chromium-mods
-apt autoremove
+apt-mark unhold chromium chromium-common chromium-sandbox rpi-chromium-mods
+apt -y purge chromium chromium-common chromium-sandbox rpi-chromium-mods
+apt -y autoremove
 
 # 6 - Apply package hold
 STEP=$((STEP + 1))
