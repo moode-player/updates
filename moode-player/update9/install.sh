@@ -19,9 +19,11 @@ PKG_UPDATES=(
 moode-player=9.1.3-1moode1
 bluez-alsa-utils=4.2.0-2moode1
 camillagui=2.1.0-1moode2
+chromium
 chromium-browser
-chromium-browser-l10n
-chromium-codecs-ffmpeg-extra
+chromium-common
+chromium-sandbox
+rpi-chromium-mods
 libasound2-plugin-bluez=4.2.0-2moode1
 shairport-sync=4.3.4-1moode1
 log2ram=1.7.2
@@ -47,7 +49,7 @@ KERNEL_NEW_PKGVER="1:6.6.51-1+rpt3"
 
 # Initialize step counter
 STEP=0
-PREDEFINED_STEPS=6
+PREDEFINED_STEPS=5
 TOTAL_STEPS=$((${#PKG_UPDATES[@]} + $PREDEFINED_STEPS))
 if [ $KERNEL_NEW_VER != "" ] ; then
 	TOTAL_STEPS=$((TOTAL_STEPS + 1))
@@ -141,26 +143,17 @@ do
 	message_log "** Step $STEP-$TOTAL_STEPS: Install $PACKAGE"
 	if [ $(echo $PACKAGE | cut -d "=" -f 1) = "shairport-sync" ] || [ $(echo $PACKAGE | cut -d "=" -f 1) = "upmpdcli" ]; then
 		apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
-	elif [ $(echo $PACKAGE | cut -d "=" -f 1 | cut -d "-" -f 1) = "chromium" ]; then
-		apt -y install $PACKAGE --allow-downgrades --allow-change-held-packages
 	else
 		apt -y install $PACKAGE
 	fi
 done
 
-# 5 - Cleanup after chromium-browser downgrade to v126
-STEP=$((STEP + 1))
-message_log "** Step $STEP-$TOTAL_STEPS: Remove leftover chromium packages"
-apt-mark unhold chromium chromium-common chromium-sandbox rpi-chromium-mods
-apt -y purge chromium chromium-common chromium-sandbox rpi-chromium-mods
-apt -y autoremove
-
-# 6 - Apply package hold
+# 5 - Apply package hold
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Apply package hold"
 moode-apt-mark hold
 
-# 7 - Post-install cleanup
+# 6 - Post-install cleanup
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Post-install cleanup"
 # Update theme background color in var/www/header.php
@@ -174,7 +167,7 @@ apt-get clean
 # Add symlink missing from r905 postinstall
 [ ! -e /var/lib/mpd/music/NVME ] &&  ln -s /mnt/NVME /var/lib/mpd/music/NVME
 
-# 8 - Flush cached disk writes
+# 7 - Flush cached disk writes
 STEP=$((STEP + 1))
 message_log "** Step $STEP-$TOTAL_STEPS: Sync changes to disk"
 message_log "Finish $INPLACE_UPDATE_DATE update for moOde $CURRENT_REL_LONG"
