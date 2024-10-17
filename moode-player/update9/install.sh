@@ -55,6 +55,10 @@ TOTAL_STEPS=$((${#PKG_UPDATES[@]} + $PREDEFINED_STEPS))
 if [ $KERNEL_NEW_VER != "" ] ; then
 	TOTAL_STEPS=$((TOTAL_STEPS + 1))
 fi
+# Zero pad
+if [ $TOTAL_STEPS -lt 10 ] ; then
+	TOTAL_STEPS="0"$TOTAL_STEPS
+fi
 
 # Log files
 MOODE_LOG="/var/log/moode.log"
@@ -79,6 +83,14 @@ message_log () {
 	echo "$TIME updater: $1" >> $UPDATER_LOG
 }
 
+pad_step () {
+	if [ $1 -lt 10 ] ; then
+		echo "0"$1
+	else
+		echo $1
+	fi
+}
+
 #
 # Main
 #
@@ -99,18 +111,18 @@ message_log "Start $INPLACE_UPDATE_DATE update for moOde"
 
 # 1 - Remove package hold
 STEP=$((STEP + 1))
-message_log "** Step $STEP-$TOTAL_STEPS: Remove package hold"
+message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Remove package hold"
 moode-apt-mark unhold
 
 # 2 - Update package list
 STEP=$((STEP + 1))
-message_log "** Step $STEP-$TOTAL_STEPS: Update package list"
+message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Update package list"
 apt update
 
 # 3 - Linux kernel and custom drivers
 if [ $KERNEL_NEW_VER != "" ] ; then
 	STEP=$((STEP + 1))
-	message_log "** Step $STEP-$TOTAL_STEPS: Update Linux kernel to $KERNEL_NEW_VER"
+	message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Update Linux kernel to $KERNEL_NEW_VER"
 	KERNEL_VER_RUNNING=`uname -r | sed -r "s/([0-9.]*)[+].*/\1/"`
 	dpkg --compare-versions $KERNEL_NEW_VER "gt" $KERNEL_VER_RUNNING
 	if [ $? -eq 0 ] ; then
@@ -141,7 +153,7 @@ fi
 for PACKAGE in "${PKG_UPDATES[@]}"
 do
 	STEP=$((STEP + 1))
-	message_log "** Step $STEP-$TOTAL_STEPS: Install $PACKAGE"
+	message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Install $PACKAGE"
 	if [ $(echo $PACKAGE | cut -d "=" -f 1) = "shairport-sync" ] || [ $(echo $PACKAGE | cut -d "=" -f 1) = "upmpdcli" ]; then
 		apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
 	else
@@ -151,12 +163,12 @@ done
 
 # 5 - Apply package hold
 STEP=$((STEP + 1))
-message_log "** Step $STEP-$TOTAL_STEPS: Apply package hold"
+message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Apply package hold"
 moode-apt-mark hold
 
 # 6 - Post-install cleanup
 STEP=$((STEP + 1))
-message_log "** Step $STEP-$TOTAL_STEPS: Post-install cleanup"
+message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Post-install cleanup"
 # Update theme background color in var/www/header.php
 THEME_NAME=$(sqlite3 $SQLDB "SELECT value FROM cfg_system WHERE param='themename'")
 THEME_COLOR=$(sqlite3 $SQLDB "SELECT bg_color FROM cfg_theme WHERE theme_name='$THEME_NAME'")
@@ -170,7 +182,7 @@ apt-get clean
 
 # 7 - Flush cached disk writes
 STEP=$((STEP + 1))
-message_log "** Step $STEP-$TOTAL_STEPS: Sync changes to disk"
+message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Sync changes to disk"
 message_log "Finish $INPLACE_UPDATE_DATE update for moOde $CURRENT_REL_LONG"
 sync
 
