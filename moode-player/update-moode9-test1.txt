@@ -1,0 +1,13 @@
+########################################
+# Update package for moOde audio player
+#
+# http://moodeaudio.org
+########################################
+
+Date: 2024-MM-DD
+Release: 9.1.5
+ImageOnly: No
+
+Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
+
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to librespot 0.6.0</li><li>Bug fixes</li><li>- In-place update removes --disable-gpu in .xinitrc if present</li><li>- In-place update resets cfg_radio monitor field  to 'No'</li><li>- Resolv.conf file not being updated when using static IP address</li></ul>

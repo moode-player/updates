@@ -11,12 +11,12 @@
 # NOTE: Make sure these 3 parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2024-10-26"
+INPLACE_UPDATE_DATE="2024-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
-moode-player=9.1.4-1moode1
+moode-player=9.1.5-1moode1
 bluez-alsa-utils=4.2.0-2moode1
 camillagui=2.1.0-1moode2
 chromium
@@ -27,7 +27,7 @@ rpi-chromium-mods
 libasound2-plugin-bluez=4.2.0-2moode1
 shairport-sync=4.3.4-1moode1
 log2ram=1.7.2
-librespot=0.5.0-1moode1
+librespot=0.6.0-1moode1
 libnpupnp13=6.2.0-1moode1
 libupnpp16=0.26.7-1moode1
 upmpdcli=1.8.16-1moode1
