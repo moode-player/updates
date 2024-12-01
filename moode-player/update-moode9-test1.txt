@@ -1,0 +1,17 @@
+########################################
+# Update package for moOde audio player
+#
+# http://moodeaudio.org
+########################################
+
+Date: 2024-MM-DD
+Release: 9.2.0
+ImageOnly: No
+
+Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
+
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
+<li>
+</li>
+
+</ul>
