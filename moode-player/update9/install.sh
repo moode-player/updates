@@ -25,12 +25,12 @@ chromium-common
 chromium-sandbox
 rpi-chromium-mods
 libasound2-plugin-bluez=4.2.0-2moode1
-shairport-sync=4.3.4-1moode1
+shairport-sync=4.3.5-1moode1
 log2ram=1.7.2
 librespot=0.6.0-1moode1
 libnpupnp13=6.2.0-1moode1
 libupnpp16=0.26.7-1moode1
-pleezer=0.3.0-1moode1
+pleezer=0.4.0-1moode1
 upmpdcli=1.8.16-1moode1
 upmpdcli-qobuz=1.8.16-1moode1
 upmpdcli-tidal=1.8.16-1moode1
