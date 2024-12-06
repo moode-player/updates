@@ -31,9 +31,9 @@ librespot=0.6.0-1moode1
 libnpupnp13=6.2.0-1moode1
 libupnpp16=0.26.7-1moode1
 pleezer=0.4.0-1moode1
-upmpdcli=1.8.16-1moode1
-upmpdcli-qobuz=1.8.16-1moode1
-upmpdcli-tidal=1.8.16-1moode1
+upmpdcli=1.9.0-1moode1
+upmpdcli-qobuz=1.9.0-1moode1
+upmpdcli-tidal=1.9.0-1moode1
 bluez-firmware
 firmware-atheros
 firmware-brcm80211
