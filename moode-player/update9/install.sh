@@ -25,7 +25,7 @@ log2ram=1.7.2
 librespot=0.6.0-1moode1
 libnpupnp13=6.2.0-1moode1
 libupnpp16=0.26.7-1moode1
-pleezer=0.5.0-1moode1
+pleezer=0.6.1-1moode1
 upmpdcli=1.9.0-1moode1
 upmpdcli-qobuz=1.9.0-1moode1
 upmpdcli-tidal=1.9.0-1moode1
@@ -41,18 +41,18 @@ raspi-firmware
 
 # Part 3: Kernel package
 # NOTE: Kernel install is skipped if KERNEL_NEW_VER=""
-KERNEL_NEW_VER="6.6.51"
-KERNEL_NEW_PKGVER="1:6.6.51-1+rpt3"
+KERNEL_NEW_VER="6.6.62"
+KERNEL_NEW_PKGVER="1:6.6.62-1+rpt1"
 
 # Initialize step counter
 STEP=0
 PREDEFINED_STEPS=5
 TOTAL_STEPS=$((${#PKG_UPDATES[@]} + $PREDEFINED_STEPS))
-if [ $KERNEL_NEW_VER != "" ] ; then
+if [ $KERNEL_NEW_VER != "" ]; then
 	TOTAL_STEPS=$((TOTAL_STEPS + 1))
 fi
 # Zero pad
-if [ $TOTAL_STEPS -lt 10 ] ; then
+if [ $TOTAL_STEPS -lt 10 ]; then
 	TOTAL_STEPS="0"$TOTAL_STEPS
 fi
 
@@ -65,7 +65,7 @@ UPDATER_LOG="/var/log/moode_update.log"
 #
 
 cancel_update () {
-	if [ $# -gt 0 ] ; then
+	if [ $# -gt 0 ]; then
 		message_log "$1"
 	fi
 	message_log "** Exiting update"
@@ -80,7 +80,7 @@ message_log () {
 }
 
 pad_step () {
-	if [ $1 -lt 10 ] ; then
+	if [ $1 -lt 10 ]; then
 		echo "0"$1
 	else
 		echo $1
@@ -116,12 +116,12 @@ message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Update package list"
 apt update
 
 # 3 - Linux kernel and custom drivers
-if [ $KERNEL_NEW_VER != "" ] ; then
+if [ $KERNEL_NEW_VER != "" ]; then
 	STEP=$((STEP + 1))
 	message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Update Linux kernel to $KERNEL_NEW_VER"
 	KERNEL_VER_RUNNING=`uname -r | sed -r "s/([0-9.]*)[+].*/\1/"`
 	dpkg --compare-versions $KERNEL_NEW_VER "gt" $KERNEL_VER_RUNNING
-	if [ $? -eq 0 ] ; then
+	if [ $? -eq 0 ]; then
 		message_log "** - Updating..."
 		MODULES_TO_UNINSTALL=`dpkg-query --showformat='${Status} ${Package}\n' --show aloop-* pcm1794a-* rtl88xxau-* |grep -e "^install" | grep -v $KERNEL_NEW_VER | cut -d ' ' -f 4- | tr '\n' ' '`
 		if [ "$MODULES_TO_UNINSTALL" != "" ]
@@ -165,15 +165,18 @@ moode-apt-mark hold
 # 6 - Post-install cleanup
 STEP=$((STEP + 1))
 message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Post-install cleanup"
-# Update theme background color in var/www/header.php
+# Restore theme background color in var/www/header.php
+message_log "** - Restore theme color"
 THEME_NAME=$(sqlite3 $SQLDB "SELECT value FROM cfg_system WHERE param='themename'")
 THEME_COLOR=$(sqlite3 $SQLDB "SELECT bg_color FROM cfg_theme WHERE theme_name='$THEME_NAME'")
 sed -i '/<meta name="theme-color" content=/c\ \t<meta name="theme-color" content="rgb($THEME_COLOR)">' /var/www/header.php
-# Remove downloaded archive files
+# Remove downloaded APT archive files
+message_log "** - Remove unneeded APT archive files"
 apt-get clean
 
 # NOTE: Fixes and specials go here
 # Add symlink missing from r905 postinstall
+message_log "** - Check/add NVME symlink"
 [ ! -e /var/lib/mpd/music/NVME ] &&  ln -s /mnt/NVME /var/lib/mpd/music/NVME
 
 # 7 - Flush cached disk writes
