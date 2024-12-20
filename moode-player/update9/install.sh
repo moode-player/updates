@@ -173,11 +173,7 @@ sed -i '/<meta name="theme-color" content=/c\ \t<meta name="theme-color" content
 # Remove downloaded APT archive files
 message_log "** - Remove unneeded APT archive files"
 apt-get clean
-
 # NOTE: Fixes and specials go here
-# Add symlink missing from r905 postinstall
-message_log "** - Check/add NVME symlink"
-[ ! -e /var/lib/mpd/music/NVME ] &&  ln -s /mnt/NVME /var/lib/mpd/music/NVME
 
 # 7 - Flush cached disk writes
 STEP=$((STEP + 1))
