@@ -4,10 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2024-12-21
-Release: 9.2.0
+Date: 2024-12-30
+Release: 9.2.1
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>New features</li><li>- Deezer Connect renderer with metadata and cover art</li><li>Updates</li><li>- Bump to Linux kernel 6.6.62</li><li>- Bump to shairport-sync 4.3.5</li><li>- Bump to upmpdcli 1.9.0</li><li>- Downgrade to chromium-browser 126.0.6478.164-rpt1 (new image)</li><li>- Add "Downgrade chromium" option to Peripheral Config</li><li>- Add PCIe SATA drive support to Library Config</li><li>- Add DSI port option to Peripheral Config</li><li>- Add Zeroconf port to Spotify Config</li><li>- Add FluxFM - Livestream (replaces FluxFM)</li><li>- Add FluxFM - Livestream (128K)</li><li>- Add FluxFM - 90's (320K)</li><li>- Add REST API commands: playitem | playitem_next</li><li>- Improve REST API return values for consistent JSON</li><li>- Improve layout of renderer metadata display</li><li>Bug fixes</li><li>- Bluetooth start failures due to being RF blocked</li><li>- Bluealsa-aplay fails to start after first-boot due to blank AUDIODEV</li><li>- Pi Touch 1 brightness not restored after return from screen blank</li><li>- Extra metadata under main cover showing raw html entity codes</li><li>- Audio info shows no info for some tracks</li><li>- Track year shows '00' if no date tag is present</li><li>- Various local display issues by reverting to chromium v126</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to pleezer 0.7.0</li><li>Bug fixes</li><li>- SATA mount listing in Library Config missing device and format</li><li>- SATA root folder icon missing in Folder View</li><li>- USB mounts missing from listing in Library Config</li><li>- Clipped renderer metadata icons</li><li>- Raw HTML entities showing up in CoverView artist line</li><li>- ALSA volmax not restored after Bluetooth disconnect w/CamillaDSP</li><li>- ALSA card number hard coded to 0 for Piano 2.1 DAC</li></ul>
