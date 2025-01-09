@@ -4,10 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2024-12-30
-Release: 9.2.1
+Date: 2025-01-08
+Release: 9.2.2
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to pleezer 0.7.0</li><li>Bug fixes</li><li>- SATA mount listing in Library Config missing device and format</li><li>- SATA root folder icon missing in Folder View</li><li>- USB mounts missing from listing in Library Config</li><li>- Clipped renderer metadata icons</li><li>- Raw HTML entities showing up in CoverView artist line</li><li>- ALSA volmax not restored after Bluetooth disconnect w/CamillaDSP</li><li>- ALSA card number hard coded to 0 for Piano 2.1 DAC</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to pleezer 0.8.0</li><li>- Add support for Deezer live radio and podcasts</li><li>- Add new options to Deezer Config</li><li>- Add audio format badge to Deezer metadata</li><li>- Add audio format badge to Spotify metadata</li><li>- Improve Players feature: Add "Refresh screen" and "Rediscover" options</li><li>- Increase PHP/NGINX upload/transfer limits from 75M to 128M</li><li>Bug fixes</li><li>- IQaudIO Pi-DigiAMP+ not being unmuted during startup</li><li>- Restore fails when backup zip file size > 75M</li><li>- Audio info not showing for UPnP files</li><li>- Welcome notification gets clipped in certain landscape modes</li><li>- REST API commands sent via CLI can't access PHP session</li></ul>
