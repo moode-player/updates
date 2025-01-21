@@ -4,10 +4,11 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2025-01-08
-Release: 9.2.2
+Date: 2025-01-21
+Release: 9.2.3
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to pleezer 0.8.0</li><li>- Add support for Deezer live radio and podcasts</li><li>- Add new options to Deezer Config</li><li>- Add audio format badge to Deezer metadata</li><li>- Add audio format badge to Spotify metadata</li><li>- Improve Players feature: Add "Refresh screen" and "Rediscover" options</li><li>- Increase PHP/NGINX upload/transfer limits from 75M to 128M</li><li>Bug fixes</li><li>- IQaudIO Pi-DigiAMP+ not being unmuted during startup</li><li>- Restore fails when backup zip file size > 75M</li><li>- Audio info not showing for UPnP files</li><li>- Welcome notification gets clipped in certain landscape modes</li><li>- REST API commands sent via CLI can't access PHP session</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to pleezer 0.10.0 (add support for podcast covers)</li><li>- Set S32 as default for cfg_deezer format param</li><li>- Improve Players feature: sort results and more accurate auto padding</li>
+<li>Bug fixes</li><li>- Renderer metadata icons not responsive</li><li>- Audio info track tab showing when renderer is active</li><li>- Some Deezer Config settings not restored from backup</li><li>- PHP/NGINX upload increases not applied during in-place update</li><li>- Deezer password parsing</li></ul>
