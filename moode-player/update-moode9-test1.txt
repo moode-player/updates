@@ -4,14 +4,11 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2025-MM-DD
+Date: 2025-01-21
 Release: 9.2.3
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
-<li>
-</li>
-
-</ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to pleezer 0.10.0 (add support for podcast covers)</li><li>- Set S32 as default for cfg_deezer format param</li><li>- Improve Players feature: sort results and more accurate auto padding</li>
+<li>Bug fixes</li><li>- Renderer metadata icons not responsive</li><li>- Audio info track tab showing when renderer is active</li><li>- Some Deezer Config settings not restored from backup</li><li>- PHP/NGINX upload increases not applied during in-place update</li><li>- Deezer password parsing</li></ul>
