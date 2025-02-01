@@ -41,12 +41,13 @@ firmware-linux-free
 firmware-misc-nonfree
 firmware-realtek
 raspi-firmware
+rpi-eeprom
 )
 
 # Part 3: Kernel package
 # NOTE: Kernel install is skipped if KERNEL_NEW_VER=""
-KERNEL_NEW_VER="6.6.62"
-KERNEL_NEW_PKGVER="1:6.6.62-1+rpt1"
+KERNEL_NEW_VER="6.6.74"
+KERNEL_NEW_PKGVER="1:6.6.74-1+rpt1"
 
 # Initialize step counter
 STEP=0
