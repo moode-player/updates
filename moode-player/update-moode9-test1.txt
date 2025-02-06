@@ -4,14 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2025-MM-DD
+Date: 2025-02-06
 Release: 9.2.4
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
-<li>
-</li>
-
-</ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>New features</li><li>- Play here (Opens new tab/window and plays MPD HTTP server stream)</li><li>Updates</li><li>- Bump to Linux kernel 6.6.74</li><li>- Bump to CamillaDSP 3.0.0</li><li>- Bump to CamillaDSP V3 configs</li><li>- Bump to pleezer 0.12.0</li><li>- Bump to shairport-sync 4.3.6</li><li>- Add mDNS option to Networking section of System Config</li><li>- Update BBC playable URL's</li><li>- Update JB Radio2 (320K) playable URL</li><li>- Improve grep for userid pi in function getUserID()</li><li>- Improve >> Players feature</li><li>- Improve border style for the badges</li><li>- Improve Startup options section of System Config</li><li>- Move "Integrated audio" option from System to Audio Config</li><li>Bug fixes</li><li>- Time slider position after moving the thumb</li><li>- Players discovery not working in certain cases</li><li>- Hotspot fail on Pi-3B</li><li>- Radio monitor settings missing from backup/restore</li><li>- SATA mount type missing from backup/restore</li><li>- No fallback probe when mediainfo is empty for DSD files</li></ul>
