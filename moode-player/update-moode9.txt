@@ -4,14 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2025-MM-DD
-Release: 9.2.6
+Date: 2025-02-23
+Release: 9.2.5
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
-<li>
-</li>
-
-</ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to CamillaGUI 3.0.2</li><li>- Add Bluetooth auto-disconnect to Renderer Config</li><li>- Add Disable sync to AirPlay Config</li><li>- Update Quick help with ref to new Music Database documentation</li><li>- Update JB Radio2 (320K) playable URL</li><li>- Improve help on Bluetooth Control</li><li>Bug fixes</li><li>- Chip options button not working</li><li>- DLNA rebuild button not working</li><li>- Shairport-sync.conf not being updated during restore</li></ul>
