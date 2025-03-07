@@ -114,11 +114,17 @@ message_log "Start $INPLACE_UPDATE_DATE update for moOde"
 STEP=$((STEP + 1))
 message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Remove package hold"
 moode-apt-mark unhold
+if [ $? -ne 0 ]; then
+	cancel_update "** Step failed"
+fi
 
 # 2 - Update package list
 STEP=$((STEP + 1))
 message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Update package list"
 apt update
+if [ $? -ne 0 ]; then
+	cancel_update "** Step failed"
+fi
 
 # 3 - Linux kernel and custom drivers
 if [ $KERNEL_NEW_VER != "" ]; then
@@ -133,11 +139,20 @@ if [ $KERNEL_NEW_VER != "" ]; then
 		then
 			message_log "** - Prepare environment"
 			apt -y remove $MODULES_TO_UNINSTALL
+			if [ $? -ne 0 ]; then
+				cancel_update "** Step failed"
+			fi
 		fi
 		message_log "** - Install kernel"
 		apt -y install "linux-image-rpi-v8=$KERNEL_NEW_PKGVER" "linux-image-rpi-2712=$KERNEL_NEW_PKGVER"
+		if [ $? -ne 0 ]; then
+			cancel_update "** Step failed"
+		fi
 		message_log "** - Install custom drivers"
 		apt-get install -y "aloop-$KERNEL_NEW_VER" "pcm1794a-$KERNEL_NEW_VER"
+		if [ $? -ne 0 ]; then
+			cancel_update "** Step failed"
+		fi
 		message_log "** - Complete"
 	else
 		dpkg --compare-versions $KERNEL_VER_RUNNING "gt" $KERNEL_NEW_VER
@@ -157,8 +172,14 @@ do
 	message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Install $PACKAGE"
 	if [ $(echo $PACKAGE | cut -d "=" -f 1) = "shairport-sync" ] || [ $(echo $PACKAGE | cut -d "=" -f 1) = "upmpdcli" ]; then
 		apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
+		if [ $? -ne 0 ]; then
+			cancel_update "** Step failed"
+		fi
 	else
 		apt -y install $PACKAGE
+		if [ $? -ne 0 ]; then
+			cancel_update "** Step failed"
+		fi
 	fi
 done
 
@@ -166,6 +187,9 @@ done
 STEP=$((STEP + 1))
 message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Apply package hold"
 moode-apt-mark hold
+if [ $? -ne 0 ]; then
+	cancel_update "** Step failed"
+fi
 
 # 6 - Post-install cleanup
 STEP=$((STEP + 1))
@@ -175,9 +199,15 @@ message_log "** - Restore theme color"
 THEME_NAME=$(sqlite3 $SQLDB "SELECT value FROM cfg_system WHERE param='themename'")
 THEME_COLOR=$(sqlite3 $SQLDB "SELECT bg_color FROM cfg_theme WHERE theme_name='$THEME_NAME'")
 sed -i '/<meta name="theme-color" content=/c\ \t<meta name="theme-color" content="rgb($THEME_COLOR)">' /var/www/header.php
+if [ $? -ne 0 ]; then
+	cancel_update "** Step failed"
+fi
 # Remove downloaded APT archive files
 message_log "** - Remove unneeded APT archive files"
 apt-get clean
+if [ $? -ne 0 ]; then
+	cancel_update "** Step failed"
+fi
 # NOTE: Fixes and specials go here
 
 # 7 - Flush cached disk writes
@@ -185,5 +215,8 @@ STEP=$((STEP + 1))
 message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Sync changes to disk"
 message_log "Finish $INPLACE_UPDATE_DATE update for moOde $CURRENT_REL_LONG"
 sync
+if [ $? -ne 0 ]; then
+	cancel_update "** Step failed"
+fi
 
 cd ~/
