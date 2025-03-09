@@ -11,19 +11,19 @@
 # NOTE: Make sure these 3 parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2025-03-07"
+INPLACE_UPDATE_DATE="2025-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
-moode-player=9.2.6-1moode1
+moode-player=9.2.7-1moode1
 bluez-alsa-utils=4.2.0-2moode1
+libasound2-plugin-bluez=4.2.0-2moode1
 camilladsp=3.0.0-1moode1
 camillagui=3.0.2-1moode1
 mpd2cdspvolume=2.0.0-1moode2
 python3-camilladsp-plot=3.0.0-1moode1
 python3-camilladsp=3.0.0-1moode1
-libasound2-plugin-bluez=4.2.0-2moode1
 shairport-sync=4.3.6-1moode1
 log2ram=1.7.2
 librespot=0.6.0-1moode1
@@ -134,7 +134,7 @@ if [ $KERNEL_NEW_VER != "" ]; then
 	dpkg --compare-versions $KERNEL_NEW_VER "gt" $KERNEL_VER_RUNNING
 	if [ $? -eq 0 ]; then
 		message_log "** - Updating..."
-		MODULES_TO_UNINSTALL=`dpkg-query --showformat='${Status} ${Package}\n' --show aloop-* pcm1794a-* rtl88xxau-* |grep -e "^install" | grep -v $KERNEL_NEW_VER | cut -d ' ' -f 4- | tr '\n' ' '`
+		MODULES_TO_UNINSTALL=`dpkg-query --showformat='${Status} ${Package}\n' --show aloop-* pcm1794a-* |grep -e "^install" | grep -v $KERNEL_NEW_VER | cut -d ' ' -f 4- | tr '\n' ' '`
 		if [ "$MODULES_TO_UNINSTALL" != "" ]
 		then
 			message_log "** - Prepare environment"
@@ -158,7 +158,7 @@ if [ $KERNEL_NEW_VER != "" ]; then
 		dpkg --compare-versions $KERNEL_VER_RUNNING "gt" $KERNEL_NEW_VER
 		if [ $? -eq 0 ]
 		then
-			message_log "** - Kernel is newer, update cannot be performed"
+			message_log "** - Kernel is newer, update skipped"
 		else
 			message_log "** - Kernel is current, no update required"
 		fi
@@ -170,10 +170,21 @@ for PACKAGE in "${PKG_UPDATES[@]}"
 do
 	STEP=$((STEP + 1))
 	message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Install $PACKAGE"
-	if [ $(echo $PACKAGE | cut -d "=" -f 1) = "shairport-sync" ] || [ $(echo $PACKAGE | cut -d "=" -f 1) = "upmpdcli" ]; then
+	PKG_NAME=$(echo $PACKAGE | cut -d "=" -f 1)
+	if [ $PKG_NAME = "shairport-sync" ] || [ $PKG_NAME = "upmpdcli" ]; then
 		apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
 		if [ $? -ne 0 ]; then
 			cancel_update "** Step failed"
+		fi
+	elif [ $PKG_NAME = "bluez-alsa-utils" ] || [ $PKG_NAME = "libasound2-plugin-bluez" ]; then
+		apt-cache policy $PKG_NAME | awk '/Installed: /{print $2}' | grep "+aac"
+		if [ $? -eq 0 ]; then
+			message_log "** Installed package is newer, update skipped"
+		else
+			apt -y install $PACKAGE
+			if [ $? -ne 0 ]; then
+				cancel_update "** Step failed"
+			fi
 		fi
 	else
 		apt -y install $PACKAGE
