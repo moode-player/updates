@@ -219,6 +219,12 @@ apt-get clean
 if [ $? -ne 0 ]; then
 	cancel_update "** Step failed"
 fi
+# Remove unneeded packages
+message_log "** - Remove unneeded packages"
+apt -y autoremove
+if [ $? -ne 0 ]; then
+	cancel_update "** Step failed"
+fi
 # NOTE: Fixes and specials go here
 
 # 7 - Flush cached disk writes
