@@ -179,7 +179,7 @@ do
 	elif [ $PKG_NAME = "bluez-alsa-utils" ] || [ $PKG_NAME = "libasound2-plugin-bluez" ]; then
 		apt-cache policy $PKG_NAME | awk '/Installed: /{print $2}' | grep "+aac"
 		if [ $? -eq 0 ]; then
-			message_log "** Installed package is newer, update skipped"
+			message_log "** - Installed package is newer, update skipped"
 		else
 			apt -y install $PACKAGE
 			if [ $? -ne 0 ]; then
