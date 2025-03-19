@@ -180,7 +180,7 @@ do
 			cancel_update "** Step failed"
 		fi
 	elif [ $PKG_NAME = "bluez-alsa-utils" ] || [ $PKG_NAME = "libasound2-plugin-bluez" ]; then
-		apt-cache policy $PKG_NAME | awk '/Installed: /{print $2}' | grep "+aac"
+		dpkg --compare-versions $(dpkg-query -W -f='${Version}' $PKG_NAME) gt "4.2.0-2moode1"
 		if [ $? -eq 0 ]; then
 			message_log "** - Installed package is newer, update skipped"
 		else
