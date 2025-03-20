@@ -5,16 +5,18 @@
 ########################################
 
 Date: 2025-MM-DD
-Release: 9.2.7
+Release: 9.3.0
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
 Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
 
+<li>New features</li>
+<li>- MPD 0.24</li>
+<li>- MPC 0.35</li>
+
 <li>Updates</li>
-<li>- Bump to MPD 0.24</li>
-<li>- Bump to MPC 0.35</li>
 <li>- Bump to pleezer 0.12.2</li>
 <li>- Add configurable retry for ALSA card empty during startup</li>
 <li>- Add dedicated backdrop for Multiroom Receiver active</li>
