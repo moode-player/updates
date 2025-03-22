@@ -18,8 +18,8 @@ SQLDB=/var/local/www/db/moode-sqlite3.db
 PKG_UPDATES=(
 moode-player=9.3.0-1moode1
 alsa-cdsp=1.2.0-2moode1
-mpd-0.24-1moode1
-mpc-0.35-1moode1
+mpd=0.24-1moode1
+mpc=0.35-1moode1
 bluez-alsa-utils=4.2.0-2moode1
 libasound2-plugin-bluez=4.2.0-2moode1
 camilladsp=3.0.0-1moode1
