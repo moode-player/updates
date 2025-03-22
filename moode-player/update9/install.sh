@@ -229,6 +229,15 @@ if [ $? -ne 0 ]; then
 	cancel_update "** Step failed"
 fi
 # NOTE: Fixes and specials go here
+# Reset Bluetooth PIN code if indicated. It will be initialized during startup
+message_log "** - Reset Bluetooth PIN code if indicated"
+PINCODE=$(moodeutl -d -gv bt_pin_code)
+if [ $PINCODE = "None" ]; then
+	moodeutl -D bt_pin_code
+	if [ $? -ne 0 ]; then
+		cancel_update "** Step failed"
+	fi
+fi
 
 # 7 - Flush cached disk writes
 STEP=$((STEP + 1))
