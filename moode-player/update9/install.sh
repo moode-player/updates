@@ -174,7 +174,7 @@ do
 	STEP=$((STEP + 1))
 	message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Install $PACKAGE"
 	PKG_NAME=$(echo $PACKAGE | cut -d "=" -f 1)
-	if [ $PKG_NAME = "shairport-sync" ] || [ $PKG_NAME = "upmpdcli" ]; then
+	if [ $PKG_NAME = "shairport-sync" ] || [ $PKG_NAME = "upmpdcli" ] || [ $PKG_NAME = "mpd" ]; then
 		apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
 		if [ $? -ne 0 ]; then
 			cancel_update "** Step failed"
