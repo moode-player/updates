@@ -18,7 +18,7 @@ SQLDB=/var/local/www/db/moode-sqlite3.db
 PKG_UPDATES=(
 moode-player=9.3.1-1moode1
 alsa-cdsp=1.2.0-2moode1
-mpd=0.24-1moode1
+mpd=0.24.2-1moode1
 mpc=0.35-1moode1
 bluez-alsa-utils=4.2.0-2moode1
 libasound2-plugin-bluez=4.2.0-2moode1
@@ -49,8 +49,8 @@ rpi-eeprom
 
 # Part 3: Kernel package
 # NOTE: Kernel install is skipped if KERNEL_NEW_VER=""
-KERNEL_NEW_VER="6.6.74"
-KERNEL_NEW_PKGVER="1:6.6.74-1+rpt1"
+KERNEL_NEW_VER="6.12.20"
+KERNEL_NEW_PKGVER="1:6.12.20-1+rpt1~bpo12+1"
 
 # Initialize step counter
 STEP=0
