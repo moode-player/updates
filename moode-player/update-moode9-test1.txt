@@ -11,7 +11,15 @@ ImageOnly: No
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
 Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
-<li>
-</li>
+
+<li>Updates</li>
+<li>- Bump to MPD 0.24.2</li>
+<li>- Bump to Linux kernel 6.12.20</li>
+<li>- Improve mobile portrait layout for Config screens</li>
+<li>- Improve Regenerate db message on Library Config</li>
+<li>- Improve help info for certain settings on MPD Config</li>
+
+<li>Bug fixes</li>
+<li>- Hand cursor appearing when hovering over Album name</li>
 
 </ul>
