@@ -28,6 +28,7 @@ mpd2cdspvolume=2.0.0-1moode2
 python3-camilladsp-plot=3.0.0-1moode1
 python3-camilladsp=3.0.0-1moode1
 shairport-sync=4.3.6-1moode1
+shairport-sync-metadata-reader=1.0.0-1moode1
 log2ram=1.7.2
 librespot=0.6.0-1moode1
 libnpupnp13=6.2.0-1moode1
