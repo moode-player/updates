@@ -20,6 +20,7 @@ Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
 <li>- Bump to pleezer 0.14.2</li>
 <li>- Bump to Linux kernel 6.12.20</li>
 <li>- Add MPD verbose log on indicator to Playback view</li>
+<li>- Add System Config option to store /tmp in RAM</li>
 <li>- Update moodeutl -m to report user space CPU load</li>
 <li>- Improve mobile portrait layout for Config screens</li>
 <li>- Improve Regenerate db message on Library Config</li>
@@ -27,6 +28,8 @@ Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
 <li>- Improve timeline style and drag response</li>
 <li>- Improve renderer metadata overlay style</li>
 
+<li>Radio stations
+<li>- Update France Musique La Jazz to 192K AAC</li>
 
 <li>Bug fixes</li>
 <li>- Hand cursor appearing when hovering over Album name</li>
@@ -34,5 +37,8 @@ Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
 <li>- Embedded single quote not working in Library search</li>
 <li>- Title string not escaped when submitted to search engine</li>
 <li>- Incomplete status may be returned after chainMpdCmds()</li>
+<li>- Input field validation on Network Config screen</li>
+<li>- Input field validation for Bluetooth PIN code field</li>
+<li>- Tag view Genre selection not remembered after page refresh</li>
 
 </ul>
