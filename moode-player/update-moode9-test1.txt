@@ -17,7 +17,7 @@ Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
 
 <li>Updates</li>
 <li>- Bump to MPD 0.24.3</li>
-<li>- Bump to pleezer 0.14.2</li>
+<li>- Bump to pleezer 0.16.0</li>
 <li>- Bump to Linux kernel 6.12.20</li>
 <li>- Add MPD verbose log on indicator to Playback view</li>
 <li>- Add System Config option to store /tmp in RAM</li>
