@@ -30,6 +30,7 @@ Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
 
 <li>Radio stations
 <li>- Update France Musique La Jazz to 192K AAC</li>
+<li>- Update station names for NTS 1 and 2</li>
 
 <li>Bug fixes</li>
 <li>- Hand cursor appearing when hovering over Album name</li>
