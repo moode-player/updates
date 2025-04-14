@@ -37,15 +37,6 @@ pleezer=0.16.0-1moode1
 upmpdcli=1.9.0-1moode1
 upmpdcli-qobuz=1.9.0-1moode1
 upmpdcli-tidal=1.9.0-1moode1
-bluez-firmware
-firmware-atheros
-firmware-brcm80211
-firmware-libertas
-firmware-linux-free
-firmware-misc-nonfree
-firmware-realtek
-raspi-firmware
-rpi-eeprom
 )
 
 # Part 3: Kernel package
