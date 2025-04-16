@@ -4,8 +4,8 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2025-04-14
-Release: 9.3.1
+Date: 2025-04-16
+Release: 9.3.2
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
