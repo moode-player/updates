@@ -31,12 +31,13 @@ shairport-sync=4.3.6-1moode1
 shairport-sync-metadata-reader=1.0.2~git20250413.9caf251-1moode1
 log2ram=1.7.2
 librespot=0.6.0-1moode1
+pleezer=0.18.0-1moode1
+upmpdcli=1.9.5-1moode1
+upmpdcli-qobuz=1.9.5-1moode1
+upmpdcli-tidal=1.9.5-1moode1
 libnpupnp13=6.2.0-1moode1
 libupnpp16=0.26.7-1moode1
-pleezer=0.18.0-1moode1
-upmpdcli=1.9.0-1moode1
-upmpdcli-qobuz=1.9.0-1moode1
-upmpdcli-tidal=1.9.0-1moode1
+python3-libupnpp=0.26.1-1moode1
 )
 
 # Part 3: Kernel package
