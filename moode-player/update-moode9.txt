@@ -4,10 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2025-05-13
-Release: 9.3.4
+Date: 2025-05-25
+Release: 9.3.5
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to Linux kernel 6.12.25</li>- Bump to upmpdcli 1.9.5</li><li>- Add IP address to Dashboard</li><li>- Add player name to main menu header (click for Player info)</li><li>- Add accent color border under volume icon for mobile portrait</li><li>- Add DSI screen type "Other" with brightness 0-255, rotation 0|90|180|270</li><li>- Remove Deezer Connect feature (discontinued by company)</li><li>- Improve moodeutl restartServers()</li><li>Bug fixes</li><li>- Click on "Artist - Album" in Playback view not working</li><li>- Currentsong.txt not being updated for Deezer Connect</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>New features</li><li>- REST API play_item | play_item_next supports Album and Playlist</li><li>- REST API clear_queue for clearing the Queue</li><li>Updates</li><li>- Bump to MPD 0.24.4</li><li>- REST API play_item | play_item_next replaces playitem | playitem_next</li><li>- Improve debug logging for NAS mounts</li><li>Bug fixes</li><li>- Tag view column height on mobile portrait</li><li>- Hyphen showing when "Not playing"</li><li>- Clock radio on indicator position for mobile portrait</li><li>- ChainMpdCmds() Clear/Play results in stale MPD status</li></ul>
