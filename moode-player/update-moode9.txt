@@ -4,10 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2025-06-06
-Release: 9.3.6
+Date: 2025-06-26
+Release: 9.3.7
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>New</li><li>- Add /mnt/OSDISK and corresponding Samba share point (deprecate SDCARD)</li><li>Updates</li><li>- Improve Renderer setup guide</li><li>- Improve help for Equalizers section of Audio Config</li><li>- Improve corner radius for main and thumbnail images</li><li>Bug fixes</li><li>- Playbar album - artist line not ellipsis limited</li><li>- Random album (Clear/Play) in Playback view briefly shows default cover</li><li>- CamillaDSP Quick config broken when Airplay/Deezer/Spotify on</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>New</li><li>- Optional BASH script that runs after moOde startup completes</li><li>- REST API's get_receiver_status, set_receiver_onoff</li><li>Updates</li><li>- Add MPD stats to moode startup log</li><li>- Improve logging for Update and Regenerate library</li><li>- KEXP 90.3 FM Seattle to 160K AAC-LC stream</li><li>- Improve help for NVMe and SATA mount options</li><li>- Remove refs to Deezer from setup guides and help</li></ul>
