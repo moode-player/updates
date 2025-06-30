@@ -11,12 +11,12 @@
 # NOTE: Make sure these 3 parts are correct!
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2025-06-26"
+INPLACE_UPDATE_DATE="2025-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
-moode-player=9.3.7-1moode1
+moode-player=9.3.8-1moode1
 alsa-cdsp=1.2.0-2moode1
 mpd=0.24.4-1moode1
 mpc=0.35-1moode1
