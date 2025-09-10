@@ -4,7 +4,7 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2025-MM-DD
+Date: 2025-09-10
 Release: 9.4.0
 ImageOnly: No
 
