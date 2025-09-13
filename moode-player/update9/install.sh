@@ -233,6 +233,27 @@ if [ $PINCODE = "None" ]; then
 		cancel_update "** Step failed"
 	fi
 fi
+# Update peppy configs
+# /etc/peppymeter/config.txt
+message_log "** - Update Peppymeter config"
+sed -i -e 's/^framebuffer.device.*/framebuffer.device = \/dev\/fb0/' \
+	-e 's/^mouse.device.*/mouse.device = \/dev\/input\/event0/' \
+	-e 's/^mouse.enabled.*/mouse.enabled = False/' \
+	-e 's/^pipe.name.*/pipe.name = \/tmp\/peppymeter/' \
+	/etc/peppymeter/config.txt
+	if [ $? -ne 0 ]; then
+		cancel_update "** Step failed"
+	fi
+# /etc/peppyspectrum/config.txt
+message_log "** - Update Peppyspectrum config"
+sed -i -e 's/^framebuffer.device.*/framebuffer.device = \/dev\/fb0/' \
+	-e 's/^mouse.device.*/mouse.device = \/dev\/input\/event0/' \
+	-e 's/^mouse.enabled.*/mouse.enabled = False/' \
+	-e 's/^pipe.name.*/pipe.name = \/tmp\/peppyspectrum/' \
+	/etc/peppyspectrum/config.txt
+if [ $? -ne 0 ]; then
+	cancel_update "** Step failed"
+fi
 
 # 7 - Flush cached disk writes
 STEP=$((STEP + 1))
