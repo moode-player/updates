@@ -227,7 +227,7 @@ fi
 # Reset Bluetooth PIN code if indicated. It will be initialized during startup
 message_log "** - Reset Bluetooth PIN code if indicated"
 PINCODE=$(moodeutl -d -gv bt_pin_code)
-if [ $PINCODE = "None" ]; then
+if [ -z $PINCODE ] || [ $PINCODE = "None" ]; then
 	moodeutl -D bt_pin_code
 	if [ $? -ne 0 ]; then
 		cancel_update "** Step failed"
