@@ -10,8 +10,4 @@ ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
-<li>
-</li>
-
-</ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to Linux kernel 6.12.47</li><li>- Run Peppy within XServer for orientation and rotation options</li><li>- Enable local screen blank / wake on play for Peppy display</li><li>- Enable remote screen blank / wake on play for Local WebUI display</li><li>- Add check to Graphic/Parametric EQ (cannot use ALSA plughw if Peppy on)</li><li>- Add 4GB item for MPD input cache</li><li>- Add moode version to player info popup</li><li>- Improve CSS for panel-header and related elements</li><li>- Improve robustness and error handling for worker.php</li><li>- Improve REST API toggle_play_pause (return play state after toggle)</li><li>- Improve mount monitor re-mount detection</li><li>Radio stations</li><li>- UPD: Jazz24</li><li>Bug fixes</li><li>- Peppy spectrum name always reverts to "random"</li><li>- Cover visible when returning from CoverView in Mobile landscape</li><li>- Potential divide by 0 condition in Network Config "qual" value</li><li>- Mount errors not being logged in Library Config</li><li>- Volume type "Hardware" not available for HiFiBerry DAC2 HD</li></ul>
