@@ -132,34 +132,40 @@ if [ $KERNEL_NEW_VER != "" ]; then
 	KERNEL_VER_RUNNING=`uname -r | sed -r "s/([0-9.]*)[+].*/\1/"`
 	dpkg --compare-versions $KERNEL_NEW_VER "gt" $KERNEL_VER_RUNNING
 	if [ $? -eq 0 ]; then
-		message_log "** - Updating..."
-		MODULES_TO_UNINSTALL=`dpkg-query --showformat='${Status} ${Package}\n' --show aloop-* pcm1794a-* |grep -e "^install" | grep -v $KERNEL_NEW_VER | cut -d ' ' -f 4- | tr '\n' ' '`
-		if [ "$MODULES_TO_UNINSTALL" != "" ]
-		then
-			message_log "** - Prepare environment"
-			apt -y remove $MODULES_TO_UNINSTALL
+		message_log "** - Checking Raspberry Pi kernel repository"
+		apt -s install "linux-image-rpi-v8=$KERNEL_NEW_PKGVER"
+		if [ $? -ne 0 ]; then
+			message_log "** - Kernel not found, update skipped"
+		else
+			message_log "** - Kernel found, updating..."
+			DRIVERS_TO_UNINSTALL=`dpkg-query --showformat='${Status} ${Package}\n' --show aloop-* pcm1794a-* |grep -e "^install" | grep -v $KERNEL_NEW_VER | cut -d ' ' -f 4- | tr '\n' ' '`
+			if [ "$DRIVERS_TO_UNINSTALL" != "" ]
+			then
+				message_log "** - Remove current custom drivers"
+				apt -y remove $DRIVERS_TO_UNINSTALL
+				if [ $? -ne 0 ]; then
+					cancel_update "** Step failed"
+				fi
+			fi
+			message_log "** - Install new kernel"
+			apt -y install "linux-image-rpi-v8=$KERNEL_NEW_PKGVER" "linux-image-rpi-2712=$KERNEL_NEW_PKGVER"
 			if [ $? -ne 0 ]; then
 				cancel_update "** Step failed"
 			fi
+			message_log "** - Install matching custom drivers"
+			apt-get install -y "aloop-$KERNEL_NEW_VER" "pcm1794a-$KERNEL_NEW_VER"
+			if [ $? -ne 0 ]; then
+				cancel_update "** Step failed"
+			fi
+			message_log "** - Complete"
 		fi
-		message_log "** - Install kernel"
-		apt -y install "linux-image-rpi-v8=$KERNEL_NEW_PKGVER" "linux-image-rpi-2712=$KERNEL_NEW_PKGVER"
-		if [ $? -ne 0 ]; then
-			cancel_update "** Step failed"
-		fi
-		message_log "** - Install custom drivers"
-		apt-get install -y "aloop-$KERNEL_NEW_VER" "pcm1794a-$KERNEL_NEW_VER"
-		if [ $? -ne 0 ]; then
-			cancel_update "** Step failed"
-		fi
-		message_log "** - Complete"
 	else
 		dpkg --compare-versions $KERNEL_VER_RUNNING "gt" $KERNEL_NEW_VER
 		if [ $? -eq 0 ]
 		then
-			message_log "** - Kernel is newer, update skipped"
+			message_log "** - Installed Kernel is newer, update skipped"
 		else
-			message_log "** - Kernel is current, no update required"
+			message_log "** - Installed Kernel is current, no update required"
 		fi
 	fi
 fi
