@@ -10,8 +10,4 @@ ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
-<li>
-</li>
-
-</ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Bump to MPD 0.24.6</li><li>- Add support for AirPlay metadata/covers from YouTube and other apps</li><li>- Add "Crop queue" feature (Remove all but the currently playing item)</li><li>- Improve help for the LCD updater and CAPS equalizers</li><li>- Add "Normalization" to Peppymeter config (adjust height of needle/bars)</li><li>- Resume MPD play after changing Peppy configs</li><li>Bug fixes</li><li>- Bluetooth inbound AUDIODEV not set correctly when Peppy + CamillaDSP</li></ul>
