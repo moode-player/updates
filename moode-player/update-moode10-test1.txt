@@ -8,7 +8,7 @@ Date: 2025-MM-DD
 Release: 10.0.1
 ImageOnly: No
 
-Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to backup your system before applying this update.</p>
+Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to BACKUP your system before applying this update.</p>
 
 Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
 <li>
