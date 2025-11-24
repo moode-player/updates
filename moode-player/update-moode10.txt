@@ -1,0 +1,15 @@
+########################################
+# Update package for moOde audio player
+#
+# http://moodeaudio.org
+########################################
+
+Date: 2025-11-22
+Release: 10.0.0
+ImageOnly: No
+
+Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to BACKUP your system before applying this update.</p>
+
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>New features</li><li>- PiOS Trixie Lite (Debian 13)</li><li>Radio stations</li>
+<li>- Linn stations</li><li>Updates</li><li>- Bump to librespot 0.8.0</li><li>- Bump to camilladsp 3.0.1</li><li>- Bump to Bluez 4.3.1</li><li>- Bump to ashuffle 3.14.9</li><li>- Add rtl88xxau WiFi driver (Comfast CF-912AC and others)</li><li>- Add upmpdcli to restart-renderer.php</li><li>- Add moodeutl options --reboot, --shutdown, -p (print previous moode log)</li><li>- Add moode_prevlog.log (previous startup log) to improve debugging</li><li>- Improve help for Squeezelite renderer in Renderer Config</li><li>- Improve Peppy config (validate screen W/H, btn to install moode meters)</li><li>- Improve Welcome screen</li><li>Bug fixes</li><li>- Blank hotspot password after restore</li>
+<li>- Peppy screen blank not working for DSI displays</li><li>- Notification for Target URL in Peripheral Config</li><li>- Help option for restart-renderer.php</li><li>- Go to Artist/Album fails when tag are missing</li></ul>
