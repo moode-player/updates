@@ -17,6 +17,7 @@ SQLDB=/var/local/www/db/moode-sqlite3.db
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
 moode-player=10.0.1-1moode1
+squeezelite=squeezelite_2.0.0-1541+git20250609.72e1fd8-1moode1
 )
 
 # Part 3: Kernel package
