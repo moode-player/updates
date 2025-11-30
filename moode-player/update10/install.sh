@@ -17,7 +17,8 @@ SQLDB=/var/local/www/db/moode-sqlite3.db
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
 moode-player=10.0.1-1moode1
-squeezelite=squeezelite_2.0.0-1541+git20250609.72e1fd8-1moode1
+squeezelite=2.0.0-1541+git20250609.72e1fd8-1moode1
+caps=0.9.26-1moode1
 )
 
 # Part 3: Kernel package
@@ -207,6 +208,8 @@ if [ $? -ne 0 ]; then
 	cancel_update "** Step failed"
 fi
 # NOTE: Fixes and specials go here
+# Overwrite Squeezelite package file with moode file
+wget -q https://raw.githubusercontent.com/moode-player/moode/develop/lib/systemd/system/squeezelite.overwrite.service -O /lib/systemd/system/squeezelite.service
 
 # 7 - Flush cached disk writes
 STEP=$((STEP + 1))
