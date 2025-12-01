@@ -174,6 +174,11 @@ do
 				cancel_update "** Step failed"
 			fi
 		fi
+	elif [ $PKG_NAME = "caps" ]; then
+		apt -y install $PACKAGE --allow-downgrades
+		if [ $? -ne 0 ]; then
+			cancel_update "** Step failed"
+		fi
 	else
 		apt -y install $PACKAGE
 		if [ $? -ne 0 ]; then
