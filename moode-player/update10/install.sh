@@ -215,6 +215,7 @@ fi
 # NOTE: Fixes and specials go here
 # Overwrite Squeezelite package file with moode file
 wget -q https://raw.githubusercontent.com/moode-player/moode/develop/lib/systemd/system/squeezelite.overwrite.service -O /lib/systemd/system/squeezelite.service
+systemctl disable squeezelite
 
 # 7 - Flush cached disk writes
 STEP=$((STEP + 1))
