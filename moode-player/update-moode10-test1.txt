@@ -4,14 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2025-MM-DD
+Date: 2025-12-08
 Release: 10.0.1
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to BACKUP your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
-<li>
-</li>
-
-</ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Remove Deezer Connect feature (discontinued by manufacturer)</li><li>- Add CM5, CM5 Lite revision codes</li><li>- Add xss_detect setting to backup/restore</li><li>Bug fixes</li><li>- Bluetooth SCAN failing due to prompt change in bluetoothctl</li><li>- Squeezelight crashing because stock package missing RPI build option</li><li>- Parametric EQ ladspa plugin not found due to package issue</li><li>- Auto-play section in worker.php stops MPD after ready-script</li><li>- Samba versions using colon delimiter (3:1:1) not detected</li><li>- Touch 2 not working due to DSI port name and screen res changes</li><li>- Screen blank not working for DSI displays</li></ul>
