@@ -8,10 +8,8 @@
 # Environment
 #
 
-# NOTE: Make sure these 3 parts are correct!
-
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2025-12-08"
+INPLACE_UPDATE_DATE="2025-12-09"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
