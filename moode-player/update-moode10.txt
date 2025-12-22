@@ -4,10 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2025-12-09
-Release: 10.0.1
+Date: 2025-12-18
+Release: 10.0.2
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to BACKUP your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates</li><li>- Remove Deezer Connect feature (discontinued by manufacturer)</li><li>- Add CM5, CM5 Lite revision codes</li><li>- Add xss_detect setting to backup/restore</li><li>Bug fixes</li><li>- Bluetooth SCAN failing due to prompt change in bluetoothctl</li><li>- Squeezelight crashing because stock package missing RPI build option</li><li>- Parametric EQ ladspa plugin not found due to package issue</li><li>- Auto-play section in worker.php stops MPD after ready-script</li><li>- Samba versions using colon delimiter (3:1:1) not detected</li><li>- Touch 2 not working due to DSI port name and screen res changes</li><li>- Screen blank not working for DSI displays</li><li>- Series parsing in system updater</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates:</li><li>- Bump to shairport-sync 4.3.7-1moode1 to restore AirPlay2 functionality</li><li>- Add option to Peripheral Config to load PeppyALSA driver</li><li>- Add moodeutl option to switch between WebUI and Peppy display</li><li>- Add v3 1024x600-moode-2 meters (resized from v2 1280x400-moode set)</li><li>- Improve Peppy and Peripheral Config screens</li><li>- Improve Peripheral section of startup log</li><li>Bug fixes</li><li>- Cec-ctl param to get phy address changed causing --standby to fail</li><li>- Moode meters v2 1280x720 blue,emerald,gold are broken</li><li>- Screen rotation not restored</li><li>- Add to favorites 'item' (file path) not excluded from SECCHK</li><li>- In-place update radio station zip file path</li></ul>
