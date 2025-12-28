@@ -1,0 +1,13 @@
+########################################
+# Update package for moOde audio player
+#
+# http://moodeaudio.org
+########################################
+
+Date: 2025-MM-DD
+Release: 10.0.3
+ImageOnly: No
+
+Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to BACKUP your system before applying this update.</p>
+
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>New features</li><li>- Moodeutl option and REST API to set local display to [webui|peppy|toggle]</li><li>- Moodeutl option and REST API to turn renderer on/off</li><li>Updates</li><li>- Add Radio manager show/hide options "Edit hidden" and "Show non-hidden"</li><li>- Improve network section of startup log</li><li>Bug fixes</li><li>- When Bluetooth is turned off the "Active" screen is not immediately cleared</li><li>- Units used to position Radio badge (use em instead of px)</li><li>- Queue info shows wrong playlist when clear/play album</li><li>- Crossfeed conf file has bad path to bs2b ladspa plugin</li></ul>
