@@ -4,10 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2025-12-18
-Release: 10.0.2
+Date: 2025-12-28
+Release: 10.0.3
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to BACKUP your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Updates:</li><li>- Bump to shairport-sync 4.3.7-1moode1 to restore AirPlay2 functionality</li><li>- Add option to Peripheral Config to load PeppyALSA driver</li><li>- Add moodeutl option to switch between WebUI and Peppy display</li><li>- Add v3 1024x600-moode-2 meters (resized from v2 1280x400-moode set)</li><li>- Improve Peppy and Peripheral Config screens</li><li>- Improve Peripheral section of startup log</li><li>Bug fixes</li><li>- Cec-ctl param to get phy address changed causing --standby to fail</li><li>- Moode meters v2 1280x720 blue,emerald,gold are broken</li><li>- Screen rotation not restored</li><li>- Add to favorites 'item' (file path) not excluded from SECCHK</li><li>- In-place update radio station zip file path</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>New features</li><li>- Moodeutl option and REST API to set local display to [webui|peppy|toggle]</li><li>- Moodeutl option and REST API to turn renderer on/off</li><li>Updates</li><li>- Add Radio manager show/hide options "Edit hidden" and "Show non-hidden"</li><li>- Improve network section of startup log</li><li>Bug fixes</li><li>- When Bluetooth is turned off the "Active" screen is not immediately cleared</li><li>- Units used to position Radio badge (use em instead of px)</li><li>- Queue info shows wrong playlist when clear/play album</li><li>- Crossfeed conf file has bad path to bs2b ladspa plugin</li></ul>
