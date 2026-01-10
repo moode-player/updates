@@ -22,8 +22,8 @@ caps=0.9.26-1moode1
 
 # Part 3: Kernel package
 # NOTE: Kernel install is skipped if KERNEL_NEW_VER=""
-KERNEL_NEW_VER="6.12.47"
-KERNEL_NEW_PKGVER="1:6.12.47-1+rpt1~bookworm"
+KERNEL_NEW_VER="6.12.62"
+KERNEL_NEW_PKGVER="1:6.12.62-1+rpt1"
 
 # Initialize step counter
 STEP=0
