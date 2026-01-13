@@ -115,7 +115,7 @@ if [ $KERNEL_NEW_VER != "" ]; then
 			message_log "** - Kernel not found, update skipped"
 		else
 			message_log "** - Kernel found, updating..."
-			DRIVERS_TO_UNINSTALL=`dpkg-query --showformat='${Status} ${Package}\n' --show pcm1794a-* rtl88xxau-* |grep -e "^install" | grep -v $KERNEL_NEW_VER | cut -d ' ' -f 4- | tr '\n' ' '`
+			DRIVERS_TO_UNINSTALL=`dpkg-query --showformat='${Status} ${Package}\n' --show pcm1794a-* rtl88xxau-* | grep -e "^install" | grep -v $KERNEL_NEW_VER | cut -d ' ' -f 4- | tr '\n' ' '`
 			if [ "$DRIVERS_TO_UNINSTALL" != "" ]
 			then
 				message_log "** - Remove current custom drivers"
@@ -123,6 +123,11 @@ if [ $KERNEL_NEW_VER != "" ]; then
 				if [ $? -ne 0 ]; then
 					cancel_update "** Step failed"
 				fi
+			fi
+			message_log "** - Patch initramfs.conf"
+			sed -i 's/^MODULES.*/MODULES=most/' /etc/initramfs-tools/initramfs.conf
+			if [ $? -ne 0 ]; then
+				cancel_update "** Step failed"
 			fi
 			message_log "** - Install new kernel"
 			apt -y install "linux-image-rpi-v8=$KERNEL_NEW_PKGVER" "linux-image-rpi-2712=$KERNEL_NEW_PKGVER"
