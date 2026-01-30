@@ -4,10 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2025-12-28
-Release: 10.0.3
+Date: 2026-01-29
+Release: 10.1.0
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to BACKUP your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>New features</li><li>- Moodeutl option and REST API to set local display to [webui|peppy|toggle]</li><li>- Moodeutl option and REST API to turn renderer on/off</li><li>Updates</li><li>- Add Radio manager show/hide options "Edit hidden" and "Show non-hidden"</li><li>- Improve network section of startup log</li><li>Bug fixes</li><li>- When Bluetooth is turned off the "Active" screen is not immediately cleared</li><li>- Units used to position Radio badge (use em instead of px)</li><li>- Queue info shows wrong playlist when clear/play album</li><li>- Crossfeed conf file has bad path to bs2b ladspa plugin</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>New features</li><li>- Peppy "Display on play" feature</li><li>Updates</li><li>- Bump to Linux kernel 6.12.62</li><li>- Bump to MPD 0.24.8</li><li>- Bump to v4-moode-meters (includes select 1600x900 meters)</li><li>- Add option for CEC version (2.0 or 1.4)</li><li>- Add peppy meter settings to backup/restore</li><li>- Add (codec) to "Bluetooth speaker" in Audio Info</li><li>- Add revision code for Pi-5 16GB</li><li>- Add option to Reduce notifications</li><li>- Add option for Compute Module external antenna</li><li>- Improve stats displayed on Network Config screen</li><li>- Patch initramfs.conf to avoid apt kernel upgrade errors</li><li>Bug fixes</li><li>- Screen blank not working for the "Never" setting</li><li>- Search site Pref missing from backup/restore</li><li>- Rotary encoder params not applied during startup</li><li>- Screen rotation not restored (regression)</li></ul>
