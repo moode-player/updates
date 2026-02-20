@@ -9,12 +9,12 @@
 #
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2026-02-19"
+INPLACE_UPDATE_DATE="2026-MM-DD"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
-moode-player=10.1.1-1moode1
+moode-player=10.1.2-1moode1
 mpd=0.24.8-1moode1
 shairport-sync=4.3.7-1moode1
 squeezelite=2.0.0-1541+git20250609.72e1fd8-1moode1
