@@ -5,7 +5,7 @@
 ########################################
 
 Date: 2026-MM-DD
-Release: 10.1.3
+Release: 10.2.0
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to BACKUP your system before applying this update.</p>
