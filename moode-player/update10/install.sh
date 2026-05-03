@@ -18,10 +18,12 @@ moode-player=10.2.0-1moode1
 mpd=0.24.8-1moode1
 squeezelite=2.0.0-1541+git20250609.72e1fd8-1moode1
 caps=0.9.26-1moode1
+# wait for version bump
 camilladsp=4.1.1-1moode1
 camillagui=4.0.1-1moode1
 python3-camilladsp-plot=4.0.0-1moode1
 python3-camilladsp=4.0.0-1moode1
+# wait for upmpdcli version bump
 )
 
 # Part 3: Kernel package
