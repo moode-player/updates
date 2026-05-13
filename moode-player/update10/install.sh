@@ -22,6 +22,7 @@ camilladsp=4.1.3-1moode1
 camillagui=4.1.0-1moode1
 python3-camilladsp-plot=4.1.0-1moode1
 python3-camilladsp=4.0.0-1moode1
+alsa-cdsp=1.2.0-3moode1
 )
 
 # Part 3: Kernel package
