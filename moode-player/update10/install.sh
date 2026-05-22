@@ -32,7 +32,7 @@ KERNEL_NEW_PKGVER="1:6.12.75-1+rpt1"
 
 # Initialize step counter
 STEP=0
-PREDEFINED_STEPS=5
+PREDEFINED_STEPS=6
 TOTAL_STEPS=$((${#PKG_UPDATES[@]} + $PREDEFINED_STEPS))
 if [ $KERNEL_NEW_VER != "" ]; then
 	TOTAL_STEPS=$((TOTAL_STEPS + 1))
@@ -91,7 +91,14 @@ cd $WD
 truncate $UPDATER_LOG --size 0
 message_log "Start $INPLACE_UPDATE_DATE update for moOde"
 
-# 1 - Remove package hold
+# 1 - Get latest moode-apt-mark
+STEP=$((STEP + 1))
+message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Get latest moode-apt-mark"
+wget -q https://raw.githubusercontent.com/moode-player/pkgbuild/refs/heads/main/packages/moode-player/moode-apt-mark -O /usr/local/bin/moode-apt-mark
+if [ $? -ne 0 ]; then
+	cancel_update "** Step failed"
+fi
+# 2 - Remove package hold
 STEP=$((STEP + 1))
 message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Remove package hold"
 moode-apt-mark unhold
@@ -99,7 +106,7 @@ if [ $? -ne 0 ]; then
 	cancel_update "** Step failed"
 fi
 
-# 2 - Update package list
+# 3 - Update package list
 STEP=$((STEP + 1))
 message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Update package list"
 apt update
@@ -107,7 +114,7 @@ if [ $? -ne 0 ]; then
 	cancel_update "** Step failed"
 fi
 
-# 3 - Linux kernel and custom drivers
+# 4 - Linux kernel and custom drivers
 if [ $KERNEL_NEW_VER != "" ]; then
 	STEP=$((STEP + 1))
 	message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Update Linux kernel to $KERNEL_NEW_VER"
@@ -143,7 +150,7 @@ if [ $KERNEL_NEW_VER != "" ]; then
 	fi
 fi
 
-# 4 Install package updates
+# 5 Install package updates
 for PACKAGE in "${PKG_UPDATES[@]}"
 do
 	STEP=$((STEP + 1))
@@ -182,7 +189,7 @@ do
 	fi
 done
 
-# 5 - Apply package hold
+# 6 - Apply package hold
 STEP=$((STEP + 1))
 message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Apply package hold"
 moode-apt-mark hold
@@ -190,7 +197,7 @@ if [ $? -ne 0 ]; then
 	cancel_update "** Step failed"
 fi
 
-# 6 - Post-install cleanup
+# 7 - Post-install cleanup
 STEP=$((STEP + 1))
 message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Post-install cleanup"
 # Restore theme background color in var/www/header.php
@@ -212,7 +219,7 @@ fi
 wget -q https://raw.githubusercontent.com/moode-player/moode/develop/lib/systemd/system/squeezelite.overwrite.service -O /lib/systemd/system/squeezelite.service
 systemctl disable squeezelite
 
-# 7 - Flush cached disk writes
+# 8 - Flush cached disk writes
 STEP=$((STEP + 1))
 message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Sync changes to disk"
 message_log "Finish $INPLACE_UPDATE_DATE update for moOde $CURRENT_REL_LONG"
