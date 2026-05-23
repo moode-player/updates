@@ -9,7 +9,7 @@
 #
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2026-MM-DD"
+INPLACE_UPDATE_DATE="2026-05-23"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
@@ -27,8 +27,8 @@ alsa-cdsp=1.2.0-3moode1
 
 # Part 3: Kernel package
 # NOTE: Kernel install is skipped if KERNEL_NEW_VER=""
-KERNEL_NEW_VER="6.12.75"
-KERNEL_NEW_PKGVER="1:6.12.75-1+rpt1"
+KERNEL_NEW_VER="6.18.29"
+KERNEL_NEW_PKGVER="1:6.18.29-1+rpt1"
 
 # Initialize step counter
 STEP=0
