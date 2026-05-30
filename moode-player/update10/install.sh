@@ -23,6 +23,12 @@ camillagui=4.1.0-1moode1
 python3-camilladsp-plot=4.1.0-1moode1
 python3-camilladsp=4.0.0-1moode1
 alsa-cdsp=1.2.0-3moode1
+upmpdcli=1.9.17-1moode1
+upmpdcli-tidal=1.9.17-1moode1
+upmpdcli-qobuz=1.9.17-1moode1
+libnpupnp13=6.2.3-1moode1
+libupnpp17=1.0.3-1moode1
+python3-libupnpp=0.26.1-1moode1
 )
 
 # Part 3: Kernel package
@@ -151,6 +157,7 @@ if [ $KERNEL_NEW_VER != "" ]; then
 fi
 
 # 5 Install package updates
+killall -s 9 watchdog.sh
 for PACKAGE in "${PKG_UPDATES[@]}"
 do
 	STEP=$((STEP + 1))
