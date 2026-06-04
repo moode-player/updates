@@ -9,12 +9,12 @@
 #
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2026-MM-DD"
+INPLACE_UPDATE_DATE="2026-05-31"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
-moode-player=10.2.3-1moode1
+moode-player=10.2.2-1moode1
 mpd=0.24.12-1moode1
 squeezelite=2.0.0-1541+git20250609.72e1fd8-1moode1
 caps=0.9.26-1moode1
@@ -33,8 +33,8 @@ python3-libupnpp=0.26.1-1moode1
 
 # Part 3: Kernel package
 # NOTE: Kernel install is skipped if KERNEL_NEW_VER=""
-KERNEL_NEW_VER="6.18.33"
-KERNEL_NEW_PKGVER="1:6.18.33-1+rpt1"
+KERNEL_NEW_VER="6.18.29"
+KERNEL_NEW_PKGVER="1:6.18.29-1+rpt1"
 
 # Initialize step counter
 STEP=0
