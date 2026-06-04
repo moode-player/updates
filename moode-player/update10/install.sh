@@ -157,7 +157,6 @@ if [ $KERNEL_NEW_VER != "" ]; then
 fi
 
 # 5 Install package updates
-killall -s 9 watchdog.sh
 for PACKAGE in "${PKG_UPDATES[@]}"
 do
 	STEP=$((STEP + 1))
