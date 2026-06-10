@@ -120,7 +120,7 @@ if [ $? -ne 0 ]; then
 	cancel_update "** Step failed"
 fi
 
-# 4 - Linux kernel and custom drivers
+# 4 - Linux kernel
 if [ $KERNEL_NEW_VER != "" ]; then
 	STEP=$((STEP + 1))
 	message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Update Linux kernel to $KERNEL_NEW_VER"
