@@ -33,8 +33,8 @@ python3-libupnpp=0.26.1-1moode1
 
 # Part 3: Kernel package
 # NOTE: Kernel install is skipped if KERNEL_NEW_VER=""
-KERNEL_NEW_VER="6.18.33"
-KERNEL_NEW_PKGVER="1:6.18.33-1+rpt1"
+KERNEL_NEW_VER="6.18.34"
+KERNEL_NEW_PKGVER="1:6.18.34-1+rpt1"
 
 # Initialize step counter
 STEP=0
