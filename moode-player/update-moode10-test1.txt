@@ -4,7 +4,7 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2026-06-15
+Date: 2026-06-21
 Release: 10.2.4
 ImageOnly: No
 
