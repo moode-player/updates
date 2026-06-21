@@ -4,14 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2026-MM-DD
+Date: 2026-06-15
 Release: 10.2.4
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to BACKUP your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
-<li>
-</li>
-
-</ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>- Library stats process causing performance issues</li><li>- Folder view not handling directory names with embedded quotes</li><li>- Clock radio sends play command before setting volume</li></ul>
