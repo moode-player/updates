@@ -30,6 +30,7 @@ upmpdcli-qobuz=1.9.17-1moode1
 libnpupnp13=6.2.3-1moode1
 libupnpp17=1.0.3-1moode1
 python3-libupnpp=0.26.1-1moode1
+peppy-meter=2026.7.20-1moode1
 )
 
 # Part 3: Kernel package
@@ -171,7 +172,10 @@ do
 		if [ $? -ne 0 ]; then
 			cancel_update "** Step failed"
 		fi
-	elif [ $PKG_NAME = "shairport-sync" ] || [ $PKG_NAME = "upmpdcli" ] || [ $PKG_NAME = "mpd" ]; then
+	elif [ $PKG_NAME = "shairport-sync" ] || \
+		[ $PKG_NAME = "upmpdcli" ] || \
+		[ $PKG_NAME = "mpd" ];  || \
+		[ $PKG_NAME = "peppy-meter" ];then
 		apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
 		if [ $? -ne 0 ]; then
 			cancel_update "** Step failed"
