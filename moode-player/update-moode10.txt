@@ -4,10 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2026-07-14
-Release: 10.3.0
+Date: 2026-07-22
+Release: 10.3.1
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to BACKUP your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>New features</li><li>- Radio Cover+ adv cover search (based on MR+ by Ivo Scagliola & Marco Mosca)</li><li>- Radio Browser view (based on RadioBrowser by @rubatron, integrated by @Gjuju)</li><li>Updates</li><li>- Add Playlist upload/download: both Playlist and Folder view (PR #755 by @Gjuju)</li><li>- Populate CPU governor list from the kernel (PR #757 by @Gjuju)</li><li>- Add "Revox B251 With Haas Effect" to CamillaDSP sample configs (New image)</li><li>- Improve iTunes cover art lookup</li><li>Bug fixes</li><li>- Volume knob responsiveness: freeze/jump, drag flooding (PR #753 by @Gjuju)</li><li>- Pirev.py crashes on unrecognized revision codes (PR #754 by @Gjuju)</li><li>- Bluetooth no sound when ALSA output mode is not "Default" (PR #758 by @Gjuju)</li><li>- Spotify Connect missing covers and metadata</li><li>- Spotify and AirPlay cover backdrop not being reset after renderer ends</li><li>- Text/button visibility with Renderer backdrop (revert to no-cover backdrop)</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Packages</li><li>- peppy-meter 2026.7.20-1moode1</li><li>Updates</li><li>- Increase hit area of the ... button for Queue items (PR #771 @Gjuju)</li><li>- Provide dB values for MPD software volume (PR #770 @Gjuju)</li><li>Radio Browser</li><li>- Image create in radio-logos/ directory fails</li><li>- Queue thumb not showing up due to timing issue</li><li>- List position in Radio view being updated by Radio Browser</li><li>- Highlight is missing when tile is clicked</li><li>- Duplicate station URL's can be added</li><li>- Countries sorted by country code instead of name</li><li>- Remove duplicate genre "Jazz - Bebop" entry</li><li>- Radio Manager hide/unhide actions set wrong station type for RB stations</li><li>Bug fixes</li><li>- Premature auto-switch from Peppy to WebUI on track change (PR #777 @Gjuju)</li><li>- Fix no Bluetooth audio when a GEQ/PEQ/Crossfeed active (PR #774 @Gjuju)</li><li>- Hardware volume not being tracked when Peppy is on (PR #773 @Gjuju)</li><li>- Volume/attenuation when Peppy is on (PR #769 @Gjuju)</li><li>- Typo in Library Config help for the Analyze button</li><li>- Index search broken in Radio view when group by "Favorites first"</li></ul>
