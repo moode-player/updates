@@ -174,8 +174,8 @@ do
 		fi
 	elif [ $PKG_NAME = "shairport-sync" ] || \
 		[ $PKG_NAME = "upmpdcli" ] || \
-		[ $PKG_NAME = "mpd" ];  || \
-		[ $PKG_NAME = "peppy-meter" ];then
+		[ $PKG_NAME = "mpd" ]  || \
+		[ $PKG_NAME = "peppy-meter" ]; then
 		apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
 		if [ $? -ne 0 ]; then
 			cancel_update "** Step failed"
