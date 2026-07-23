@@ -174,8 +174,7 @@ do
 		fi
 	elif [ $PKG_NAME = "shairport-sync" ] || \
 		[ $PKG_NAME = "upmpdcli" ] || \
-		[ $PKG_NAME = "mpd" ]  || \
-		[ $PKG_NAME = "peppy-meter" ]; then
+		[ $PKG_NAME = "mpd" ]; then
 		apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
 		if [ $? -ne 0 ]; then
 			cancel_update "** Step failed"
@@ -194,6 +193,17 @@ do
 		apt -y install $PACKAGE --allow-downgrades
 		if [ $? -ne 0 ]; then
 			cancel_update "** Step failed"
+		fi
+	elif [ $PKG_NAME = "peppy-meter" ]; then
+		# Save the conf file updated via the earlier moode-player package install
+		cp /etc/peppymeter/config.txt /etc/peppymeter/config.txt.save
+		# This install will overwrite the conf (--force-confdef, --force-confold don't work for this package)
+		apt -y install $PACKAGE
+		if [ $? -ne 0 ]; then
+			cancel_update "** Step failed"
+		else
+			# Restore the correct conf
+			mv /etc/peppymeter/config.txt.save /etc/peppymeter/config.txt
 		fi
 	else
 		apt -y install $PACKAGE
