@@ -31,6 +31,9 @@ libnpupnp13=6.2.3-1moode1
 libupnpp17=1.0.3-1moode1
 python3-libupnpp=0.26.1-1moode1
 peppy-meter=2026.7.20-1moode1
+libasound2-data=1.2.14-1+rpt1moode1
+libasound2t64=1.2.14-1+rpt1moode1
+peppy-alsa=2024.02.10-1moode3
 )
 
 # Part 3: Kernel package
