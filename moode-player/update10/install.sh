@@ -35,6 +35,7 @@ libasound2-dev=1.2.14-1+rpt1moode1
 libasound2-data=1.2.14-1+rpt1moode1
 libasound2t64=1.2.14-1+rpt1moode1
 peppy-alsa=2026.07.26-1moode1
+shairport-sync-metadata-reader=2.0.0~git20260724.a4a29f3-1moode1
 )
 
 # Part 3: Kernel package
