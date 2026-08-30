@@ -9,14 +9,14 @@
 #
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2026-08-27"
-MOODE_RELEASE="10.3.3-1moode1"
+INPLACE_UPDATE_DATE="2026-MM-DD"
+MOODE_RELEASE="10.3.4-1moode1"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
 PKG_UPDATES=(
 moode-player=$MOODE_RELEASE
-mpd=0.24.13-1moode1
+mpd=0.24.15-1moode1
 squeezelite=2.0.0-1541+git20250609.72e1fd8-1moode1
 caps=0.9.26-1moode1
 camilladsp=4.1.3-1moode1
@@ -164,11 +164,11 @@ if [ $KERNEL_NEW_VER != "" ]; then
 fi
 
 # 5 Install package updates
-#
-# TODO: First check if package is already current
-#
 for PACKAGE in "${PKG_UPDATES[@]}"
 do
+
+	# TODO: First check if package is already current
+
 	STEP=$((STEP + 1))
 	message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Install $PACKAGE"
 	PKG_NAME=$(echo $PACKAGE | cut -d "=" -f 1)
