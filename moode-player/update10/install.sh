@@ -45,8 +45,7 @@ KERNEL_NEW_PKGVER="1:6.18.39-1+rpt1"
 
 # Initialize step counter
 STEP=0
-PREDEFINED_STEPS=6
-TOTAL_STEPS=$((${#PKG_UPDATES[@]} + $PREDEFINED_STEPS))
+TOTAL_STEPS=6
 if [ $KERNEL_NEW_VER != "" ]; then
 	TOTAL_STEPS=$((TOTAL_STEPS + 1))
 fi
@@ -164,56 +163,66 @@ if [ $KERNEL_NEW_VER != "" ]; then
 fi
 
 # 5 Install package updates
+STEP=$((STEP + 1))
+message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Install package updates"
 for PACKAGE in "${PKG_UPDATES[@]}"
 do
-
-	# TODO: First check if package is already current
-
-	STEP=$((STEP + 1))
-	message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Install $PACKAGE"
 	PKG_NAME=$(echo $PACKAGE | cut -d "=" -f 1)
-	if [ $PKG_NAME = "moode-player" ]; then
-		apt -y -o Dpkg::Options::="--force-confnew" install $PACKAGE
-		if [ $? -ne 0 ]; then
-			cancel_update "** Step failed"
-		fi
-	elif [ $PKG_NAME = "shairport-sync" ] || \
-		[ $PKG_NAME = "upmpdcli" ] || \
-		[ $PKG_NAME = "mpd" ]; then
-		apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
-		if [ $? -ne 0 ]; then
-			cancel_update "** Step failed"
-		fi
-	elif [ $PKG_NAME = "bluez-alsa-utils" ] || [ $PKG_NAME = "libasound2-plugin-bluez" ]; then
-		dpkg --compare-versions $(dpkg-query -W -f='${Version}' $PKG_NAME) gt "4.2.0-2moode1"
-		if [ $? -eq 0 ]; then
-			message_log "** - Installed package is newer, update skipped"
+	PKG_VER=$(echo $PACKAGE | cut -d "=" -f 2)
+	PKG_INSTALLED_VER=$(dpkg-query -W -f='${Version}\n' $PKG_NAME)
+	dpkg --compare-versions $PKG_VER "gt" $PKG_INSTALLED_VER
+	if [ $? -eq 0 ]
+	then
+		echo "** - Updating $PKG_NAME: to $PKG_VER"
+		if [ $PKG_NAME = "moode-player" ]; then
+			apt -y -o Dpkg::Options::="--force-confnew" install $PACKAGE
+			if [ $? -ne 0 ]; then
+				cancel_update "** Step failed"
+			fi
+		elif [ $PKG_NAME = "shairport-sync" ] || [ $PKG_NAME = "upmpdcli" ] || [ $PKG_NAME = "mpd" ]; then
+			apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
+			if [ $? -ne 0 ]; then
+				cancel_update "** Step failed"
+			fi
+		elif [ $PKG_NAME = "bluez-alsa-utils" ] || [ $PKG_NAME = "libasound2-plugin-bluez" ]; then
+			dpkg --compare-versions $(dpkg-query -W -f='${Version}' $PKG_NAME) gt "4.2.0-2moode1"
+			if [ $? -eq 0 ]; then
+				message_log "** - Installed package is newer, update skipped"
+			else
+				apt -y install $PACKAGE
+				if [ $? -ne 0 ]; then
+					cancel_update "** Step failed"
+				fi
+			fi
+		elif [ $PKG_NAME = "caps" ]; then
+			apt -y install $PACKAGE --allow-downgrades
+			if [ $? -ne 0 ]; then
+				cancel_update "** Step failed"
+			fi
+		elif [ $PKG_NAME = "peppy-meter" ]; then
+			# Save the conf file updated via the earlier moode-player package install
+			cp /etc/peppymeter/config.txt /etc/peppymeter/config.txt.save
+			# This install will overwrite the conf (--force-confdef, --force-confold don't work for this package)
+			apt -y install $PACKAGE
+			if [ $? -ne 0 ]; then
+				cancel_update "** Step failed"
+			else
+				# Restore the correct conf
+				mv /etc/peppymeter/config.txt.save /etc/peppymeter/config.txt
+			fi
 		else
 			apt -y install $PACKAGE
 			if [ $? -ne 0 ]; then
 				cancel_update "** Step failed"
 			fi
 		fi
-	elif [ $PKG_NAME = "caps" ]; then
-		apt -y install $PACKAGE --allow-downgrades
-		if [ $? -ne 0 ]; then
-			cancel_update "** Step failed"
-		fi
-	elif [ $PKG_NAME = "peppy-meter" ]; then
-		# Save the conf file updated via the earlier moode-player package install
-		cp /etc/peppymeter/config.txt /etc/peppymeter/config.txt.save
-		# This install will overwrite the conf (--force-confdef, --force-confold don't work for this package)
-		apt -y install $PACKAGE
-		if [ $? -ne 0 ]; then
-			cancel_update "** Step failed"
-		else
-			# Restore the correct conf
-			mv /etc/peppymeter/config.txt.save /etc/peppymeter/config.txt
-		fi
 	else
-		apt -y install $PACKAGE
-		if [ $? -ne 0 ]; then
-			cancel_update "** Step failed"
+		dpkg --compare-versions $PKG_VER "lt" $PKG_INSTALLED_VER
+		if [ $? -eq 0 ]
+		then
+			echo "** - Skipping $PKG_NAME: installed version is newer"
+		else
+			echo "** - Skipping $PKG_NAME: installed version is same"
 		fi
 	fi
 done
