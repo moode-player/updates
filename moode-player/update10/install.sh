@@ -9,7 +9,7 @@
 #
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2026-MM-DD"
+INPLACE_UPDATE_DATE="2026-09-08"
 MOODE_RELEASE="10.3.4-1moode1"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
