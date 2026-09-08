@@ -222,7 +222,7 @@ do
 		then
 			echo "** - Skipping $PKG_NAME: installed version is newer"
 		else
-			echo "** - Skipping $PKG_NAME: installed version is same"
+			echo "** - Skipping $PKG_NAME: installed version is current"
 		fi
 	fi
 done
