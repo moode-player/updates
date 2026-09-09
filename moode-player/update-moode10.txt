@@ -4,10 +4,10 @@
 # http://moodeaudio.org
 ########################################
 
-Date: 2026-08-27
-Release: 10.3.3
+Date: 2026-09-08
+Release: 10.3.4
 ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to BACKUP your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>New features:</li><li>- Wide layout for AirPlay and Spotify Connect metadata display</li><li>Updates:</li><li>- Improve Radio Browser notification messages, reduce messages</li><li>- Improve "Analyze music database" (run in background with progress info)</li><li>- Add "ignore_volume_control" setting to AirPlay Config</li><li>Bug fixes</li><li>- Duplicate entries in Radio Cover+ cache table</li><li>- Bluetooth Confirm Code modal not displayed when on Config screens</li><li>- Brightness adjustment not working for Pi Touch 2 DSI screen</li><li>- Radio Browser recents not showing</li><li>- Aria-hidden error in Browser console</li></ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>Packages</li><li>- shairport-sync: 5.5.1-1moode1</li><li>- mpd: 0.24.15-1moode1</li><li>Updates</li><li>- Refactor obsolete Deezer Connect framework to support Qobuz Connect</li><li>Bug fixes</li><li>- Renderer wide layout on mobile</li></ul>
