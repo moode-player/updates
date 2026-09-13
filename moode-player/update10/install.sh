@@ -32,10 +32,10 @@ libupnpp17=1.0.3-1moode1
 python3-libupnpp=0.26.1-1moode1
 peppy-meter=2026.7.20-1moode1
 peppy-alsa=2026.07.26-1moode1
-libasound2-dev=1.2.14-1+rpt1moode1
-libasound2-data=1.2.14-1+rpt1moode1
-libasound2t64=1.2.14-1+rpt1moode1
 shairport-sync-metadata-reader=2.0.0~git20260724.a4a29f3-1moode1
+libasound2-dev=1.2.14-1+rpt1moode1
+#libasound2-data=1.2.14-1+rpt1moode1
+#libasound2t64=1.2.14-1+rpt1moode1
 )
 
 # Part 3: Kernel package
@@ -170,59 +170,88 @@ do
 	PKG_NAME=$(echo $PACKAGE | cut -d "=" -f 1)
 	PKG_VER=$(echo $PACKAGE | cut -d "=" -f 2)
 	PKG_INSTALLED_VER=$(dpkg-query -W -f='${Version}\n' $PKG_NAME)
-	dpkg --compare-versions $PKG_VER "gt" $PKG_INSTALLED_VER
-	if [ $? -eq 0 ]
-	then
-		echo "** - Updating $PKG_NAME: to $PKG_VER"
-		if [ $PKG_NAME = "moode-player" ]; then
-			apt -y -o Dpkg::Options::="--force-confnew" install $PACKAGE
+
+	if [ -z $PKG_INSTALLED_VER ]; then
+		# New packages
+		if [ $PKG_NAME != "libasound2-dev" ]; then
+			echo "** - Intalling $PACKAGE"
+			apt -y install $PACKAGE
 			if [ $? -ne 0 ]; then
 				cancel_update "** Step failed"
 			fi
-		elif [ $PKG_NAME = "shairport-sync" ] || [ $PKG_NAME = "upmpdcli" ] || [ $PKG_NAME = "mpd" ]; then
-			apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
+		else
+			echo "** - Intalling libasound2 package set: $PKG_VER"
+			apt -y install libasound2-dev=$PKG_VER \
+				libasound2-data=$PKG_VER \
+				libasound2t64=$PKG_VER
 			if [ $? -ne 0 ]; then
 				cancel_update "** Step failed"
 			fi
-		elif [ $PKG_NAME = "bluez-alsa-utils" ] || [ $PKG_NAME = "libasound2-plugin-bluez" ]; then
-			dpkg --compare-versions $(dpkg-query -W -f='${Version}' $PKG_NAME) gt "4.2.0-2moode1"
-			if [ $? -eq 0 ]; then
-				message_log "** - Installed package is newer, update skipped"
+		fi
+	else
+		# Previously installed packages
+		dpkg --compare-versions $PKG_VER "gt" $PKG_INSTALLED_VER
+		if [ $? -eq 0 ]; then
+			if [ $PKG_NAME != "libasound2-dev" ]; then
+				echo "** - Updating $PKG_NAME: to $PKG_VER"
+			fi
+			if [ $PKG_NAME = "moode-player" ]; then
+				apt -y -o Dpkg::Options::="--force-confnew" install $PACKAGE
+				if [ $? -ne 0 ]; then
+					cancel_update "** Step failed"
+				fi
+			elif [ $PKG_NAME = "upmpdcli" ] || [ $PKG_NAME = "mpd" ]; then
+				apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
+				if [ $? -ne 0 ]; then
+					cancel_update "** Step failed"
+				fi
+			elif [ $PKG_NAME = "bluez-alsa-utils" ] || [ $PKG_NAME = "libasound2-plugin-bluez" ]; then
+				dpkg --compare-versions $(dpkg-query -W -f='${Version}' $PKG_NAME) gt "4.2.0-2moode1"
+				if [ $? -eq 0 ]; then
+					message_log "** - Installed package is newer, update skipped"
+				else
+					apt -y install $PACKAGE
+					if [ $? -ne 0 ]; then
+						cancel_update "** Step failed"
+					fi
+				fi
+			elif [ $PKG_NAME = "caps" ]; then
+				apt -y install $PACKAGE --allow-downgrades
+				if [ $? -ne 0 ]; then
+					cancel_update "** Step failed"
+				fi
+			elif [ $PKG_NAME = "peppy-meter" ]; then
+				# Save the conf file updated via the earlier moode-player package install
+				cp /etc/peppymeter/config.txt /etc/peppymeter/config.txt.save
+				# This install will overwrite the conf (--force-confdef, --force-confold don't work for this package)
+				apt -y install $PACKAGE
+				if [ $? -ne 0 ]; then
+					cancel_update "** Step failed"
+				else
+					# Restore the correct conf
+					mv /etc/peppymeter/config.txt.save /etc/peppymeter/config.txt
+				fi
+			elif [ $PKG_NAME = "libasound2-dev" ]; then
+				echo "** - Updating libasound2 package set to $PKG_VER"
+				apt -y install libasound2-dev=$PKG_VER \
+					libasound2-data=$PKG_VER \
+					libasound2t64=$PKG_VER
+				if [ $? -ne 0 ]; then
+					cancel_update "** Step failed"
+				fi
 			else
 				apt -y install $PACKAGE
 				if [ $? -ne 0 ]; then
 					cancel_update "** Step failed"
 				fi
 			fi
-		elif [ $PKG_NAME = "caps" ]; then
-			apt -y install $PACKAGE --allow-downgrades
-			if [ $? -ne 0 ]; then
-				cancel_update "** Step failed"
-			fi
-		elif [ $PKG_NAME = "peppy-meter" ]; then
-			# Save the conf file updated via the earlier moode-player package install
-			cp /etc/peppymeter/config.txt /etc/peppymeter/config.txt.save
-			# This install will overwrite the conf (--force-confdef, --force-confold don't work for this package)
-			apt -y install $PACKAGE
-			if [ $? -ne 0 ]; then
-				cancel_update "** Step failed"
+		else
+			dpkg --compare-versions $PKG_VER "lt" $PKG_INSTALLED_VER
+			if [ $? -eq 0 ]; then
+				echo "** - Skipping $PKG_NAME: installed version is newer"
 			else
-				# Restore the correct conf
-				mv /etc/peppymeter/config.txt.save /etc/peppymeter/config.txt
+				echo "** - Skipping $PKG_NAME: installed version is current"
 			fi
-		else
-			apt -y install $PACKAGE
-			if [ $? -ne 0 ]; then
-				cancel_update "** Step failed"
-			fi
-		fi
-	else
-		dpkg --compare-versions $PKG_VER "lt" $PKG_INSTALLED_VER
-		if [ $? -eq 0 ]
-		then
-			echo "** - Skipping $PKG_NAME: installed version is newer"
-		else
-			echo "** - Skipping $PKG_NAME: installed version is current"
 		fi
 	fi
 done
