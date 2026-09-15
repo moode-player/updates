@@ -171,8 +171,8 @@ do
 	PKG_VER=$(echo $PACKAGE | cut -d "=" -f 2)
 	PKG_INSTALLED_VER=$(dpkg-query -W -f='${Version}\n' $PKG_NAME)
 
+	# Install new packages
 	if [ -z $PKG_INSTALLED_VER ]; then
-		# New packages
 		if [ $PKG_NAME != "libasound2-dev" ]; then
 			echo "** - Intalling $PACKAGE"
 			apt -y install $PACKAGE
@@ -188,13 +188,14 @@ do
 				cancel_update "** Step failed"
 			fi
 		fi
+	# Update previously installed packages
 	else
-		# Previously installed packages
 		dpkg --compare-versions $PKG_VER "gt" $PKG_INSTALLED_VER
 		if [ $? -eq 0 ]; then
 			if [ $PKG_NAME != "libasound2-dev" ]; then
 				echo "** - Updating $PKG_NAME: to $PKG_VER"
 			fi
+			# Update with options
 			if [ $PKG_NAME = "moode-player" ]; then
 				apt -y -o Dpkg::Options::="--force-confnew" install $PACKAGE
 				if [ $? -ne 0 ]; then
@@ -231,6 +232,7 @@ do
 					# Restore the correct conf
 					mv /etc/peppymeter/config.txt.save /etc/peppymeter/config.txt
 				fi
+			# Libasound2 package set
 			elif [ $PKG_NAME = "libasound2-dev" ]; then
 				echo "** - Updating libasound2 package set to $PKG_VER"
 				apt -y install libasound2-dev=$PKG_VER \
