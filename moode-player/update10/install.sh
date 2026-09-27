@@ -40,8 +40,8 @@ libasound2-dev=1.2.14-1+rpt1moode1
 
 # Part 3: Kernel package
 # NOTE: Kernel install is skipped if KERNEL_NEW_VER=""
-KERNEL_NEW_VER="6.18.39"
-KERNEL_NEW_PKGVER="1:6.18.39-1+rpt1"
+KERNEL_NEW_VER="6.18.50"
+KERNEL_NEW_PKGVER="1:6.18.50-1+rpt1"
 
 # Initialize step counter
 STEP=0
