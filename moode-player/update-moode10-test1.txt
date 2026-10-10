@@ -10,8 +10,4 @@ ImageOnly: No
 
 Description: <p>DESCRIPTION</p><p>This package updates moOde to the latest release. Be sure to BACKUP your system before applying this update.</p>
 
-Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes">
-<li>
-</li>
-
-</ul>
+Relnotes: <p>RELEASE NOTES</p><ul class="updater-relnotes"><li>New features</li><li>- Bluetooth metadata/coverart for clients that provide it (PR810 @Gjuju)</li><li>Packages</li><li>- MPD: 0.24.15_2moode1 (add support for ffmpeg filters)</li><li>Updates</li><li>- Improve Radio Covers feature (drop stand-alone iTunes search)</li><li>- Improve getRadioCoverUrl() by escaping the args (PR809 @Gjuju)</li><li>- Improve method for detecting chromium (PR816 @Gjuju, PR797 @stephanowicz)</li><li>- Remove config upgrade option in CamillaDSP Config (PR815 @bitlab)</li><li>- Add Topping D50 III to Audio Device table (workaround bad ALSA card id)</li><li>- Add Radio Cover URL cache to Backup/Restore</li><li>- Add validation for key in form post key -> value data</li><li>- Add missing key and value escaping to sqlUpdate()</li><li>- Refactor bt-pairing-agent.py (filename and code formatting)</li><li>Bug fixes</li><li>- Alsalib enhanced packages replaced by upstream stock packages</li><li>- Radio Cover+ not checking cover against min/max size limits</li><li>- Multiroom sender ALSA config not preserved during startup</li><li>- Artist name clipped by feat/ft regex in Radio Cover+ (PR807 @Gjuju)</li><li>- Restore clears Camilla configs when none in backup (PR812 @kiwipaulrob)</li><li>- Bad entry for 192K in aplmeta.py rate table (PR813 @kiwipaulrob)</li><li>- Handling of 'off' in moode_selectactivecdspconfig.py‎ (PR814 @bitlab)</li><li>- Args not escaped in getArgs()/index.php (PR816 @kiffa-australis256)</li><li>- Sed expressions not escaped in some configs (PR819 @kiffa-australis256)</li></ul>
