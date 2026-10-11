@@ -9,8 +9,8 @@
 #
 
 # Part 1: In-place update date (same as moOde release date)
-INPLACE_UPDATE_DATE="2026-10-10"
-MOODE_RELEASE="10.3.6-1moode1"
+INPLACE_UPDATE_DATE="2026-MM-DD"
+MOODE_RELEASE="10.3.7-1moode1"
 SQLDB=/var/local/www/db/moode-sqlite3.db
 
 # Part 2: List of package updates (cumulative)
