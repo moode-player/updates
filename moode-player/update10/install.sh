@@ -32,7 +32,7 @@ libupnpp17=1.0.3-1moode1
 python3-libupnpp=0.26.1-1moode1
 peppy-meter=2026.7.20-1moode1
 peppy-alsa=2026.07.26-1moode1
-shairport-sync-metadata-reader=2.0.0~git20260724.a4a29f3-1moode1
+shairport-sync-metadata-reader_2.0.1~git20261003.99a5935-1moode1
 libasound2-dev=1.2.14-1+rpt1moode1
 #libasound2-data=1.2.14-1+rpt1moode1
 #libasound2t64=1.2.14-1+rpt1moode1
