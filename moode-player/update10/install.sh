@@ -252,6 +252,14 @@ do
 				if [ $? -ne 0 ]; then
 					cancel_update "** Step failed"
 				fi
+			# MPD
+		elif [ $PKG_NAME = "mpd" ]; then
+				apt -y install $PACKAGE
+				if [ $? -ne 0 ]; then
+					cancel_update "** Step failed"
+				else
+					systemctl start mpd
+				fi
 			else
 				apt -y install $PACKAGE
 				if [ $? -ne 0 ]; then
