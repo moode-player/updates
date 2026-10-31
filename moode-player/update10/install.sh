@@ -253,12 +253,27 @@ do
 					cancel_update "** Step failed"
 				fi
 			# MPD
-		elif [ $PKG_NAME = "mpd" ]; then
+			elif [ $PKG_NAME = "mpd" ]; then
 				apt -y install $PACKAGE
 				if [ $? -ne 0 ]; then
 					cancel_update "** Step failed"
 				else
-					systemctl start mpd
+					message_log "** - Starting mpd..."
+					for i in {1..5}
+					do
+						systemctl start mpd
+						sleep 1
+						STARTED=$(pgrep -c -x "mpd")
+						if [ $STARTED -ne 0 ]; then
+							break
+						fi
+					done
+					STARTED=$(pgrep -c -x "mpd")
+					if [ $STARTED -ne 0 ]; then
+						message_log "** - mpd started"
+					else
+						message_log "** - mpd failed to start after 5 tries"
+					fi
 				fi
 			else
 				apt -y install $PACKAGE
