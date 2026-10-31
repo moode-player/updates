@@ -174,6 +174,8 @@ fi
 # 5 Install package updates
 STEP=$((STEP + 1))
 message_log "** Step $(pad_step $STEP)-$TOTAL_STEPS: Install package updates"
+message_log "** - Stop watchdog monitor"
+killall -s9 watchdog.sh
 for PACKAGE in "${PKG_UPDATES[@]}"
 do
 	PKG_NAME=$(echo $PACKAGE | cut -d "=" -f 1)
@@ -183,13 +185,13 @@ do
 	# Install new packages
 	if [ -z $PKG_INSTALLED_VER ]; then
 		if [ $PKG_NAME != "libasound2-dev" ]; then
-			echo "** - Intalling $PACKAGE"
+			message_log "** - Intalling $PACKAGE"
 			apt -y install $PACKAGE
 			if [ $? -ne 0 ]; then
 				cancel_update "** Step failed"
 			fi
 		else
-			echo "** - Intalling libasound2 package set: $PKG_VER"
+			message_log "** - Intalling libasound2 package set: $PKG_VER"
 			apt -y install libasound2-dev=$PKG_VER \
 				libasound2-data=$PKG_VER \
 				libasound2t64=$PKG_VER
@@ -202,7 +204,7 @@ do
 		dpkg --compare-versions $PKG_VER "gt" $PKG_INSTALLED_VER
 		if [ $? -eq 0 ]; then
 			if [ $PKG_NAME != "libasound2-dev" ]; then
-				echo "** - Updating $PKG_NAME: to $PKG_VER"
+				message_log "** - Updating $PKG_NAME: to $PKG_VER"
 			fi
 			# Update with options
 			if [ $PKG_NAME = "moode-player" ]; then
@@ -243,7 +245,7 @@ do
 				fi
 			# Libasound2 package set
 			elif [ $PKG_NAME = "libasound2-dev" ]; then
-				echo "** - Updating libasound2 package set to $PKG_VER"
+				message_log "** - Updating libasound2 package set to $PKG_VER"
 				apt -y install libasound2-dev=$PKG_VER \
 					libasound2-data=$PKG_VER \
 					libasound2t64=$PKG_VER
@@ -259,9 +261,9 @@ do
 		else
 			dpkg --compare-versions $PKG_VER "lt" $PKG_INSTALLED_VER
 			if [ $? -eq 0 ]; then
-				echo "** - Skipping $PKG_NAME: installed version is newer"
+				message_log "** - Skipping $PKG_NAME: installed version is newer"
 			else
-				echo "** - Skipping $PKG_NAME: installed version is current"
+				message_log "** - Skipping $PKG_NAME: installed version is current"
 			fi
 		fi
 	fi
