@@ -218,7 +218,7 @@ do
 					cancel_update "** Step failed"
 				else
 					message_log "** - Starting mpd..."
-					for i in {1..3}
+					for i in {1..6}
 					do
 						systemctl start mpd
 						sleep 1
