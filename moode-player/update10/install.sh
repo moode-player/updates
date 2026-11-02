@@ -36,8 +36,6 @@ shairport-sync-metadata-reader=2.0.1~git20261003.99a5935-1moode1
 libasound2-dev=1.2.14-1+rpt1moode1
 #libasound2-data=1.2.14-1+rpt1moode1
 #libasound2t64=1.2.14-1+rpt1moode1
-nginx=1.26.3-3+deb13u10
-php8.4=8.4.27-1~deb13u1
 )
 
 # Part 3: Kernel package
