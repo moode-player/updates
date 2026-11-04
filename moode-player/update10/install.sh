@@ -30,7 +30,7 @@ upmpdcli-qobuz=1.9.17-1moode1
 libnpupnp13=6.2.3-1moode1
 libupnpp17=1.0.3-1moode1
 python3-libupnpp=0.26.1-1moode1
-peppy-meter=2026.7.20-1moode1
+peppy-meter=2026.11.04-1moode1
 peppy-alsa=2026.07.26-1moode1
 shairport-sync-metadata-reader=2.0.1~git20261003.99a5935-1moode1
 libasound2-dev=1.2.14-1+rpt1moode1
@@ -248,13 +248,16 @@ do
 			elif [ $PKG_NAME = "peppy-meter" ]; then
 				# Save the conf file updated via the earlier moode-player package install
 				cp /etc/peppymeter/config.txt /etc/peppymeter/config.txt.save
-				# This install will overwrite the conf (--force-confdef, --force-confold don't work for this package)
+				# This install will overwrite the conf (--force-confdef, --force-confold won't work for this package)
 				apt -y install $PACKAGE
 				if [ $? -ne 0 ]; then
 					cancel_update "** Step failed"
 				else
-					# Restore the correct conf
+					# Restore the conf file
 					mv /etc/peppymeter/config.txt.save /etc/peppymeter/config.txt
+					# Add the new volume.curve option for 2026-11-04-1moode1
+					grep -q '^volume.curve' /etc/peppymeter/config.txt || \
+					sed -i '/^volume.gain.db.source/a volume.curve = 0.0' /etc/peppymeter/config.txt
 				fi
 			# Libasound2 package set
 			elif [ $PKG_NAME = "libasound2-dev" ]; then
