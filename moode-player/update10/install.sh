@@ -32,6 +32,8 @@ libupnpp17=1.0.3-1moode1
 python3-libupnpp=0.26.1-1moode1
 peppy-meter=2026.11.04-1moode1
 peppy-alsa=2026.07.26-1moode1
+nqptp=1.2.9-1moode1
+shairport-sync=5.6.2-3moode1
 shairport-sync-metadata-reader=2.0.1~git20261003.99a5935-1moode1
 libasound2-dev=1.2.14-1+rpt1moode1
 #libasound2-data=1.2.14-1+rpt1moode1
@@ -225,7 +227,7 @@ do
 						message_log "** - mpd failed to start after 3 tries"
 					fi
 				fi
-			elif [ $PKG_NAME = "upmpdcli" ]; then
+			elif [ $PKG_NAME = "shairport-sync" ] || $PKG_NAME = "upmpdcli" ]; then
 				apt -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $PACKAGE
 				if [ $? -ne 0 ]; then
 					cancel_update "** Step failed"
