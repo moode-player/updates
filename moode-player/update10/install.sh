@@ -35,6 +35,9 @@ peppy-alsa=2026.07.26-1moode1
 nqptp=1.2.9-1moode1
 shairport-sync=5.6.2-3moode1
 shairport-sync-metadata-reader=2.0.1~git20261003.99a5935-1moode1
+libplist-utils
+libmosquitto1
+libconfig11
 libasound2-dev=1.2.14-1+rpt1moode1
 #libasound2-data=1.2.14-1+rpt1moode1
 #libasound2t64=1.2.14-1+rpt1moode1
